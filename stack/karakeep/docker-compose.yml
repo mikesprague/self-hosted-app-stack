@@ -1,0 +1,55 @@
+services:
+  karakeep-chrome:
+    image: gcr.io/zenika-hub/alpine-chrome:latest
+    container_name: karakeep-chrome
+    restart: unless-stopped
+    command:
+      - --no-sandbox
+      - --disable-gpu
+      - --disable-dev-shm-usage
+      - --remote-debugging-address=0.0.0.0
+      - --remote-debugging-port=9222
+      - --hide-scrollbars
+
+  karakeep-meilisearch:
+    image: getmeili/meilisearch:v1.37.0
+    container_name: karakeep-meilisearch
+    restart: unless-stopped
+    environment:
+      MEILI_NO_ANALYTICS: "true"
+      MEILI_MASTER_KEY: ${KARAKEEP_MEILI_MASTER_KEY:?missing}
+    volumes:
+      - ../../local-volumes/karakeep/meilisearch:/meili_data
+
+  karakeep-web:
+    image: ghcr.io/karakeep-app/karakeep:${KARAKEEP_VERSION:-release}
+    container_name: karakeep-web
+    restart: unless-stopped
+    depends_on:
+      karakeep-chrome:
+        condition: service_started
+      karakeep-meilisearch:
+        condition: service_started
+    ports:
+      - 7788:3000
+    environment:
+      MEILI_ADDR: http://karakeep-meilisearch:7700
+      MEILI_MASTER_KEY: ${KARAKEEP_MEILI_MASTER_KEY:?missing}
+      BROWSER_WEB_URL: http://karakeep-chrome:9222
+      DATA_DIR: /data # DON'T CHANGE THIS
+      NEXTAUTH_URL: http://localhost:7788
+      NEXTAUTH_SECRET: ${KARAKEEP_NEXTAUTH_SECRET:?missing}
+      # OLLAMA_API_KEY: ${OLLAMA_API_KEY:-}
+      # OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:?missing}
+      # OLLAMA_KEEP_ALIVE: ${KARAKEEP_OLLAMA_KEEP_ALIVE:-5m}
+      OPENAI_API_KEY: ${AZURE_FOUNDRY_API_KEY:?missing}
+      OPENAI_BASE_URL: ${AZURE_FOUNDRY_OPENAI_BASE_URL:?missing}
+      INFERENCE_TEXT_MODEL: ${KARAKEEP_INFERENCE_TEXT_MODEL:?missing}
+      INFERENCE_IMAGE_MODEL: ${KARAKEEP_INFERENCE_IMAGE_MODEL:?missing}
+      EMBEDDING_TEXT_MODEL: ${KARAKEEP_EMBEDDING_TEXT_MODEL:?missing}
+      INFERENCE_USE_MAX_COMPLETION_TOKENS: ${KARAKEEP_INFERENCE_USE_MAX_COMPLETION_TOKENS:-false}
+      INFERENCE_NUM_WORKERS: ${KARAKEEP_INFERENCE_NUM_WORKERS:-1}
+      INFERENCE_ENABLE_AUTO_SUMMARIZATION: ${KARAKEEP_INFERENCE_ENABLE_AUTO_SUMMARIZATION:-true}
+      INFERENCE_JOB_TIMEOUT_SEC: ${KARAKEEP_INFERENCE_JOB_TIMEOUT_SEC:-90}
+    volumes:
+      - ../../local-volumes/karakeep/data:/data

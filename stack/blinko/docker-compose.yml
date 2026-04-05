@@ -1,0 +1,47 @@
+services:
+  blinko-postgres:
+    image: pgvector/pgvector:pg17
+    container_name: blinko-postgres
+    restart: always
+    ports:
+      - 5435:5432
+    environment:
+      POSTGRES_DB: ${BLINKO_POSTGRES_DB:-postgres}
+      POSTGRES_USER: ${BLINKO_POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${BLINKO_POSTGRES_PASSWORD:?missing}
+      TZ: America/New_York
+    volumes:
+      - ../../local-volumes/blinko/postgresql:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "postgres", "-d", "postgres" ]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+  blinko-web:
+    image: blinkospace/blinko:latest
+    container_name: blinko-web
+    environment:
+      NODE_ENV: production
+      NEXTAUTH_URL: http://localhost:1111
+      NEXT_PUBLIC_BASE_URL: http://localhost:1111
+      NEXTAUTH_SECRET: "${BLINKO_NEXTAUTH_SECRET:?missing}"
+      DATABASE_URL: postgresql://${BLINKO_POSTGRES_USER}:${BLINKO_POSTGRES_PASSWORD}@blinko-postgres:5432/${BLINKO_POSTGRES_DB}
+    depends_on:
+      blinko-postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+    ports:
+      - 1111:1111
+    healthcheck:
+      test: [ "CMD", "wget", "--spider", "-q", "http://blinko-web:1111/" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    volumes:
+      - ../../local-volumes/blinko/data:/app/.blinko

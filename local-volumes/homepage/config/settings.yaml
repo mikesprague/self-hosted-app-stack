@@ -1,0 +1,18 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/settings/
+
+background:
+  image: https://images.unsplash.com/photo-1754516733606-008062751e0f
+  blur: sm
+  opacity: 100
+
+color: slate
+
+theme: dark
+
+cardblur: md
+
+providers:
+  openweathermap: openweathermapapikey
+  weatherapi: weatherapiapikey
