@@ -1,0 +1,50 @@
+services:
+  freshrss:
+    image: freshrss/freshrss:latest
+    container_name: freshrss
+    ports:
+      - '${FRESHRSS_PUBLISHED_PORT:-8353}:80'
+    depends_on:
+      freshrss-postgres:
+        condition: service_healthy
+    logging:
+      options:
+        max-size: 10m
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "cli/health.php" ]
+      timeout: 10s
+      start_period: 60s
+      start_interval: 11s
+      interval: 75s
+      retries: 3
+    volumes:
+      - ../../local-volumes/freshrss/app/data:/var/www/FreshRSS/data
+      - ../../local-volumes/freshrss/app/extensions:/var/www/FreshRSS/extensions
+    environment:
+      TZ: America/New_York
+      CRON_MIN: '1,31'
+      ADMIN_EMAIL: "${FRESHRSS_ADMIN_EMAIL}"
+      ADMIN_PASSWORD: "${FRESHRSS_ADMIN_PASSWORD}"
+      ADMIN_API_PASSWORD: "${FRESHRSS_ADMIN_API_PASSWORD}"
+      PUBLISHED_PORT: "${FRESHRSS_PUBLISHED_PORT:-8353}"
+      DB_HOST: "freshrss-postgres"
+
+  freshrss-postgres:
+    image: pgvector/pgvector:pg17
+    container_name: freshrss-postgres
+    logging:
+      options:
+        max-size: 10m
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "${FRESHRSS_POSTGRES_USER}", "-d", "${FRESHRSS_POSTGRES_DB}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    volumes:
+      - ../../local-volumes/freshrss/postgresql/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: "${FRESHRSS_POSTGRES_DB}"
+      POSTGRES_USER: "${FRESHRSS_POSTGRES_USER}"
+      POSTGRES_PASSWORD: "${FRESHRSS_POSTGRES_PASSWORD}"

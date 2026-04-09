@@ -22,6 +22,8 @@ include:
       - ./stack/memos/docker-compose.yml
       - ./stack/silverbullet/docker-compose.yml
       - ./stack/trilium-notes/docker-compose.yml
+      # RSS App
+      - ./stack/freshrss/docker-compose.yml
       # Dashboard
       - ./stack/homepage/docker-compose.yml
 
