@@ -28,7 +28,9 @@ include:
       - ./stack/super-productivity/docker-compose.yml
       # Automation/Workflow Apps
       - ./stack/flowise/docker-compose.yml
-      - ./stack/n8n/docker-compose.yml
+      # - ./stack/n8n/docker-compose.yml
+      # Monitoring Apps
+      - ./stack/uptime-kuma/docker-compose.yml
       # Dashboard
       - ./stack/homepage/docker-compose.yml
 
