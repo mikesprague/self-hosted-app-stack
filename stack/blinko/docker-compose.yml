@@ -4,7 +4,7 @@ services:
     container_name: blinko-postgres
     restart: always
     ports:
-      - 5435:5432
+      - 5432:5432
     environment:
       POSTGRES_DB: ${BLINKO_POSTGRES_DB:-postgres}
       POSTGRES_USER: ${BLINKO_POSTGRES_USER:-postgres}
