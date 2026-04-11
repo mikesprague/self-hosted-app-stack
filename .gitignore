@@ -29,3 +29,5 @@ Temporary Items
 .env
 
 local-volumes/
+*.crt
+*.key

@@ -50,6 +50,7 @@
       "openwebui",
       "orbstack",
       "pgvector",
+      "postgresdb",
       "preconfiguration",
       "predeploy",
       "rocksdb",
