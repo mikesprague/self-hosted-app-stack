@@ -13,6 +13,7 @@ include:
       - ./stack/open-webui/compose.yaml
       - ./stack/open-notebook/compose.yaml
       - ./stack/karakeep/compose.yaml
+      - ./stack/vaultwarden/compose.yaml
       # Notes Apps (comment out any you don't want to run)
       - ./stack/affine/compose.yaml
       - ./stack/blinko/compose.yaml

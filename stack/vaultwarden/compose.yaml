@@ -1,0 +1,18 @@
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: unless-stopped
+    ports:
+      - "${VAULTWARDEN_PORT:-8359}:80"
+    volumes:
+      - ../../local-volumes/vaultwarden/data:/data
+    environment:
+      TZ: "${TZ:-America/New_York}"
+      DOMAIN: "${VAULTWARDEN_DOMAIN}"
+      WEBSOCKET_ENABLED: "true"
+      SIGNUPS_ALLOWED: "${VAULTWARDEN_SIGNUPS_ALLOWED:-false}"
+      INVITATIONS_ALLOWED: "${VAULTWARDEN_INVITATIONS_ALLOWED:-false}"
+      ADMIN_TOKEN: ${VAULTWARDEN_ADMIN_TOKEN:?missing}
+      LOG_LEVEL: "${VAULTWARDEN_LOG_LEVEL:-warn}"
+      EXTENDED_LOGGING: "${VAULTWARDEN_EXTENDED_LOGGING:-false}"
