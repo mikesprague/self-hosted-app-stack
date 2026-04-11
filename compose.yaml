@@ -1,29 +1,31 @@
-name: self-hosted-ai-stack
+name: self-hosted-app-stack
 
 # shared network for all applications in the stack
 networks:
   default:
-    name: self-hosted-ai-stack-network
+    name: self-hosted-app-stack-network
 
 # load compose files for each application
 include:
   - path:
-      # Core Apps
-      - ./stack/searxng/compose.yaml
-      - ./stack/open-webui/compose.yaml
+      # AI Apps
       - ./stack/open-notebook/compose.yaml
-      - ./stack/karakeep/compose.yaml
+      - ./stack/open-webui/compose.yaml
+      # Search Engine
+      - ./stack/searxng/compose.yaml
+      # Password Manager
       - ./stack/vaultwarden/compose.yaml
-      # Notes Apps (comment out any you don't want to run)
+      # Knowledge Management Apps
       - ./stack/affine/compose.yaml
       - ./stack/blinko/compose.yaml
       - ./stack/docmost/compose.yaml
       - ./stack/flatnotes/compose.yaml
+      - ./stack/karakeep/compose.yaml
       - ./stack/jotty/compose.yaml
       - ./stack/memos/compose.yaml
       - ./stack/silverbullet/compose.yaml
       - ./stack/trilium-notes/compose.yaml
-      # RSS App
+      # RSS Reader
       - ./stack/freshrss/compose.yaml
       # Productivity Apps
       - ./stack/super-productivity/compose.yaml
