@@ -21,10 +21,20 @@ Because of that, it is recommended to comment out some of the note app entries i
 | Affine | Docs and collaborative workspace | [affine.pro](https://affine.pro/) | [docs.affine.pro](https://docs.affine.pro/) | <http://localhost:3010> |
 | Blinko | Notes and capture app | [blinko.space](https://blinko.space/) | [docs.blinko.space](https://docs.blinko.space/) | <http://localhost:1111> |
 | Docmost | Team docs / wiki | [docmost.com](https://docmost.com/) | [docmost.com/docs](https://docmost.com/docs) | <http://localhost:7889> |
+| Flatnotes | Lightweight self-hosted markdown notes | [GitHub](https://github.com/Dullage/flatnotes) | [github.com/Dullage/flatnotes](https://github.com/Dullage/flatnotes) | <http://localhost:8352> |
 | Jotty | Lightweight notes app | [GitHub](https://github.com/fccview/jotty) | [github.com/fccview/jotty/howto](https://github.com/fccview/jotty/tree/main/howto) | <http://localhost:1122> |
 | Memos | Notes and journaling | [usememos.com](https://www.usememos.com/) | [usememos.com/docs](https://www.usememos.com/docs) | <http://localhost:5230> |
 | Silverbullet | Markdown-based personal knowledge base | [silverbullet.md](https://silverbullet.md/) | [silverbullet.md/Manual](https://silverbullet.md/Manual) | <http://localhost:8350> |
 | Trilium Notes | Hierarchical notes | [TriliumNext](https://triliumnext.github.io/Notes/) | [triliumnext.github.io/Docs](https://triliumnext.github.io/Docs/) | <http://localhost:8351> |
+| **Feeds** | | | | |
+| FreshRSS | RSS reader and feed aggregator | [freshrss.org](https://freshrss.org/) | [freshrss.github.io/FreshRSS](https://freshrss.github.io/FreshRSS/) | <http://localhost:8353> |
+| **Productivity** | | | | |
+| Super Productivity | Task and time management app with WebDAV sync | [super-productivity.com](https://super-productivity.com/) | [GitHub](https://github.com/johannesjo/super-productivity) | <http://localhost:8354> |
+| **Automation / Workflow** | | | | |
+| Flowise | Visual AI workflow builder | [flowiseai.com](https://flowiseai.com/) | [docs.flowiseai.com](https://docs.flowiseai.com/) | <http://localhost:8355> |
+| n8n | Workflow automation platform | [n8n.io](https://n8n.io/) | [docs.n8n.io](https://docs.n8n.io/) | <http://localhost:5678> |
+| **Monitoring** | | | | |
+| Uptime Kuma | Uptime and status monitoring | [GitHub](https://github.com/louislam/uptime-kuma) | [uptimekuma.org](https://uptimekuma.org/) | <http://localhost:8356> |
 | **Dashboard** | | | | |
 | Homepage | Dashboard for the stack | [gethomepage.dev](https://gethomepage.dev/) | [gethomepage.dev/configs](https://gethomepage.dev/configs/) | <http://localhost:8349> |
 
@@ -79,12 +89,19 @@ Start with `.env.example`. At minimum, review these groups before bringing the s
 - `AFFINE_*`
 - `DOCMOST_*`
 - `BLINKO_*`
+- `FLATNOTES_*`
 - `MEMOS_*`
 - `SILVERBULLET_*`
+- `FRESHRSS_*`
+- `SP_WEBDAV_*`
+- `FLOWISE_*`
+- `N8N_*`
 - `TZ` — set to your local timezone (e.g. `America/New_York`)
 - Shared provider settings such as `AZURE_*`, `OLLAMA_*`, `CONTEXT7_API_KEY`, `JINA_API_KEY`, and `UNSPLASH_*`
 
 If you are not using a given provider, you can usually leave its optional settings unset, but apps that are configured to depend on that provider still need valid values. Karakeep and Docmost are the main places to check if you switch between Azure Foundry and Ollama-backed models.
+
+Services without required entries in `.env.example` right now include Jotty, Trilium Notes, and Uptime Kuma.
 
 ### Homepage Configuration
 
