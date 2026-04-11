@@ -66,8 +66,8 @@ Because of that, it is recommended to comment out some of the note app entries i
 5. Start the stack with Docker Compose.
 
 ```sh
-git clone https://github.com/mikesprague/self-hosted-ai-stack.git
-cd self-hosted-ai-stack
+git clone https://github.com/mikesprague/self-hosted-app-stack.git
+cd self-hosted-app-stack
 cp .env.example .env
 docker compose pull
 docker compose up -d
@@ -159,7 +159,7 @@ If you only want a subset of apps, the simplest approach in this repo is to comm
 
 ## Notes And Caveats
 
-- All services share the `self-hosted-ai-stack-network` Docker network.
+- All services share the `self-hosted-app-stack-network` Docker network.
 - Data is persisted locally under `local-volumes/`, so deleting containers does not remove application data by itself.
 - Homepage mounts the Docker socket to display container-aware widgets. Treat that as privileged access.
 - Affine has extra startup orchestration for migrations and may take longer to become ready on first boot.
