@@ -23,13 +23,13 @@ services:
       - open-notebook-surrealdb
     # required for OrbStack's local domain feature
     # comment out if not using OrbStack
-    labels:
-      - dev.orbstack.http-port=8502
+    # labels:
+    #   - dev.orbstack.http-port=8502
     environment:
       # allows this to work both via localhost and via OrbStack's https-enabled local domain feature
       # comment out both if not using OrbStack and/or change domain to match your project folder name
-      API_URL: https://open-notebook.self-hosted-ai-stack.orb.local
-      INTERNAL_API_URL: http://open-notebook:5055
+      # API_URL: http://100.117.31.1:5055
+      # INTERNAL_API_URL: http://open-notebook:5055
       # REQUIRED: Change this to your own secret string
       # This encrypts your API keys in the database
       OPEN_NOTEBOOK_ENCRYPTION_KEY: "${OPEN_NOTEBOOK_ENCRYPTION_KEY}"
