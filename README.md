@@ -2,11 +2,11 @@
 
 Docker Compose workspace for running a personal collection of AI, knowledge, notes, and dashboard services on a shared network with persistent local storage.
 
-The stack is split into per-app compose files under `stack/` and assembled by the root `docker-compose.yml` using Compose `include`. Persistent data lives under `local-volumes/`.
+The stack is split into per-app compose files under `stack/` and assembled by the root `compose.yaml` using Compose `include`. Persistent data lives under `local-volumes/`.
 
 Several note-taking apps are included on purpose. They each have different strengths around capture, organization, collaboration, publishing, or personal knowledge management, and this stack is being used to evaluate them side by side before settling on a smaller long-term set.
 
-Because of that, it is recommended to comment out some of the note app entries in the root `docker-compose.yml` and only run the ones you actually want to use or compare at a given time.
+Because of that, it is recommended to comment out some of the note app entries in the root `compose.yaml` and only run the ones you actually want to use or compare at a given time.
 
 ## Included Services
 
@@ -34,7 +34,10 @@ Because of that, it is recommended to comment out some of the note app entries i
 | Flowise | Visual AI workflow builder | [flowiseai.com](https://flowiseai.com/) | [docs.flowiseai.com](https://docs.flowiseai.com/) | <http://localhost:8355> |
 | n8n | Workflow automation platform | [n8n.io](https://n8n.io/) | [docs.n8n.io](https://docs.n8n.io/) | <http://localhost:5678> |
 | **Monitoring** | | | | |
+| Dozzle | Real-time Docker container log viewer | [dozzle.dev](https://dozzle.dev/) | [dozzle.dev/guide/getting-started](https://dozzle.dev/guide/getting-started) | <http://localhost:8357> |
 | Uptime Kuma | Uptime and status monitoring | [GitHub](https://github.com/louislam/uptime-kuma) | [uptimekuma.org](https://uptimekuma.org/) | <http://localhost:8356> |
+| **Management** | | | | |
+| Portainer | Docker environment management UI | [portainer.io](https://www.portainer.io/) | [docs.portainer.io](https://docs.portainer.io/) | <http://localhost:8358> |
 | **Dashboard** | | | | |
 | Homepage | Dashboard for the stack | [gethomepage.dev](https://gethomepage.dev/) | [gethomepage.dev/configs](https://gethomepage.dev/configs/) | <http://localhost:8349> |
 
@@ -59,7 +62,7 @@ Because of that, it is recommended to comment out some of the note app entries i
 1. Clone the repository.
 2. Copy the example environment file.
 3. Fill in the required secrets and credentials. For any field marked `openssl rand -hex 32`, run that command in your terminal to generate a secure value.
-4. Comment out any services you do not want to run in the root `docker-compose.yml` include list, especially note apps you are not currently evaluating.
+4. Comment out any services you do not want to run in the root `compose.yaml` include list, especially note apps you are not currently evaluating.
 5. Start the stack with Docker Compose.
 
 ```sh
@@ -96,12 +99,13 @@ Start with `.env.example`. At minimum, review these groups before bringing the s
 - `SP_WEBDAV_*`
 - `FLOWISE_*`
 - `N8N_*`
+- `PORTAINER_*`
 - `TZ` — set to your local timezone (e.g. `America/New_York`)
 - Shared provider settings such as `AZURE_*`, `OLLAMA_*`, `CONTEXT7_API_KEY`, `JINA_API_KEY`, and `UNSPLASH_*`
 
 If you are not using a given provider, you can usually leave its optional settings unset, but apps that are configured to depend on that provider still need valid values. Karakeep and Docmost are the main places to check if you switch between Azure Foundry and Ollama-backed models.
 
-Services without required entries in `.env.example` right now include Jotty, Trilium Notes, and Uptime Kuma.
+Services without required entries in `.env.example` right now include Dozzle, Jotty, Trilium Notes, and Uptime Kuma.
 
 ### Homepage Configuration
 
@@ -121,7 +125,7 @@ Some parts of the stack are wired together on purpose so the default experience 
 ### Manual Setup Notes
 
 - Open Notebook currently does not have an equivalent preconfiguration path in this stack, so its provider and application-level setup still need to be completed manually after startup.
-- The Open Notebook docker-compose file currently includes OrbStack-specific settings in [stack/open-notebook/docker-compose.yml](stack/open-notebook/docker-compose.yml).
+- The Open Notebook compose file currently includes OrbStack-specific settings in [stack/open-notebook/compose.yaml](stack/open-notebook/compose.yaml).
 
 > [!IMPORTANT]
 > If you are running standard Docker/Docker Desktop (rather than OrbStack), explicitly comment out the OrbStack label and related URL settings before starting that service.
@@ -130,14 +134,14 @@ Some parts of the stack are wired together on purpose so the default experience 
 
 ```text
 .
-├── docker-compose.yml        # root stack definition
+├── compose.yaml              # root stack definition
 ├── .env                      # local secrets and config
 ├── .env.example              # safe template for config
 ├── stack/                    # per-app compose files
 └── local-volumes/            # persistent data for apps and databases
 ```
 
-Each application has its own compose file in `stack/<service>/docker-compose.yml`. Most services also have a matching folder under `local-volumes/` for database files, uploads, indexes, and app state.
+Each application has its own compose file in `stack/<service>/compose.yaml`. Most services also have a matching folder under `local-volumes/` for database files, uploads, indexes, and app state.
 
 ## Operating The Stack
 
@@ -151,7 +155,7 @@ docker compose restart
 docker compose pull && docker compose up -d
 ```
 
-If you only want a subset of apps, the simplest approach in this repo is to comment out the corresponding entries in the root `docker-compose.yml` include list and then run `docker compose up -d` again. This is especially useful for the note-taking apps, since they overlap in purpose and are intended to be enabled selectively during evaluation.
+If you only want a subset of apps, the simplest approach in this repo is to comment out the corresponding entries in the root `compose.yaml` include list and then run `docker compose up -d` again. This is especially useful for the note-taking apps, since they overlap in purpose and are intended to be enabled selectively during evaluation.
 
 ## Notes And Caveats
 
