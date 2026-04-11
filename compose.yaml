@@ -29,7 +29,9 @@ include:
       # Automation/Workflow Apps
       - ./stack/flowise/compose.yaml
       - ./stack/n8n/compose.yaml
-      # Monitoring Apps
+      # Monitoring/Management Apps
+      - ./stack/dozzle/compose.yaml
+      - ./stack/portainer/compose.yaml
       - ./stack/uptime-kuma/compose.yaml
       # Dashboard
       - ./stack/homepage/compose.yaml
