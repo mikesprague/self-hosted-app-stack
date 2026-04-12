@@ -1,4 +1,20 @@
 services:
+  flowise-postgres:
+    image: pgvector/pgvector:pg18
+    container_name: flowise-postgres
+    volumes:
+      - ../../local-volumes/flowise/postgresql:/var/lib/postgresql
+    environment:
+      POSTGRES_USER: "${FLOWISE_POSTGRES_USER}"
+      POSTGRES_PASSWORD: "${FLOWISE_POSTGRES_PASSWORD}"
+      POSTGRES_DB: "${FLOWISE_POSTGRES_DB}"
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "${FLOWISE_POSTGRES_USER}", "-d", "${FLOWISE_POSTGRES_DB}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
   flowise:
     image: flowiseai/flowise:latest
     container_name: flowise
@@ -22,20 +38,4 @@ services:
     depends_on:
       flowise-postgres:
         condition: service_healthy
-    restart: unless-stopped
-
-  flowise-postgres:
-    image: pgvector/pgvector:pg17
-    container_name: flowise-postgres
-    volumes:
-      - ../../local-volumes/flowise/postgresql/data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: "${FLOWISE_POSTGRES_USER}"
-      POSTGRES_PASSWORD: "${FLOWISE_POSTGRES_PASSWORD}"
-      POSTGRES_DB: "${FLOWISE_POSTGRES_DB}"
-    healthcheck:
-      test: [ "CMD", "pg_isready", "-U", "${FLOWISE_POSTGRES_USER}", "-d", "${FLOWISE_POSTGRES_DB}" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
     restart: unless-stopped

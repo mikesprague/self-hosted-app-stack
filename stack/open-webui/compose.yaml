@@ -1,6 +1,6 @@
 services:
   open-webui-postgres:
-    image: pgvector/pgvector:pg17
+    image: pgvector/pgvector:pg18
     container_name: open-webui-postgres
     restart: unless-stopped
     environment:
@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: "${OPEN_WEBUI_POSTGRES_USER}"
       POSTGRES_PASSWORD: "${OPEN_WEBUI_POSTGRES_PASSWORD}"
     volumes:
-      - ../../local-volumes/open-webui/postgresql/data:/var/lib/postgresql/data
+      - ../../local-volumes/open-webui/postgresql:/var/lib/postgresql
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U $OPEN_WEBUI_POSTGRES_USER -d $OPEN_WEBUI_POSTGRES_DB" ]
       interval: 10s

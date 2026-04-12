@@ -1,6 +1,6 @@
 services:
   blinko-postgres:
-    image: pgvector/pgvector:pg17
+    image: pgvector/pgvector:pg18
     container_name: blinko-postgres
     restart: always
     ports:
@@ -11,7 +11,7 @@ services:
       POSTGRES_PASSWORD: ${BLINKO_POSTGRES_PASSWORD:?missing}
       TZ: America/New_York
     volumes:
-      - ../../local-volumes/blinko/postgresql:/var/lib/postgresql/data
+      - ../../local-volumes/blinko/postgresql:/var/lib/postgresql
     healthcheck:
       test: [ "CMD", "pg_isready", "-U", "postgres", "-d", "postgres" ]
       interval: 5s

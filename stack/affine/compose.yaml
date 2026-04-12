@@ -10,7 +10,7 @@ services:
     restart: unless-stopped
 
   affine-postgres:
-    image: pgvector/pgvector:pg17
+    image: pgvector/pgvector:pg18
     container_name: affine-postgres
     environment:
       POSTGRES_USER: "${AFFINE_POSTGRES_USER}"
@@ -24,7 +24,7 @@ services:
       retries: 5
     restart: unless-stopped
     volumes:
-      - ../../local-volumes/affine/postgresql/data:/var/lib/postgresql/data
+      - ../../local-volumes/affine/postgresql:/var/lib/postgresql
 
   affine:
     image: ghcr.io/toeverything/affine:${AFFINE_REVISION:-stable}
