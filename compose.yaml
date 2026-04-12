@@ -37,6 +37,8 @@ include:
       - ./stack/dozzle/compose.yaml
       - ./stack/portainer/compose.yaml
       - ./stack/uptime-kuma/compose.yaml
+      # Personal Cloud
+      - ./stack/nextcloud/compose.yaml
       # Dashboard
       - ./stack/homepage/compose.yaml
 
