@@ -14,8 +14,9 @@ include:
       # Home Automation
       - ./stack/home-assistant/compose.yaml
       # AI/LLM
-      - ./stack/open-notebook/compose.yaml
       - ./stack/open-webui/compose.yaml
+      - ./stack/open-notebook/compose.yaml
+      - ./stack/agenticseek/compose.yaml
       # Search Engine
       - ./stack/searxng/compose.yaml
       # Password Manager
