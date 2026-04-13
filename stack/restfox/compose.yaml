@@ -1,0 +1,7 @@
+services:
+  restfox:
+    image: flawiddsouza/restfox:latest
+    container_name: restfox
+    restart: unless-stopped
+    ports:
+      - "${RESTFOX_PORT:-8365}:4004"

@@ -1,0 +1,11 @@
+services:
+  yaade:
+    image: esperotech/yaade:latest
+    container_name: yaade
+    restart: unless-stopped
+    ports:
+      - "${YAADE_PORT:-8364}:9339"
+    environment:
+      YAADE_ADMIN_USERNAME: "${YAADE_ADMIN_USERNAME}" # default password is password, change this after logging in
+    volumes:
+      - ../../local-volumes/yaade/data:/app/data
