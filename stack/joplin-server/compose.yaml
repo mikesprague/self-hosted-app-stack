@@ -25,7 +25,7 @@ services:
         condition: service_healthy
     environment:
       APP_PORT: "${JOPLIN_PORT}"
-      APP_BASE_URL: "http://${JOPLIN_HOST:-localhost}:${JOPLIN_PORT}"
+      APP_BASE_URL: "http://${TAILNET_IP_ADDRESS}:${JOPLIN_PORT}"
       DB_CLIENT: pg
       POSTGRES_PASSWORD: "${JOPLIN_POSTGRES_PASSWORD}"
       POSTGRES_DATABASE: "${JOPLIN_POSTGRES_DB}"
