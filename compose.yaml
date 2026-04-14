@@ -12,7 +12,7 @@ include:
       # Personal Cloud
       - ./stack/nextcloud/compose.yaml
       # Home Automation
-      - ./stack/home-assistant/compose.yaml
+      # - ./stack/home-assistant/compose.yaml
       # AI/LLM
       - ./stack/open-webui/compose.yaml
       - ./stack/open-notebook/compose.yaml
@@ -49,6 +49,8 @@ include:
       - ./stack/hoppscotch/compose.yaml
       - ./stack/restfox/compose.yaml
       - ./stack/yaade/compose.yaml
+      # File Conversion
+      - ./stack/vert/compose.yaml
       # Dashboard
       - ./stack/homepage/compose.yaml
 

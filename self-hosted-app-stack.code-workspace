@@ -92,6 +92,7 @@
       "UVICORN",
       "valkey",
       "vaultwarden",
+      "VERTD",
       "webdav",
       "webui",
       "yaade",
