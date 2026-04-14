@@ -3,7 +3,7 @@ services:
     image: ghcr.io/fccview/jotty:latest
     container_name: jotty
     ports:
-      - "1122:3000"
+      - "${JOTTY_PORT:-1122}:3000"
     restart: unless-stopped
     environment:
       - NODE_ENV=production

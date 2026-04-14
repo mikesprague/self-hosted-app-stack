@@ -2,7 +2,7 @@ services:
   silverbullet:
     image: ghcr.io/silverbulletmd/silverbullet:latest
     ports:
-      - 8350:3000
+      - "${SILVERBULLET_PORT:-8350}:3000"
     environment:
       SB_USER: "${SILVERBULLET_USER}:${SILVERBULLET_PASSWORD}"
     restart: unless-stopped

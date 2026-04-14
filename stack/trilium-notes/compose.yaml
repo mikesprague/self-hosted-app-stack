@@ -2,7 +2,7 @@ services:
   trilium:
     image: triliumnext/trilium:latest
     ports:
-      - 8351:8080
+      - "${TRILIUM_PORT:-8351}:8080"
     environment:
       TRILIUM_DATA_DIR: /home/node/trilium-data
       TZ: ${TZ}

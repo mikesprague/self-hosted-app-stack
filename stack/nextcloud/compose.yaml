@@ -28,7 +28,7 @@ services:
       - nextcloud-mariadb
       - nextcloud-redis
     ports:
-      - 8361:80
+      - "${NEXTCLOUD_PORT:-8361}:80"
     environment:
       MYSQL_HOST: nextcloud-mariadb
       MYSQL_DATABASE: "${NEXTCLOUD_MYSQL_DATABASE}"

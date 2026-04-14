@@ -9,7 +9,7 @@ services:
       # Server name for UI (optional, auto-detected from Docker API if not set)
       # DOCKER_HOST_NAME:
     ports:
-      - 8368:8000
+      - "${DOCKPEEK_PORT:-8368}:8000"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped

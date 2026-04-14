@@ -26,8 +26,24 @@ services:
     volumes:
       - ../../local-volumes/affine/postgresql:/var/lib/postgresql
 
+  affine-migration:
+    image: ghcr.io/toeverything/affine:stable
+    container_name: affine-migration-job
+    volumes:
+      - ../../local-volumes/affine/storage:/root/.affine/storage
+      - ../../local-volumes/affine/config:/root/.affine/config
+    command: [ "sh", "-c", "node ./scripts/self-host-predeploy.js" ]
+    environment:
+      REDIS_SERVER_HOST: affine-redis
+      DATABASE_URL: "postgresql://${AFFINE_POSTGRES_USER}:${AFFINE_POSTGRES_PASSWORD}@affine-postgres:5432/${AFFINE_POSTGRES_DB}"
+    depends_on:
+      affine-postgres:
+        condition: service_healthy
+      affine-redis:
+        condition: service_healthy
+
   affine:
-    image: ghcr.io/toeverything/affine:${AFFINE_REVISION:-stable}
+    image: ghcr.io/toeverything/affine:stable
     container_name: affine-server
     ports:
       - '${AFFINE_PORT:-3010}:3010'
@@ -46,19 +62,3 @@ services:
       DATABASE_URL: "postgresql://${AFFINE_POSTGRES_USER}:${AFFINE_POSTGRES_PASSWORD}@affine-postgres:5432/${AFFINE_POSTGRES_DB}"
       CONFIG_LOCATION: ../../local-volumes/affine/config
     restart: unless-stopped
-
-  affine-migration:
-    image: ghcr.io/toeverything/affine:${AFFINE_REVISION:-stable}
-    container_name: affine-migration-job
-    volumes:
-      - ../../local-volumes/affine/storage:/root/.affine/storage
-      - ../../local-volumes/affine/config:/root/.affine/config
-    command: [ "sh", "-c", "node ./scripts/self-host-predeploy.js" ]
-    environment:
-      REDIS_SERVER_HOST: affine-redis
-      DATABASE_URL: "postgresql://${AFFINE_POSTGRES_USER}:${AFFINE_POSTGRES_PASSWORD}@affine-postgres:5432/${AFFINE_POSTGRES_DB}"
-    depends_on:
-      affine-postgres:
-        condition: service_healthy
-      affine-redis:
-        condition: service_healthy

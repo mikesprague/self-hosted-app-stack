@@ -18,7 +18,7 @@ services:
     image: lfnovo/open_notebook:v1-latest
     ports:
       - "5055:5055" # REST API
-      - "8502:8502" # Web UI
+      - "${OPEN_NOTEBOOK_PORT:-8502}:8502" # Web UI
     depends_on:
       - open-notebook-surrealdb
     environment:

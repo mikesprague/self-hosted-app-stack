@@ -42,7 +42,7 @@ services:
       # AI_EMBEDDING_MODEL: mxbai-embed-large
       # AI_COMPLETION_MODEL: gemma4
     ports:
-      - "7889:3000"
+      - "${DOCMOST_PORT:-7889}:3000"
     restart: unless-stopped
     volumes:
       - ../../local-volumes/docmost/storage:/app/data/storage

@@ -20,12 +20,12 @@ services:
     container_name: n8n
     restart: unless-stopped
     ports:
-      - 5678:5678
+      - "${N8N_PORT:-5678}:5678"
     environment:
       N8N_HOST: "localhost" # Set to your domain
-      N8N_PORT: "5678"
+      N8N_PORT: "${N8N_PORT:-5678}"
       N8N_PROTOCOL: "http" # Use "http" for local access
-      WEBHOOK_URL: "http://localhost:5678/" # Your public URL for webhooks
+      WEBHOOK_URL: "http://localhost:${N8N_PORT:-5678}/" # Your public URL for webhooks
       N8N_ENCRYPTION_KEY: "${N8N_ENCRYPTION_KEY}"
       DB_TYPE: "postgresdb"
       DB_POSTGRESDB_HOST: "n8n-postgres"

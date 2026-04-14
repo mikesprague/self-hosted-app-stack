@@ -41,7 +41,7 @@ services:
       - ../../local-volumes/freshrss/app/data:/var/www/FreshRSS/data
       - ../../local-volumes/freshrss/app/extensions:/var/www/FreshRSS/extensions
     environment:
-      TZ: America/New_York
+      TZ: "${TZ:-America/New_York}"
       CRON_MIN: '1,31'
       ADMIN_EMAIL: "${FRESHRSS_ADMIN_EMAIL}"
       ADMIN_PASSWORD: "${FRESHRSS_ADMIN_PASSWORD}"

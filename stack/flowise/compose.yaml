@@ -2,6 +2,9 @@ services:
   flowise-postgres:
     image: pgvector/pgvector:pg18
     container_name: flowise-postgres
+    restart: unless-stopped
+    ports:
+      - 5432:5432
     volumes:
       - ../../local-volumes/flowise/postgresql:/var/lib/postgresql
     environment:
@@ -13,13 +16,12 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-    restart: unless-stopped
 
   flowise:
     image: flowiseai/flowise:latest
     container_name: flowise
     ports:
-      - 8355:3000
+      - "${FLOWISE_PORT:-8355}:3000"
     volumes:
       - ../../local-volumes/flowise/data:/root/.flowise
     environment:
