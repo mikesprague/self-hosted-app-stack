@@ -3,8 +3,6 @@ services:
     image: pgvector/pgvector:pg18
     container_name: flowise-postgres
     restart: unless-stopped
-    ports:
-      - 5432:5432
     volumes:
       - ../../local-volumes/flowise/postgresql:/var/lib/postgresql
     environment:
