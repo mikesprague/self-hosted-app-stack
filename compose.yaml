@@ -16,7 +16,6 @@ include:
       # AI/LLM
       - ./stack/open-webui/compose.yaml
       - ./stack/open-notebook/compose.yaml
-      - ./stack/agenticseek/compose.yaml
       # Search Engine
       - ./stack/searxng/compose.yaml
       # Password Manager

@@ -23,7 +23,7 @@ layout:
   All Services:
     header: false
     style: row
-    columns: 5
+    columns: 6
     AI/Research:
       header: true
       style: row
@@ -44,7 +44,10 @@ layout:
       header: true
       style: row
       columns: 1
+    Development:
+      header: true
+      style: row
+      columns: 1
 
 providers:
-  openweathermap: openweathermapapikey
-  weatherapi: weatherapiapikey
+  finnhub: d7dvh31r01qkuebido0gd7dvh31r01qkuebido10
