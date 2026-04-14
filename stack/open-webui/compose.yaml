@@ -83,7 +83,7 @@ services:
               "description": "Pull up-to-date version-specific llm-friendly documentation and code examples for any library"
             }
           },
-          "mermaid": {
+          {
             "type": "mcp"
             "url": "https://mcp.mermaid.ai/mcp",
             "spec_type": "url",
