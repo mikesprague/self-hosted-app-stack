@@ -30,7 +30,7 @@ services:
       SURREAL_NAMESPACE: open_notebook
       SURREAL_DATABASE: open_notebook
       # Misc Configuration
-      AZURE_OPENAI_API_VERSION: "2025-04-01-preview"
+      AZURE_OPENAI_API_VERSION: "${AZURE_OPENAI_API_VERSION:-2025-04-01-preview}"
       JINA_API_KEY: "${JINA_API_KEY:-}"
     restart: unless-stopped
     volumes:

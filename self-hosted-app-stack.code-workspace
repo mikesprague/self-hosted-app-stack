@@ -75,6 +75,7 @@
       "rocksdb",
       "searxng",
       "SECRETKEY",
+      "selfhosted",
       "SIGNUPS",
       "silverbullet",
       "silverbulletmd",

@@ -3,8 +3,6 @@ services:
     image: pgvector/pgvector:pg18
     container_name: blinko-postgres
     restart: always
-    ports:
-      - 5432:5432
     environment:
       POSTGRES_DB: ${BLINKO_POSTGRES_DB:-postgres}
       POSTGRES_USER: ${BLINKO_POSTGRES_USER:-postgres}
@@ -23,8 +21,8 @@ services:
     container_name: blinko-web
     environment:
       NODE_ENV: production
-      NEXTAUTH_URL: http://localhost:1111
-      NEXT_PUBLIC_BASE_URL: http://localhost:1111
+      NEXTAUTH_URL: "http://${TAILNET_IP_ADDRESS}:${BLINKO_PORT:-1111}"
+      NEXT_PUBLIC_BASE_URL: "http://${TAILNET_IP_ADDRESS}:${BLINKO_PORT:-1111}"
       NEXTAUTH_SECRET: "${BLINKO_NEXTAUTH_SECRET:?missing}"
       DATABASE_URL: postgresql://${BLINKO_POSTGRES_USER}:${BLINKO_POSTGRES_PASSWORD}@blinko-postgres:5432/${BLINKO_POSTGRES_DB}
     depends_on:
@@ -38,7 +36,7 @@ services:
     ports:
       - "${BLINKO_PORT:-1111}:1111"
     healthcheck:
-      test: [ "CMD", "wget", "--spider", "-q", "http://blinko-web:${BLINKO_PORT:-1111}/" ]
+      test: [ "CMD", "wget", "--spider", "-q", "http://localhost:1111/" ]
       interval: 30s
       timeout: 10s
       retries: 5

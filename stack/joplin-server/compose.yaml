@@ -24,14 +24,14 @@ services:
       joplin-postgres:
         condition: service_healthy
     environment:
-      APP_PORT: "${JOPLIN_PORT}"
+      APP_PORT: "22300"
       APP_BASE_URL: "http://${TAILNET_IP_ADDRESS}:${JOPLIN_PORT}"
-      DB_CLIENT: pg
+      DB_CLIENT: "pg"
       POSTGRES_PASSWORD: "${JOPLIN_POSTGRES_PASSWORD}"
       POSTGRES_DATABASE: "${JOPLIN_POSTGRES_DB}"
       POSTGRES_USER: "${JOPLIN_POSTGRES_USER}"
-      POSTGRES_PORT: 5432
-      POSTGRES_HOST: joplin-postgres
+      POSTGRES_PORT: "5432"
+      POSTGRES_HOST: "joplin-postgres"
       MAILER_ENABLED: 1
       MAILER_HOST: "mailcatcher"
       MAILER_PORT: "${MAILCATCHER_SMTP_PORT}"

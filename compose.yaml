@@ -2,7 +2,7 @@ name: self-hosted-app-stack
 
 # shared network for all applications in the stack
 networks:
-  default:
+  default: {}
 
 # load compose files for each application
 include:

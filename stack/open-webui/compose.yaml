@@ -24,6 +24,8 @@ services:
         condition: service_healthy
     ports:
       - "${OPEN_WEBUI_PORT:-3000}:8080"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     environment:
       DOCKER: "true"
 
@@ -59,7 +61,7 @@ services:
       WEB_SEARCH_RESULT_COUNT: 12
       WEB_SEARCH_CONCURRENT_REQUESTS: 3
       WEB_SEARCH_ENGINE: "searxng"
-      SEARXNG_QUERY_URL: "http://searxng:8348/search?q=<query>"
+      SEARXNG_QUERY_URL: "http://searxng:8080/search?q=<query>"
 
       CONTEXT7_API_KEY: "${CONTEXT7_API_KEY:-}"
 
