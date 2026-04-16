@@ -134,7 +134,7 @@ To use the bundled examples for service and widget definitions, copy [services.e
 Some parts of the stack are wired together out of the box:
 
 - **Open WebUI → SearXNG**: web-enabled LLM workflows use the local SearXNG instance by default.
-- **Open WebUI → Ollama**: preconfigured via `OLLAMA_API_URL` and `OLLAMA_API_KEY`.
+- **Open WebUI → Ollama**: preconfigured via `OLLAMA_BASE_URL` and `OLLAMA_API_KEY`.
 - **Open WebUI → Context7 MCP**: pulls current library and framework docs when `CONTEXT7_API_KEY` is set.
 
 Two services require manual setup after startup:

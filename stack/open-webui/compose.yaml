@@ -51,7 +51,7 @@ services:
       UVICORN_WORKERS: 1
 
       ENABLE_OLLAMA_API: "true"
-      OLLAMA_BASE_URL: "${OLLAMA_API_URL:-}"
+      OLLAMA_BASE_URL: "${OLLAMA_BASE_URL:-}"
       OLLAMA_API_KEY: "${OLLAMA_API_KEY:-}"
 
       ENABLE_OPENAI_API: "true"
