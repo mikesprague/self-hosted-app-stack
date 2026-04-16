@@ -1,0 +1,88 @@
+model_list:
+  - model_name: gemma4
+    litellm_params:
+      model: ollama/gemma4:latest
+      api_base: os.environ/OLLAMA_API_BASE
+
+  - model_name: qwen3.5
+    litellm_params:
+      model: ollama/qwen3.5:latest
+      api_base: os.environ/OLLAMA_API_BASE
+
+  - model_name: deepseek-r1
+    litellm_params:
+      model: ollama/deepseek-r1:latest
+      api_base: os.environ/OLLAMA_API_BASE
+
+  - model_name: embeddinggemma
+    litellm_params:
+      model: ollama/embeddinggemma:latest
+      api_base: os.environ/OLLAMA_API_BASE
+
+  - model_name: nomic-embed-text-v2-moe
+    litellm_params:
+      model: ollama/nomic-embed-text-v2-moe:latest
+      api_base: os.environ/OLLAMA_API_BASE
+
+  - model_name: gpt-5.4
+    litellm_params:
+      model: azure/gpt-5.4
+      api_base: os.environ/AZURE_API_BASE
+      api_key: os.environ/AZURE_API_KEY
+      api_version: os.environ/AZURE_API_VERSION
+
+  - model_name: gpt-5.4-mini
+    litellm_params:
+      model: azure/gpt-5.4-mini
+      api_base: os.environ/AZURE_API_BASE
+      api_key: os.environ/AZURE_API_KEY
+      api_version: os.environ/AZURE_API_VERSION
+
+  - model_name: gpt-5.4-nano
+    litellm_params:
+      model: azure/gpt-5.4-nano
+      api_base: os.environ/AZURE_API_BASE
+      api_key: os.environ/AZURE_API_KEY
+      api_version: os.environ/AZURE_API_VERSION
+
+  - model_name: gpt-5.4-pro
+    litellm_params:
+      model: azure/gpt-5.4-pro
+      api_base: os.environ/AZURE_API_BASE
+      api_key: os.environ/AZURE_API_KEY
+      api_version: os.environ/AZURE_API_VERSION
+
+  - model_name: gpt-4o-mini-transcribe
+    litellm_params:
+      model: azure/gpt-4o-mini-transcribe
+      api_base: os.environ/AZURE_API_BASE
+      api_key: os.environ/AZURE_API_KEY
+      api_version: os.environ/AZURE_API_VERSION
+
+  - model_name: gpt-4o-mini-tts
+    litellm_params:
+      model: azure/gpt-4o-mini-transcribe
+      api_base: os.environ/AZURE_API_BASE
+      api_key: os.environ/AZURE_API_KEY
+      api_version: os.environ/AZURE_API_VERSION
+
+  - model_name: text-embedding-3-small
+    litellm_params:
+      model: azure/text-embedding-3-small
+      api_base: os.environ/AZURE_API_BASE
+      api_key: os.environ/AZURE_API_KEY
+      api_version: os.environ/AZURE_API_VERSION
+
+  - model_name: text-embedding-3-large
+    litellm_params:
+      model: azure/text-embedding-3-large
+      api_base: os.environ/AZURE_API_BASE
+      api_key: os.environ/AZURE_API_KEY
+      api_version: os.environ/AZURE_API_VERSION
+
+litellm_settings:
+  drop_params: true
+
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY
+  database_url: os.environ/LITELLM_DATABASE_URL
