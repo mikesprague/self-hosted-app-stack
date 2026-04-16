@@ -86,7 +86,7 @@ services:
             }
           },
           {
-            "type": "mcp"
+            "type": "mcp",
             "url": "https://mcp.mermaid.ai/mcp",
             "spec_type": "url",
             "spec": "",
@@ -133,4 +133,4 @@ services:
         ]
 
     volumes:
-      - ../../local-volumes/open-webui/data:/app/backend/data:Z
+      - ../../local-volumes/open-webui/data:/app/backend/data
