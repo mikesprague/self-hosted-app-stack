@@ -92,7 +92,7 @@ Follow this checklist in order:
 ## Key Architecture Facts
 
 - **Root compose file**: `compose.yaml` at workspace root — defines the shared network and includes all app compose files via the `include:` block.
-- **Shared Postgres**: ALL apps that need Postgres connect to the single `postgres-shared` container (`pgvector/pgvector:pg17`). There are no per-app `<app>-postgres` sidecar containers. Each app has its own database name and credentials provisioned within the shared instance. The `postgres-shared` compose file also provides a `pgadmin` UI and a `postgres-maintenance` one-shot service for provisioning.
+- **Shared Postgres**: ALL apps that need Postgres connect to the single `postgres-shared` container (`pgvector/pgvector:pg18`). There are no per-app `<app>-postgres` sidecar containers. Each app has its own database name and credentials provisioned within the shared instance. The `postgres-shared` compose file also provides a `pgadmin` UI and a `postgres-maintenance` one-shot service for provisioning.
 - **Ollama**: Runs on the host machine (not in Docker). Accessed via `http://host.docker.internal:11434`. Add `extra_hosts: - "host.docker.internal:host-gateway"` to any service that needs it.
 - **LM Studio**: Runs on the host. Accessed via `http://host.docker.internal:1234/v1`.
 - **SearXNG**: Provides web search for open-webui and other apps at `http://searxng:8080`.

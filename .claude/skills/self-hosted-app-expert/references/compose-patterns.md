@@ -66,7 +66,7 @@ Exception: one-shot/maintenance services use `restart: "no"`.
 
 ## Postgres Pattern
 
-All apps share a single `postgres-shared` Postgres instance (`pgvector/pgvector:pg17`). There are **no per-app Postgres sidecar containers**.
+All apps share a single `postgres-shared` Postgres instance (`pgvector/pgvector:pg18`). There are **no per-app Postgres sidecar containers**.
 
 Each app has its own database and credentials provisioned within `postgres-shared`. These must be created before starting the app (via pgadmin or the maintenance script in `stack/postgres-shared/`).
 

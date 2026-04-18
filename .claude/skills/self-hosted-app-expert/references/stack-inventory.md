@@ -62,7 +62,7 @@ Complete inventory of all apps in the self-hosted stack. Apps marked **[inactive
 
 | App | Container | Port | Notes |
 |-----|-----------|------|-------|
-| postgres-shared | `postgres-shared` | — | **The single Postgres instance for all apps** (`pgvector/pgvector:pg17`). Each app has its own database and credentials within this instance. Includes `pgadmin` UI (port 5050) and a `postgres-maintenance` one-shot provisioning service. |
+| postgres-shared | `postgres-shared` | — | **The single Postgres instance for all apps** (`pgvector/pgvector:pg18`). Each app has its own database and credentials within this instance. Includes `pgadmin` UI (port 5050) and a `postgres-maintenance` one-shot provisioning service. |
 | mailcatcher | `mailcatcher` | 1025 (SMTP), 8366 (UI) | Dev SMTP catcher; captures all outbound email |
 | atlassian-mcp | `atlassian-mcp` | 9000 | MCP server for Jira + Confluence integration |
 
