@@ -1,0 +1,17 @@
+services:
+  hister:
+    image: ghcr.io/asciimoo/hister:latest
+    container_name: hister
+    user: "1000:1000"
+    ports:
+      - "${HISTER_PORT:-4433}:4433"
+    deploy:
+      resources:
+        limits:
+          memory: 500M
+    volumes:
+      - ../../local-volumes/hister/data:/hister/data:rw
+    environment:
+      HISTER__SERVER__ADDRESS: "0.0.0.0:4433"
+      HISTER__SERVER__BASE_URL: "http://${TAILNET_IP_ADDRESS}:${HISTER_PORT:-4433}"
+    restart: unless-stopped

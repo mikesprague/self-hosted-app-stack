@@ -17,6 +17,7 @@ include:
       - ./stack/open-notebook/compose.yaml
       - ./stack/litellm/compose.yaml
       # Search Engine
+      - ./stack/hister/compose.yaml
       - ./stack/searxng/compose.yaml
       # Password Manager
       - ./stack/vaultwarden/compose.yaml
