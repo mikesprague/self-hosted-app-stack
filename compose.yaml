@@ -48,7 +48,6 @@ include:
       - ./stack/portainer/compose.yaml
       - ./stack/uptime-kuma/compose.yaml
       # SMTP Server/Mail Catcher
-      # - ./stack/mailcatcher/compose.yaml
       - ./stack/mailpit/compose.yaml
       # API Development
       - ./stack/hoppscotch/compose.yaml
