@@ -29,7 +29,7 @@ services:
       MAILER_SMTP_ENABLE: "true"
       MAILER_USE_CUSTOM_CONFIGS: "false"
       MAILER_ADDRESS_FROM: "${HOPPSCOTCH_MAIL_FROM}"
-      MAILER_SMTP_URL: "smtp://mailcatcher:1025"
+      MAILER_SMTP_URL: "smtp://mailpit:1025"
     ports:
       - "${HOPPSCOTCH_PORT:-8363}:3000"
       - "${HOPPSCOTCH_ADMIN_PORT:-3100}:3100"
