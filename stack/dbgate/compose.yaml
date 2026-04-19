@@ -1,0 +1,25 @@
+services:
+  dbgate:
+    image: dbgate/dbgate:latest
+    container_name: dbgate
+    restart: unless-stopped
+    ports:
+      - "${DBGATE_PORT:-8370}:3000"
+    depends_on:
+      postgres-shared:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          memory: 500M
+    environment:
+      CONNECTIONS: pg
+      LABEL_pg: ${DBGATE_CONN_LABEL:-Postgres Shared}
+      SERVER_pg: "${POSTGRES_SHARED_HOST}"
+      PORT_pg: ${POSTGRES_SHARED_PORT:-5432}
+      # DATABASE_pg: ${POSTGRES_SHARED_DB:-postgres}
+      USER_pg: ${POSTGRES_SHARED_SUPERUSER}
+      PASSWORD_pg: ${POSTGRES_SHARED_SUPERUSER_PASSWORD}
+      ENGINE_pg: postgres@dbgate-plugin-postgres
+    volumes:
+      - ../../local-volumes/dbgate/data:/root/.dbgate

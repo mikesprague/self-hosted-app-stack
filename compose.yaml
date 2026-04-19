@@ -7,8 +7,9 @@ networks:
 # load compose files for each application
 include:
   - path:
-      # Postgres/PGAdmin
+      # Postgres
       - ./stack/postgres-shared/compose.yaml
+      - ./stack/dbgate/compose.yaml
       # Personal Cloud
       - ./stack/nextcloud/compose.yaml
       # Home Automation
