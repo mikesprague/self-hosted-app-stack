@@ -25,7 +25,6 @@ Several note-taking and knowledge-management apps are included on purpose. They 
 | [Blinko](https://blinko.space/) | AI-powered card notes for quick capture and organization |
 | [Docmost](https://docmost.com/) | Collaborative wiki with real-time editing, team spaces, and AI |
 | [Flatnotes](https://github.com/Dullage/flatnotes) | Distraction-free markdown notes stored as plain searchable files |
-| [Joplin Server](https://joplinapp.org/) | Sync backend for Joplin clients |
 | [Jotty](https://github.com/fccview/jotty) | Personal checklists and rich text notes with file-based storage |
 | [Karakeep](https://karakeep.app/) | Save bookmarks, notes, and images with AI auto-tagging |
 | [Logseq](https://logseq.com/) | Local-first outliner and knowledge graph workspace |
@@ -91,7 +90,6 @@ Several note-taking and knowledge-management apps are included on purpose. They 
 | Mailpit UI | <http://localhost:8025> |
 | Mailpit SMTP | `smtp://localhost:1025` |
 | LiteLLM | <http://localhost:4000> |
-| Joplin Server | <http://localhost:22300> |
 | Affine | <http://localhost:3010> |
 | Blinko | <http://localhost:1111> |
 | Docmost | <http://localhost:7889> |
@@ -128,7 +126,7 @@ CREATE ROLE appName WITH LOGIN PASSWORD 'replace-with-your-password';
 CREATE DATABASE appName OWNER appName;
 ```
 
-That applies to any app configured with `*_POSTGRES_DB`, `*_POSTGRES_USER`, and `*_POSTGRES_PASSWORD` values in `.env`, such as Open WebUI, Affine, Docmost, Blinko, Memos, FreshRSS, Flowise, n8n, LiteLLM, Joplin Server, Hoppscotch, and Mealie.
+That applies to any app configured with `*_POSTGRES_DB`, `*_POSTGRES_USER`, and `*_POSTGRES_PASSWORD` values in `.env`, such as Open WebUI, Affine, Docmost, Blinko, Memos, FreshRSS, Flowise, n8n, LiteLLM, Hoppscotch, and Mealie.
 
 To stop everything:
 
@@ -149,13 +147,13 @@ The root compose file loads environment variables from `.env` and includes the p
 | `OPEN_WEBUI_*` | Open WebUI | Yes |
 | `OPEN_NOTEBOOK_*` | Open Notebook | Yes |
 | `KARAKEEP_*` | Karakeep | Yes |
-| `AFFINE_*`, `DOCMOST_*`, `BLINKO_*`, `MEMOS_*`, `FRESHRSS_*`, `FLOWISE_*`, `N8N_*`, `LITELLM_*`, `JOPLIN_*`, `HOPPSCOTCH_*`, `MEALIE_*` | Postgres-backed apps | If enabling that app |
+| `AFFINE_*`, `DOCMOST_*`, `BLINKO_*`, `MEMOS_*`, `FRESHRSS_*`, `FLOWISE_*`, `N8N_*`, `LITELLM_*`, `HOPPSCOTCH_*`, `MEALIE_*` | Postgres-backed apps | If enabling that app |
 | `NEXTCLOUD_*` | Nextcloud and its MariaDB-backed setup | If enabling Nextcloud |
 | `FLATNOTES_*`, `SILVERBULLET_*`, `SP_WEBDAV_*`, `VAULTWARDEN_*`, `YAADE_*`, `DOCKPEEK_*` | App-specific auth and secrets | If enabling that app |
 | `MAILPIT_*` | Mailpit UI and SMTP defaults | If enabling Mailpit-backed email flows |
 | `DBGATE_*` | DBGate label and published port | Optional |
 | `HOMEPAGE_*`, `PORTAINER_*`, `DOZZLE_*`, `UPTIME_KUMA_*`, `JOTTY_*`, `LOGSEQ_*`, `TRILIUM_*`, `RESTFOX_*`, `VERT_*` | Primarily published ports and app-specific options | Optional unless changing defaults |
-| `TAILNET_*` | Blinko, n8n, Joplin Server, and Hoppscotch absolute URLs | Yes if using those apps |
+| `TAILNET_*` | Blinko, n8n, and Hoppscotch absolute URLs | Yes if using those apps |
 | `TZ` | All services | Yes |
 | `AZURE_*`, `OLLAMA_*` | AI-enabled apps | Only if using that provider |
 | `CONTEXT7_API_KEY`, `JINA_API_KEY`, `UNSPLASH_*` | Open WebUI, Open Notebook, and related integrations | Optional |
@@ -185,7 +183,7 @@ Some parts of the stack are wired together out of the box:
 - **Open WebUI → Ollama**: preconfigured via `OLLAMA_BASE_URL` and `OLLAMA_API_KEY`.
 - **Open WebUI → Context7 MCP**: pulls current library and framework docs when `CONTEXT7_API_KEY` is set.
 - **DBGate → PostgreSQL Shared**: DBGate comes up with a preconfigured connection to `postgres-shared`.
-- **Mailpit → Joplin Server / Hoppscotch / Mealie**: outbound app mail is routed to the local Mailpit SMTP service.
+- **Mailpit → Hoppscotch / Mealie**: outbound app mail is routed to the local Mailpit SMTP service.
 
 Two services require manual setup after startup:
 

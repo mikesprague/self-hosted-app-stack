@@ -34,7 +34,6 @@ Complete inventory of all apps in the self-hosted stack. Apps marked [inactive] 
 | blinko | `blinko-web` | 1111 | shared | active | AI note-taking app with Tailnet-based callback URLs |
 | docmost | `docmost` | 7889 | shared | active | Collaborative wiki/docs app; also uses Redis sidecar |
 | flatnotes | `flatnotes` | 8352 | No | active | Flat-file markdown notes |
-| joplin-server | `joplin-server` | 22300 | shared | active | Joplin sync server; uses Mailpit for outbound email |
 | jotty | `jotty` | 1122 | No | active | Minimal notes/checklists app |
 | karakeep | `karakeep-web` | 7788 | No | active | Bookmark/read-later manager; uses Meilisearch + Chrome sidecars |
 | logseq | `logseq` | 8360 | No | active | Local-first outliner / graph workspace |
@@ -86,7 +85,7 @@ Complete inventory of all apps in the self-hosted stack. Apps marked [inactive] 
 
 | App | Container | Port | Status | Notes |
 |-----|-----------|------|--------|-------|
-| mailpit | `mailpit` | 8025 (UI), 1025 (SMTP) | active | Local SMTP sink used by Joplin Server, Hoppscotch, and Mealie |
+| mailpit | `mailpit` | 8025 (UI), 1025 (SMTP) | active | Local SMTP sink used by Hoppscotch and Mealie |
 
 ## API Development / Testing
 
@@ -159,7 +158,6 @@ Complete inventory of all apps in the self-hosted stack. Apps marked [inactive] 
 | 8370 | dbgate |
 | 8371 | mailpit default UI port in compose |
 | 9443 | portainer HTTPS |
-| 22300 | joplin-server |
 
 ## External Integrations (Shared)
 

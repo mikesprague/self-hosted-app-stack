@@ -12,8 +12,6 @@ include:
       - ./stack/dbgate/compose.yaml
       # Personal Cloud
       - ./stack/nextcloud/compose.yaml
-      # Home Automation
-      # - ./stack/home-assistant/compose.yaml
       # AI/LLM
       - ./stack/open-webui/compose.yaml
       - ./stack/open-notebook/compose.yaml
@@ -28,7 +26,6 @@ include:
       - ./stack/docmost/compose.yaml
       - ./stack/flatnotes/compose.yaml
       - ./stack/karakeep/compose.yaml
-      # - ./stack/joplin-server/compose.yaml
       - ./stack/jotty/compose.yaml
       - ./stack/logseq/compose.yaml
       - ./stack/mealie/compose.yaml
