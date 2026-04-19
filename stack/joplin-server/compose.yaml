@@ -16,9 +16,9 @@ services:
       POSTGRES_PORT: "5432"
       POSTGRES_HOST: "postgres-shared"
       MAILER_ENABLED: 1
-      MAILER_HOST: "mailcatcher"
-      MAILER_PORT: "${MAILCATCHER_SMTP_PORT}"
-      # MAILER_SECURITY: starttls
+      MAILER_HOST: "mailpit"
+      MAILER_PORT: "${MP_SMTP_PORT}"
+      MAILER_SECURITY: "none"
       # MAILER_AUTH_USER: ""
       # MAILER_AUTH_PASSWORD: ""
       MAILER_NOREPLY_EMAIL: "Joplin Server <noreply@joplin-server.local>"
@@ -27,4 +27,4 @@ services:
     deploy:
       resources:
         limits:
-          memory: 350M
+          memory: 500M
