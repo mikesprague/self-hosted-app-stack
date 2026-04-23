@@ -34,6 +34,7 @@ include:
       - ./stack/memos/compose.yaml
       - ./stack/paperless-ngx/compose.yaml
       - ./stack/silverbullet/compose.yaml
+      - ./stack/siyuan/compose.yaml
       - ./stack/trilium-notes/compose.yaml
       # RSS Reader
       - ./stack/freshrss/compose.yaml
