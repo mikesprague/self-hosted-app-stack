@@ -32,8 +32,6 @@ services:
         condition: service_healthy
       docmost-redis:
         condition: service_healthy
-    # extra_hosts:
-    #   - "host.docker.internal:host-gateway"
     environment:
       APP_URL: "http://localhost:7889"
       APP_SECRET: ${DOCMOST_APP_SECRET:?missing}
