@@ -13,6 +13,38 @@ services:
     volumes:
       - ../../local-volumes/paperless-ngx/redis-data:/data
 
+  paperless-gotenberg:
+    image: gotenberg/gotenberg:latest
+    container_name: paperless-gotenberg
+    ports:
+      - "${PAPERLESS_GOTENBERG_PORT:-3000}:3000"
+    # The gotenberg chromium route is used to convert .eml files. We do not
+    # want to allow external content like tracking pixels or even javascript.
+    command:
+      - "gotenberg"
+      - "--chromium-disable-javascript=true"
+      - "--chromium-allow-list=file:///tmp/.*"
+    healthcheck:
+      test: [ "CMD", "wget", "-q", "--spider", "http://localhost:3000/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  paperless-tika:
+    image: apache/tika:latest
+    container_name: paperless-tika
+    ports:
+      - "${PAPERLESS_TIKA_PORT:-9998}:9998"
+    healthcheck:
+      test: [ "CMD", "wget", "-q", "--spider", "http://localhost:9998/tika" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 45s
+    restart: unless-stopped
+
   paperless-ngx:
     image: ghcr.io/paperless-ngx/paperless-ngx:latest
     container_name: paperless-ngx
@@ -23,9 +55,17 @@ services:
       paperless-broker:
         condition: service_healthy
       paperless-gotenberg:
-        condition: service_started
+        condition: service_healthy
       paperless-tika:
-        condition: service_started
+        condition: service_healthy
+      paperless-ngx:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "wget", "-q", "--spider", "http://localhost:8000/api/" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
     ports:
       - "${PAPERLESS_PORT:-8000}:8000"
     volumes:
@@ -45,26 +85,6 @@ services:
       PAPERLESS_TIKA_ENABLED: "true"
       PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-gotenberg:3000
       PAPERLESS_TIKA_ENDPOINT: http://paperless-tika:9998
-
-  paperless-gotenberg:
-    image: gotenberg/gotenberg:latest
-    container_name: paperless-gotenberg
-    restart: unless-stopped
-    ports:
-      - "${PAPERLESS_GOTENBERG_PORT:-3000}:3000"
-    # The gotenberg chromium route is used to convert .eml files. We do not
-    # want to allow external content like tracking pixels or even javascript.
-    command:
-      - "gotenberg"
-      - "--chromium-disable-javascript=true"
-      - "--chromium-allow-list=file:///tmp/.*"
-
-  paperless-tika:
-    image: apache/tika:latest
-    container_name: paperless-tika
-    ports:
-      - "${PAPERLESS_TIKA_PORT:-9998}:9998"
-    restart: unless-stopped
 
   paperless-gpt:
     # Use one of these image sources:
@@ -129,4 +149,4 @@ services:
       - "${PAPERLESS_GPT_PORT:-8080}:8080"
     depends_on:
       paperless-ngx:
-        condition: service_started
+        condition: service_healthy
