@@ -52,8 +52,6 @@ services:
         condition: service_healthy
       paperless-tika:
         condition: service_healthy
-      paperless-ngx:
-        condition: service_healthy
     healthcheck:
       test: [ "CMD", "curl", "-fs", "-SL", "--max-time", "2", "http://localhost:8000" ]
       interval: 30s
