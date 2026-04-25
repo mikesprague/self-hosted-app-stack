@@ -15,5 +15,5 @@ services:
     deploy:
       resources:
         limits:
-          memory: 500M
+          memory: 512M
     restart: unless-stopped

@@ -7,7 +7,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 250M
+          memory: 256M
     restart: unless-stopped
     environment:
       - NODE_ENV=production

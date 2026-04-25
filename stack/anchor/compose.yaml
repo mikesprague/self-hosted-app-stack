@@ -13,7 +13,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 5000M
+          memory: 5120M
     environment:
       PG_HOST: "${POSTGRES_SHARED_HOST:-}"
       PG_PORT: "${POSTGRES_SHARED_PORT:-5432}"

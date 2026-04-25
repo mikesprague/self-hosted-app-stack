@@ -25,7 +25,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 500M
+          memory: 512M
     environment:
       SEARXNG_SECRET_KEY: "${SEARXNG_SECRET_KEY}"
     volumes:

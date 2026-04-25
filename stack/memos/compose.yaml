@@ -7,7 +7,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 250M
+          memory: 256M
     environment:
       MEMOS_PORT: "${MEMOS_PORT:-5230}"
       MEMOS_DRIVER: postgres

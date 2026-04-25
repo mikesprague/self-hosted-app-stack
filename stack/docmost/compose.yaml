@@ -5,12 +5,12 @@ services:
     command:
       - redis-server
       - --appendonly yes
-      - --maxmemory 250mb # a bit under container limit so you leave room for Redis overhead
+      - --maxmemory 256mb # a bit under container limit so you leave room for Redis overhead
       - --maxmemory-policy allkeys-lru
     deploy:
       resources:
         limits:
-          memory: 300M
+          memory: 320M
     healthcheck:
       test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
       interval: 10s
@@ -26,7 +26,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 300M
+          memory: 512M
     depends_on:
       postgres-shared:
         condition: service_healthy

@@ -6,7 +6,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 250M
+          memory: 256M
     ports:
       - "${FLATNOTES_PORT:-8352}:8080"
     volumes:

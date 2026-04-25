@@ -9,7 +9,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 500M
+          memory: 512M
     environment:
       TZ: "${TZ}"
       MP_MAX_MESSAGES: "${MAILPIT_MAX_MESSAGES:-5000}"

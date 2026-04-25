@@ -5,7 +5,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 250M
+          memory: 256M
     environment:
       SECRET_KEY: "${DOCKPEEK_SECRET_KEY}"
       USERNAME: "${DOCKPEEK_USERNAME}"

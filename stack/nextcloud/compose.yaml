@@ -21,12 +21,12 @@ services:
     container_name: nextcloud-redis
     command:
       - redis-server
-      - --maxmemory 250mb # a bit under container limit so you leave room for Redis overhead
+      - --maxmemory 256mb # a bit under container limit so you leave room for Redis overhead
       - --maxmemory-policy allkeys-lru
     deploy:
       resources:
         limits:
-          memory: 300M
+          memory: 320M
     restart: unless-stopped
     healthcheck:
       test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
@@ -46,7 +46,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 1000M
+          memory: 1024M
     environment:
       MYSQL_HOST: nextcloud-mariadb
       MYSQL_DATABASE: "${NEXTCLOUD_MYSQL_DATABASE}"

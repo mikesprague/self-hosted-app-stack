@@ -8,7 +8,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 750M
+          memory: 768M
     environment:
       SP_SYNC_PROVIDER: WebDAV
       SP_WEBDAV_URL: "http://super-productivity-webdav:80"
