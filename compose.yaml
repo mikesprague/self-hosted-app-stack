@@ -16,6 +16,7 @@ include:
       - ./stack/open-webui/compose.yaml
       - ./stack/open-notebook/compose.yaml
       - ./stack/litellm/compose.yaml
+      - ./stack/atlassian-mcp/compose.yaml
       # Search Engine
       - ./stack/degoog/compose.yaml
       - ./stack/hister/compose.yaml
