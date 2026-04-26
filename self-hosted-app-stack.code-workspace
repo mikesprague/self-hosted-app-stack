@@ -6,6 +6,7 @@
   ],
   "settings": {
     "cSpell.words": [
+      "activepieces",
       "agenticseek",
       "allkeys",
       "APIKEY",
@@ -116,6 +117,7 @@
       "trilium",
       "triliumnext",
       "trixie",
+      "UNSANDBOXED",
       "urllib",
       "urlopen",
       "usememos",

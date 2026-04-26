@@ -43,6 +43,7 @@ include:
       # Task Management/Productivity
       - ./stack/super-productivity/compose.yaml
       # Automation/Workflow
+      - ./stack/activepieces/compose.yaml
       - ./stack/flowise/compose.yaml
       - ./stack/n8n/compose.yaml
       # Monitoring/Management
