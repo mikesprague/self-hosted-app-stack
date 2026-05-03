@@ -1,0 +1,116 @@
+{
+    log {
+        level INFO
+    }
+}
+
+(local_https) {
+    tls internal
+}
+
+localhost {
+    import local_https
+    respond "Caddy is running" 200
+}
+
+# Replace names/ports below with your actual services
+
+homepage.localhost {
+    import local_https
+    reverse_proxy homepage:3000
+}
+
+open-webui.localhost {
+    import local_https
+    reverse_proxy open-webui:8080
+}
+
+open-notebook.localhost {
+    import local_https
+    reverse_proxy open-notebook:8502
+}
+
+api.open-notebook.localhost {
+    import local_https
+    reverse_proxy open-notebook:5055
+}
+
+litellm.localhost {
+    import local_https
+    reverse_proxy litellm:4000
+}
+
+dbgate.localhost {
+    import local_https
+    reverse_proxy dbgate:3000
+}
+
+mailpit.localhost {
+    import local_https
+    reverse_proxy mailpit:8025
+}
+
+smtp.mailpit.localhost {
+    import local_https
+    reverse_proxy mailpit:1025
+}
+
+hoppscotch.localhost {
+    import local_https
+    reverse_proxy hoppscotch:3000
+}
+
+admin.hoppscotch.localhost {
+    import local_https
+    reverse_proxy hoppscotch:3100
+}
+
+api.hoppscotch.localhost {
+    import local_https
+    reverse_proxy hoppscotch:3170
+}
+
+dockpeek.localhost {
+    import local_https
+    reverse_proxy dockpeek:8000
+}
+
+dozzle.localhost {
+    import local_https
+    reverse_proxy dozzle:8080
+}
+
+portainer.localhost {
+    import local_https
+    reverse_proxy portainer:9000
+}
+
+freshrss.localhost {
+    import local_https
+    reverse_proxy freshrss:80
+}
+
+karakeep.localhost {
+    import local_https
+    reverse_proxy karakeep-web:3000
+}
+
+trilium.localhost {
+    import local_https
+    reverse_proxy trilium:8080
+}
+
+hister.localhost {
+    import local_https
+    reverse_proxy hister:4433
+}
+
+searxng.localhost {
+    import local_https
+    reverse_proxy searxng:8080
+}
+
+degoog.localhost {
+    import local_https
+    reverse_proxy degoog:4444
+}
