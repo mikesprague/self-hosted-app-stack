@@ -461,6 +461,15 @@ model_list:
 litellm_settings:
   drop_params: true
   telemetry: false
+  set_verbose: true
+  cache: true
+  # cache_params:
+  #   type: qdrant-semantic
+  #   qdrant_semantic_cache_embedding_model: text-embedding-3-small-azure # the model should be defined on the model_list
+  #   qdrant_collection_name: litellm_cache
+  #   qdrant_quantization_config: binary
+  #   qdrant_semantic_cache_vector_size: 1536 # vector size must match embedding model dimensionality
+  #   similarity_threshold: 0.8 # similarity threshold for semantic cache
 
 general_settings:
   master_key: os.environ/LITELLM_MASTER_KEY

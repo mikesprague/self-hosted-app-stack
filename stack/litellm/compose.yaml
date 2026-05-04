@@ -1,4 +1,45 @@
 services:
+  litellm-redis:
+    image: redis:8-alpine
+    container_name: litellm-redis
+    command:
+      - redis-server
+      - --appendonly yes
+      - --maxmemory 256mb # a bit under container limit so you leave room for Redis overhead
+      - --maxmemory-policy allkeys-lru
+    deploy:
+      resources:
+        limits:
+          memory: 320M
+    healthcheck:
+      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    volumes:
+      - ../../local-volumes/litellm/redis/data:/data
+
+  litellm-qdrant:
+    image: qdrant/qdrant:latest
+    container_name: litellm-qdrant
+    ports:
+      - "6633:6333" # REST API
+      - "6634:6334" # gRPC API (optional)
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    environment:
+      QDRANT__LOG_LEVEL: "${LITELLM_QDRANT_LOG_LEVEL:-info}"
+      QDRANT__STORAGE__PATH: "/qdrant/storage"
+      QDRANT__STORAGE__USE_S3: "false"
+      QDRANT__TELEMETRY_DISABLED: "true"
+    volumes:
+      - ../../local-volumes/litellm/qdrant/storage:/qdrant/storage
+      # - ../../local-volumes/litellm/qdrant/config.yaml:/qdrant/config.yaml
+    restart: unless-stopped
+
   litellm:
     image: litellm/litellm:1.84.0-dev.2
     container_name: litellm
@@ -12,10 +53,15 @@ services:
     depends_on:
       postgres-shared:
         condition: service_healthy
+      litellm-redis:
+        condition: service_healthy
+      # litellm-qdrant:
+      #   condition: service_started
     environment:
       LITELLM_MASTER_KEY: "${LITELLM_MASTER_KEY}"
       LITELLM_SALT_KEY: "${LITELLM_SALT_KEY}"
       DATABASE_URL: "postgresql://${LITELLM_POSTGRES_USER}:${LITELLM_POSTGRES_PASSWORD}@postgres-shared:5432/${LITELLM_POSTGRES_DB}"
+      REDIS_URL: "redis://litellm-redis:6379/litellm"
       STORE_MODEL_IN_DB: "${LITELLM_STORE_MODEL_IN_DB:-False}"
       OLLAMA_API_BASE: "${OLLAMA_BASE_URL}"
       OLLAMA_API_KEY: "${OLLAMA_API_KEY}"
@@ -28,6 +74,8 @@ services:
       CONTEXT7_API_KEY: "${CONTEXT7_API_KEY}"
       TDX_MCP_SERVER_URL: "${TDX_MCP_SERVER_URL}"
       SEARXNG_API_BASE: "${SEARXNG_BASE_URL}"
+      # QDRANT_API_BASE: "http://litellm-qdrant:6633"
+      # QDRANT_API_KEY: ""
     volumes:
       - ../../local-volumes/litellm/config/config.yaml:/app/config/config.yaml:ro
     command:
