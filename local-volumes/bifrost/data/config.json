@@ -3,7 +3,7 @@
     "azure": {
       "keys": [
         {
-          "name": "Azure Foundry API",
+          "name": "Azure Foundry",
           "value": "env.AZURE_OPENAI_API_KEY",
           "weight": 1,
           "models": [
