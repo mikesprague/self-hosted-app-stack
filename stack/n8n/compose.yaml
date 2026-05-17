@@ -8,13 +8,14 @@ services:
     deploy:
       resources:
         limits:
-          memory: 2048M
+          memory: 4096M
     environment:
       N8N_HOST: "${TAILNET_DOMAIN}" # Set to your domain
       N8N_PORT: "${N8N_PORT:-5678}"
       N8N_PROTOCOL: "http" # Use "http" for local access
       WEBHOOK_URL: "http://${TAILNET_DOMAIN}:${N8N_PORT:-5678}/" # Your public URL for webhooks
       N8N_ENCRYPTION_KEY: "${N8N_ENCRYPTION_KEY}"
+      NODES_EXCLUDE: "[]"
       DB_TYPE: "postgresdb"
       DB_POSTGRESDB_HOST: "postgres-shared"
       DB_POSTGRESDB_PORT: "5432"
@@ -25,6 +26,7 @@ services:
       GENERIC_TIMEZONE: "${TZ}"
     volumes:
       - ../../local-volumes/n8n/data:/home/node/.n8n
+      - /Volumes/Seagate/n8n:/data/external:rw
     depends_on:
       postgres-shared:
         condition: service_healthy
