@@ -10,6 +10,9 @@ services:
       # Adjust for your environment
       STORAGE_DIR: "/app/server/storage"
       JWT_SECRET: "8052bc60e76660a3cb1a664512dda74f9344cd3d610751ea3ffe31b8b5f34e4d"
+      COMMUNITY_HUB_BUNDLE_DOWNLOADS_ENABLED: "true"
+      COLLECTOR_ALLOW_ANY_IP: "true"
+      PROVIDER_SUPPORTS_NATIVE_TOOL_CALLING: "generic-openai,litellm"
       # LLM_PROVIDER: "ollama"
       OLLAMA_BASE_PATH: "${OLLAMA_BASE_URL}"
       OLLAMA_MODEL_PREF: "${ANYTHINGLLM_OLLAMA_MODEL:-qwen3.5:latest}"
