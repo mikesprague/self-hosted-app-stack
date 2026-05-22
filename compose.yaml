@@ -62,6 +62,8 @@ include:
       # - ./stack/rustdesk/compose.yaml
       # File Conversion
       - ./stack/vert/compose.yaml
+      # Misc Utilities
+      - ./stack/it-tools/compose.yaml
       # Dashboard
       - ./stack/homepage/compose.yaml
 
