@@ -30,12 +30,14 @@ Temporary Items
 
 local-volumes/
 stack/siyuan
+stack/rustfs
 stack/flowise
 stack/khoj
 stack/litellm
 stack/docmost
 stack/affine
 local-volumes/siyuan
+local-volumes/rustfs
 local-volumes/flowise
 local-volumes/khoj
 local-volumes/litellm
