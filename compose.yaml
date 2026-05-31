@@ -45,7 +45,7 @@ include:
       # Task Management/Productivity
       # - ./stack/super-productivity/compose.yaml
       # Workflows/Automation
-      - ./stack/activepieces/compose.yaml
+      # - ./stack/activepieces/compose.yaml
       - ./stack/n8n/compose.yaml
       # Monitoring/Management
       - ./stack/dockpeek/compose.yaml
@@ -58,7 +58,7 @@ include:
       # API Development
       - ./stack/hoppscotch/compose.yaml
       # - ./stack/restfox/compose.yaml
-      - ./stack/yaade/compose.yaml
+      # - ./stack/yaade/compose.yaml
       # Remote Desktop
       # - ./stack/rustdesk/compose.yaml
       # File Conversion
