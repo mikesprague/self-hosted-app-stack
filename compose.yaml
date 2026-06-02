@@ -10,6 +10,7 @@ include:
       # Postgres
       - ./stack/databasus/compose.yaml
       - ./stack/dbgate/compose.yaml
+      - ./stack/dbx/compose.yaml
       - ./stack/postgres-shared/compose.yaml
       # Personal Cloud
       - ./stack/nextcloud/compose.yaml
