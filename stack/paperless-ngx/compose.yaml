@@ -1,6 +1,6 @@
 services:
   paperless-broker:
-    image: redis:8-alpine
+    image: redis:8.8.0alpine
     container_name: paperless-broker
     ports:
       - "${PAPERLESS_REDIS_PORT:-6379}:6379"
@@ -14,7 +14,7 @@ services:
       - ../../local-volumes/paperless-ngx/redis-data:/data
 
   paperless-gotenberg:
-    image: gotenberg/gotenberg:latest
+    image: gotenberg/gotenberg:8.33.0
     container_name: paperless-gotenberg
     ports:
       - "${PAPERLESS_GOTENBERG_PORT:-3000}:3000"
@@ -33,7 +33,7 @@ services:
     restart: unless-stopped
 
   paperless-tika:
-    image: apache/tika:latest
+    image: apache/tika:3.3.1.0
     container_name: paperless-tika
     ports:
       - "${PAPERLESS_TIKA_PORT:-9998}:9998"
@@ -80,7 +80,7 @@ services:
 
   paperless-gpt:
     # Use one of these image sources:
-    image: icereed/paperless-gpt:latest # Docker Hub
+    image: icereed/paperless-gpt:v0.25.1 # Docker Hub
     # image: ghcr.io/icereed/paperless-gpt:latest  # GitHub Container Registry
     container_name: paperless-gpt
     environment:

@@ -1,7 +1,7 @@
 services:
   flatnotes:
+    image: dullage/flatnotes:v5.5.4
     container_name: flatnotes
-    image: dullage/flatnotes:latest
     restart: unless-stopped
     deploy:
       resources:

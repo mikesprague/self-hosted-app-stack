@@ -1,6 +1,6 @@
 services:
   open-notebook-surrealdb:
-    image: surrealdb/surrealdb:v2
+    image: surrealdb/surrealdb:v2.6.5
     container_name: open-notebook-surrealdb
     command: start --log info --user root --pass root rocksdb:/mydata/mydatabase.db
     user: root # Required for bind mounts on Linux
@@ -21,7 +21,7 @@ services:
       - ../../local-volumes/open-notebook/surrealdb/logs:/logs
 
   open-notebook:
-    image: lfnovo/open_notebook:v1-latest
+    image: lfnovo/open_notebook:1.9.0
     container_name: open-notebook
     ports:
       - "5055:5055" # REST API

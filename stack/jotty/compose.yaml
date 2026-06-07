@@ -1,6 +1,6 @@
 services:
   jotty:
-    image: ghcr.io/fccview/jotty:latest
+    image: ghcr.io/fccview/jotty:1.24.0
     container_name: jotty
     ports:
       - "${JOTTY_PORT:-1122}:3000"

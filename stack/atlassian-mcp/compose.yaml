@@ -1,6 +1,6 @@
 services:
   atlassian-mcp:
-    image: mcp/atlassian:latest
+    image: ghcr.io/sooperset/mcp-atlassian:0.21.1
     container_name: atlassian-mcp
     restart: unless-stopped
     command: [ "--transport", "streamable-http", "--port", "9000" ]

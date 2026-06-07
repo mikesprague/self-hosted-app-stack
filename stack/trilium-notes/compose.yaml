@@ -1,6 +1,6 @@
 services:
   trilium:
-    image: triliumnext/trilium:latest
+    image: triliumnext/trilium:v0.103.0
     container_name: trilium
     ports:
       - "${TRILIUM_PORT:-8351}:8080"

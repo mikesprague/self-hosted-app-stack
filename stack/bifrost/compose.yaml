@@ -1,6 +1,6 @@
 services:
   bifrost-qdrant:
-    image: qdrant/qdrant:latest
+    image: qdrant/qdrant:v1.18.2
     container_name: bifrost-qdrant
     ports:
       - "${BIFROST_QDRANT_REST_PORT:-6333}:6333" # REST API
@@ -20,7 +20,7 @@ services:
     restart: unless-stopped
 
   bifrost:
-    image: maximhq/bifrost:latest
+    image: maximhq/bifrost:v1.5.10
     container_name: bifrost
     ports:
       - "${BIFROST_APP_PORT:-8080}:8080"

@@ -1,6 +1,6 @@
 services:
   restfox:
-    image: flawiddsouza/restfox:latest
+    image: flawiddsouza/restfox:0.40.0
     container_name: restfox
     restart: unless-stopped
     ports:

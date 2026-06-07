@@ -1,6 +1,6 @@
 services:
   nextcloud-mariadb:
-    image: mariadb:11
+    image: mariadb:12.3.2
     container_name: nextcloud-mariadb
     restart: unless-stopped
     command:
@@ -17,7 +17,7 @@ services:
       - ../../local-volumes/nextcloud/db:/var/lib/mysql
 
   nextcloud-redis:
-    image: redis:8-alpine
+    image: redis:8.8.0-alpine
     container_name: nextcloud-redis
     command:
       - redis-server
@@ -35,7 +35,7 @@ services:
       retries: 5
 
   nextcloud:
-    image: nextcloud:apache
+    image: nextcloud:33.0.5-apache
     container_name: nextcloud
     restart: unless-stopped
     depends_on:

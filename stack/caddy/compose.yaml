@@ -1,6 +1,6 @@
 services:
   caddy:
-    image: caddy/caddy:latest
+    image: caddy/caddy:2.11.4-alpine
     container_name: caddy
     ports:
       - "127.0.0.1:80:80"

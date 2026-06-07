@@ -1,6 +1,6 @@
 services:
   hbbr:
-    image: rustdesk/rustdesk-server:latest
+    image: rustdesk/rustdesk-server:1.1.15
     container_name: hbbr
     deploy:
       resources:
@@ -12,7 +12,7 @@ services:
     restart: unless-stopped
 
   hbbs:
-    image: rustdesk/rustdesk-server:latest
+    image: rustdesk/rustdesk-server:1.1.15
     container_name: hbbs
     deploy:
       resources:

@@ -10,7 +10,7 @@ services:
   doco-cd:
     # You can also pin to a specific tag (version)
     # Available tags can be found here: https://github.com/kimdre/doco-cd/pkgs/container/doco-cd
-    image: ghcr.io/kimdre/doco-cd:latest
+    image: ghcr.io/kimdre/doco-cd:0.91.0
     container_name: doco-cd
     restart: unless-stopped
     ports:

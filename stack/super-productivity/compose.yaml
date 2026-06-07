@@ -1,6 +1,6 @@
 services:
   super-productivity:
-    image: johannesjo/super-productivity:latest
+    image: johannesjo/super-productivity:v18.9.1
     container_name: super-productivity
     restart: unless-stopped
     ports:
