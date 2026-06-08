@@ -1,7 +1,10 @@
 version: 2
 updates:
   - package-ecosystem: "docker-compose"
-    directory: "/"
+    directories:
+      - "/"
+      - "/stack"
+      - "/stack/**/*"
     schedule:
       interval: "daily"
       time: "07:00"
