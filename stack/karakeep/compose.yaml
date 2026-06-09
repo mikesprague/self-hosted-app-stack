@@ -18,7 +18,7 @@ services:
           memory: 5120M
 
   karakeep-meilisearch:
-    image: getmeili/meilisearch:v1.46.0
+    image: getmeili/meilisearch:v1.46.1
     container_name: karakeep-meilisearch
     restart: unless-stopped
     ports:
