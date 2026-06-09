@@ -1,6 +1,6 @@
 services:
   activepieces:
-    image: ghcr.io/activepieces/activepieces:0.85.0
+    image: ghcr.io/activepieces/activepieces:0.85.2
     container_name: activepieces
     restart: unless-stopped
     deploy:
