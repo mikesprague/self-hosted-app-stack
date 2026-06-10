@@ -50,7 +50,6 @@ include:
       - ./stack/n8n/compose.yaml
       # Monitoring/Management
       - ./stack/dockpeek/compose.yaml
-      - ./stack/doco-cd/compose.yaml
       - ./stack/dozzle/compose.yaml
       - ./stack/portainer/compose.yaml
       - ./stack/uptime-kuma/compose.yaml
@@ -58,8 +57,6 @@ include:
       - ./stack/mailpit/compose.yaml
       # API Development
       - ./stack/hoppscotch/compose.yaml
-      # - ./stack/restfox/compose.yaml
-      # - ./stack/yaade/compose.yaml
       # Remote Desktop
       # - ./stack/rustdesk/compose.yaml
       # File Conversion

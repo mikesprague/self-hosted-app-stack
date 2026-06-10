@@ -1,9 +1,0 @@
-name: self-hosted-app-stack
-repository_url: https://github.com/mikesprague/self-hosted-app-stack.git
-reference: refs/heads/main
-working_dir: .
-env_files:
-  - .env
-compose_files:
-  - compose.yaml
-remove_orphans: true
