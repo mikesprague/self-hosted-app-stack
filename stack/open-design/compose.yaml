@@ -12,8 +12,10 @@ services:
       OD_PORT: "7456"
       OD_WEB_PORT: ${OPEN_DESIGN_PORT:-7456}
       OD_API_TOKEN: ${OPEN_DESIGN_API_TOKEN}
-    ports:
-      - "${OPEN_DESIGN_PORT:-7456}:7456"
+    network_mode: host
+    ports: []
+    # ports:
+    #   - "${OPEN_DESIGN_PORT:-7456}:7456"
     volumes:
       - ../../local-volumes/open-design/data:/app/.od
     read_only: true
@@ -24,7 +26,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 512M
+          memory: 2048M
           pids: 256
     restart: unless-stopped
     healthcheck:
