@@ -28,14 +28,7 @@ include:
       # Password Manager
       - ./stack/vaultwarden/compose.yaml
       # PKM Tools
-      # - ./stack/anchor/compose.yaml
-      # - ./stack/affine/compose.yaml
-      # - ./stack/blinko/compose.yaml
-      # - ./stack/docmost/compose.yaml
-      # - ./stack/flatnotes/compose.yaml
       - ./stack/karakeep/compose.yaml
-      # - ./stack/jotty/compose.yaml
-      # - ./stack/logseq/compose.yaml
       - ./stack/mealie/compose.yaml
       - ./stack/memos/compose.yaml
       # - ./stack/paperless-ngx/compose.yaml
@@ -44,7 +37,7 @@ include:
       # RSS Reader
       - ./stack/freshrss/compose.yaml
       # Task Management/Productivity
-      # - ./stack/super-productivity/compose.yaml
+      - ./stack/super-productivity/compose.yaml
       # Workflows/Automation
       # - ./stack/activepieces/compose.yaml
       - ./stack/n8n/compose.yaml
@@ -58,13 +51,12 @@ include:
       - ./stack/mailpit/compose.yaml
       # API Development
       - ./stack/hoppscotch/compose.yaml
-      # Remote Desktop
-      # - ./stack/rustdesk/compose.yaml
       # File Conversion
       - ./stack/vert/compose.yaml
-      # Misc Utilities
+      # Misc Tools/Utilities
       - ./stack/it-tools/compose.yaml
       - ./stack/omni-tools/compose.yaml
+      # Push Notifications
       - ./stack/ntfy/compose.yaml
       # Dashboard
       - ./stack/homepage/compose.yaml

@@ -11,19 +11,8 @@ services:
           memory: 768M
     environment:
       SP_SYNC_PROVIDER: WebDAV
-      SP_WEBDAV_URL: "http://super-productivity-webdav:80"
-      SP_WEBDAV_USER: "${SP_WEBDAV_USER}"
-      SP_WEBDAV_PASSWORD: "${SP_WEBDAV_PASSWORD}"
+      SP_WEBDAV_URL: "${NEXTCLOUD_OVERWRITECLIURL}/remote.php/dav/files/admin/nextcloud-external/SuperProductivity"
+      SP_WEBDAV_USER: "${NEXTCLOUD_ADMIN_USER}"
+      SP_WEBDAV_PASSWORD: "${NEXTCLOUD_ADMIN_PASSWORD}"
     depends_on:
-      - super-productivity-webdav
-
-  super-productivity-webdav:
-    image: bytemark/webdav:2.4
-    container_name: super-productivity-webdav
-    restart: unless-stopped
-    environment:
-      AUTH_TYPE: Basic
-      USERNAME: "${SP_WEBDAV_USER}"
-      PASSWORD: "${SP_WEBDAV_PASSWORD}"
-    volumes:
-      - ../../local-volumes/super-productivity/webdav:/var/lib/dav
+      - nextcloud
