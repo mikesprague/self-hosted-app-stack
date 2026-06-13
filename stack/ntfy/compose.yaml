@@ -1,0 +1,25 @@
+services:
+  ntfy:
+    image: binwiederhier/ntfy
+    container_name: ntfy
+    ports:
+      - "${NTFY_PORT:-80}:80"
+    command:
+      - serve
+    healthcheck:
+      test: [ "CMD-SHELL", "wget -q --tries=1 http://localhost:80/v1/health -O - | grep -Eo '\"healthy\"\\s*:\\s*true' || exit 1" ]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    init: true # helpful if using healthcheck to prevent ghost/spawned processes
+    environment:
+      TZ: "America/New_York"
+    volumes:
+      - ../../local-volumes/ntfy/cache:/var/cache/ntfy
+      - ../../local-volumes/ntfy/config:/etc/ntfy
+    deploy:
+      resources:
+        limits:
+          memory: 1024M
+    restart: unless-stopped

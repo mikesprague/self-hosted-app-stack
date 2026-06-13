@@ -64,6 +64,7 @@ include:
       # Misc Utilities
       - ./stack/it-tools/compose.yaml
       - ./stack/omni-tools/compose.yaml
+      - ./stack/ntfy/compose.yaml
       # Dashboard
       - ./stack/homepage/compose.yaml
 
