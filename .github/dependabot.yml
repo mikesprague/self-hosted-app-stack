@@ -6,8 +6,8 @@ updates:
       - "/stack"
       - "/stack/**/*"
     schedule:
-      interval: "cron"
-      cronjob: "15 */4 * * *" # every 4 hours at quarter past the hour
+      interval: "daily"
+      time: "07:00"
       timezone: "America/New_York"
     target-branch: "main"
     commit-message:
