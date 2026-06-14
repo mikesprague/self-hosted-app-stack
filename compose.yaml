@@ -39,7 +39,7 @@ include:
       # Task Management/Productivity
       - ./stack/super-productivity/compose.yaml
       # Workflows/Automation
-      # - ./stack/activepieces/compose.yaml
+      - ./stack/activepieces/compose.yaml
       - ./stack/n8n/compose.yaml
       # Monitoring/Management
       - ./stack/beszel/compose.yaml
