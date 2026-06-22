@@ -34,6 +34,7 @@ services:
       - "${DEGOOG_PORT:-4444}:4444"
     environment:
       DEGOOG_VALKEY_URL: "redis://degoog-valkey:6379"
+      DEGOOG_DANGEROUSLY_NO_PASSWORD: "true"
     restart: unless-stopped
     deploy:
       resources:
