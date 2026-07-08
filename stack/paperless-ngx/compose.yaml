@@ -80,7 +80,7 @@ services:
 
   paperless-gpt:
     # Use one of these image sources:
-    image: icereed/paperless-gpt:v0.26.0 # Docker Hub
+    image: icereed/paperless-gpt:v0.26.1 # Docker Hub
     # image: ghcr.io/icereed/paperless-gpt:latest  # GitHub Container Registry
     container_name: paperless-gpt
     environment:
