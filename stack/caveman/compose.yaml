@@ -1,0 +1,30 @@
+services:
+  caveman:
+    image: ghcr.io/juliusbrussee/caveman-cli:latest
+    container_name: caveman
+    restart: unless-stopped
+    ports:
+      - "${CAVEMAN_PORT:-8788}:8787"
+    environment:
+      CAVEMAN_PROXY_BIN: /usr/local/bin/caveman-proxy
+      CAVEMAN_HOST: "${CAVEMAN_HOST:-0.0.0.0}"
+      CAVEMAN_PORT: "${CAVEMAN_PORT:-8787}"
+      OPENAI_BASE_URL: "${BIFROST_OPENAI_API_URL}"
+    command: [ "caveman", "start" ]
+    depends_on:
+      - bifrost
+
+  cavehead:
+    image: ghcr.io/juliusbrussee/caveman-cli:latest
+    container_name: cavehead
+    restart: unless-stopped
+    ports:
+      - "${CAVEHEAD_PORT:-8789}:8787"
+    environment:
+      CAVEMAN_PROXY_BIN: /usr/local/bin/caveman-proxy
+      CAVEMAN_HOST: "${CAVEHEAD_HOST:-0.0.0.0}"
+      CAVEMAN_PORT: "${CAVEHEAD_PORT:-8787}"
+      OPENAI_BASE_URL: "http://headroom:${HEADROOM_PORT:-8787}/v1"
+    command: [ "caveman", "start" ]
+    depends_on:
+      - headroom
