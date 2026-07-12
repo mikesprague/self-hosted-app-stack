@@ -21,7 +21,7 @@ services:
       - ../../local-volumes/open-notebook/surrealdb/logs:/logs
 
   open-notebook:
-    image: lfnovo/open_notebook:1.11.0
+    image: lfnovo/open_notebook:1.12.0
     container_name: open-notebook
     ports:
       - "5055:5055" # REST API
