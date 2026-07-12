@@ -19,6 +19,7 @@ services:
       HEADROOM_CODE_AWARE_ENABLED: "false"
       HEADROOM_TELEMETRY: "off"
       OPENAI_TARGET_API_URL: "${BIFROST_OPENAI_API_URL}"
-
+    depends_on:
+      - bifrost
     volumes:
       - ../../local-volumes/headroom/data:/home/nonroot/.headroom
