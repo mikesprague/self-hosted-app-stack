@@ -1,9 +1,8 @@
 services:
   headroom:
-    image: 'ghcr.io/chopratejas/headroom:code'
+    image: ghcr.io/chopratejas/headroom:code
     container_name: headroom
     restart: unless-stopped
-    command: [ "headroom", "proxy", "--memory" ]
     ports:
       - "${HEADROOM_PORT:-8787}:8787"
     deploy:
@@ -17,7 +16,7 @@ services:
       HEADROOM_LOG_LEVEL: "${HEADROOM_LOG_LEVEL:-INFO}"
       HEADROOM_BASE_URL: "${HEADROOM_BASE_URL:-http://localhost:${HEADROOM_PORT:-8787}}"
       HEADROOM_API_KEY: "" # none, or set to your API key for authentication
-      HEADROOM_CODE_AWARE_ENABLED: "1"
+      HEADROOM_CODE_AWARE_ENABLED: "false"
       HEADROOM_TELEMETRY: "off"
       OPENAI_TARGET_API_URL: "${BIFROST_OPENAI_API_URL}"
 
