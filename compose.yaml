@@ -15,6 +15,7 @@ include:
       # Personal Cloud
       - ./stack/nextcloud/compose.yaml
       # AI/LLM
+      # - ./stack/9router/compose.yaml
       - ./stack/atlassian-mcp/compose.yaml
       - ./stack/anythingllm/compose.yaml
       - ./stack/bifrost/compose.yaml

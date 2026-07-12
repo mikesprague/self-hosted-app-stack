@@ -1,0 +1,27 @@
+services:
+  9router:
+    image: decolua/9router:0.5.30
+    container_name: 9router
+    restart: unless-stopped
+    ports:
+      - "${NINEROUTER_PORT:-20128}:20128"
+    volumes:
+      - "../../local-volumes/9router/data:/app/data"
+    environment:
+      JWT_SECRET: "${NINEROUTER_JWT_SECRET}"
+      INITIAL_PASSWORD: "${NINEROUTER_INITIAL_PASSWORD:-123456}"
+      DATA_DIR: "/app/data"
+      PORT: "${NINEROUTER_PORT:-20128}"
+      HOSTNAME: "0.0.0.0"
+      NODE_ENV: "production"
+      BASE_URL: "http://localhost:${NINEROUTER_PORT:-20128}"
+      # CLOUD_URL: https://9router.com # Server-side cloud sync endpoint base URL. [web:1]
+      CLOUD_URL: "http://localhost:${NINEROUTER_PORT:-20128}"
+      NEXT_PUBLIC_BASE_URL: "http://localhost:${NINEROUTER_PORT:-20128}"
+      # NEXT_PUBLIC_CLOUD_URL: https://9router.com # Public/backward-compatible cloud URL; server prefers CLOUD_URL. [web:1]
+      NEXT_PUBLIC_CLOUD_URL: "http://localhost:${NINEROUTER_PORT:-20128}" # self-host, not syncing
+      API_KEY_SECRET: "${NINEROUTER_API_KEY_SECRET}"
+      MACHINE_ID_SALT: "mac-mini"
+      ENABLE_REQUEST_LOGS: "true"
+      AUTH_COOKIE_SECURE: "false"
+      REQUIRE_API_KEY: "false"
