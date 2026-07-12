@@ -100,7 +100,7 @@ services:
 
       # Option 4: Ollama (Local)
       LLM_PROVIDER: "ollama"
-      LLM_MODEL: "gpt-oss:latest"
+      LLM_MODEL: "gemma4:12b-it-qat"
       OLLAMA_HOST: "${OLLAMA_BASE_URL}"
       OLLAMA_CONTEXT_LENGTH: "8192" # Sets Ollama NumCtx (context window)
       # TOKEN_LIMIT: 1000 # Recommended for smaller models
