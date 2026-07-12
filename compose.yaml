@@ -19,6 +19,7 @@ include:
       - ./stack/atlassian-mcp/compose.yaml
       - ./stack/anythingllm/compose.yaml
       - ./stack/bifrost/compose.yaml
+      - ./stack/headroom/compose.yaml
       - ./stack/open-design/compose.yaml
       - ./stack/open-notebook/compose.yaml
       - ./stack/open-webui/compose.yaml

@@ -1,0 +1,24 @@
+services:
+  headroom:
+    image: 'ghcr.io/chopratejas/headroom:code'
+    container_name: headroom
+    restart: unless-stopped
+    ports:
+      - "${HEADROOM_PORT:-8787}:8787"
+    deploy:
+      resources:
+        limits:
+          memory: 4096M
+    environment:
+      HEADROOM_PORT: "${HEADROOM_PORT:-8787}"
+      HEADROOM_HOST: "${HEADROOM_HOST:-0.0.0.0}"
+      HEADROOM_MODE: "${HEADROOM_MODE:-optimize}" # optimize, audit, or passthrough
+      HEADROOM_LOG_LEVEL: "${HEADROOM_LOG_LEVEL:-INFO}"
+      HEADROOM_BASE_URL: "${HEADROOM_BASE_URL:-http://localhost:${HEADROOM_PORT:-8787}}"
+      HEADROOM_API_KEY: "" # none, or set to your API key for authentication
+      HEADROOM_CODE_AWARE_ENABLED: "1"
+      HEADROOM_TELEMETRY: "off"
+      OPENAI_TARGET_API_URL: "${BIFROST_OPENAI_API_URL}"
+
+    volumes:
+      - ../../local-volumes/headroom/data:/home/nonroot/.headroom
