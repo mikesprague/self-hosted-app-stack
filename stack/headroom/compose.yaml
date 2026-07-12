@@ -3,6 +3,7 @@ services:
     image: 'ghcr.io/chopratejas/headroom:code'
     container_name: headroom
     restart: unless-stopped
+    command: [ "headroom", "proxy", "--memory" ]
     ports:
       - "${HEADROOM_PORT:-8787}:8787"
     deploy:
@@ -12,7 +13,7 @@ services:
     environment:
       HEADROOM_PORT: "${HEADROOM_PORT:-8787}"
       HEADROOM_HOST: "${HEADROOM_HOST:-0.0.0.0}"
-      HEADROOM_MODE: "${HEADROOM_MODE:-optimize}" # optimize, audit, or passthrough
+      HEADROOM_MODE: "${HEADROOM_MODE:-token}" # token or cache
       HEADROOM_LOG_LEVEL: "${HEADROOM_LOG_LEVEL:-INFO}"
       HEADROOM_BASE_URL: "${HEADROOM_BASE_URL:-http://localhost:${HEADROOM_PORT:-8787}}"
       HEADROOM_API_KEY: "" # none, or set to your API key for authentication
