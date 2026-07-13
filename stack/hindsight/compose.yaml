@@ -1,0 +1,19 @@
+services:
+  hindsight:
+    image: ghcr.io/vectorize-io/hindsight:0.8.4
+    container_name: hindsight
+    restart: unless-stopped
+    ports:
+      - "${HINDSIGHT_API_PORT:-8888}:8888"
+      - "${HINDSIGHT_UI_PORT:-9999}:9999"
+    deploy:
+      resources:
+        limits:
+          memory: 4096M
+    environment:
+      HINDSIGHT_API_LLM_PROVIDER: "openai"
+      HINDSIGHT_API_LLM_BASE_URL: "http://headroom:8787"
+      HINDSIGHT_API_LLM_API_KEY: "${BIFROST_API_KEY}"
+      HINDSIGHT_API_LLM_MODEL: "azure/gpt-5.6-luna"
+    volumes:
+      - ../../local-volumes/hindsight/data:/home/hindsight/.pg0
