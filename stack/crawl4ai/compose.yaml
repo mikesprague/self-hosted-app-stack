@@ -1,0 +1,19 @@
+services:
+  crawl4ai:
+    image: unclecode/crawl4ai:0.9.0
+    container_name: crawl4ai
+    restart: unless-stopped
+    shm_size: 1g
+    ports:
+      - "${CRAWL4AI_PORT:-11235}:11235"
+    deploy:
+      resources:
+        limits:
+          memory: 8192M
+    environment:
+      OPENAI_API_KEY: "${BIFROST_API_KEY}"
+      OPENAI_BASE_URL: "${BIFROST_OPENAI_API_URL}"
+      SECRET_KEY: "${CRAWL4AI_SECRET_KEY}"
+      CRAWL4AI_API_TOKEN: "${CRAWL4AI_API_TOKEN}"
+    depends_on:
+      - bifrost

@@ -19,7 +19,8 @@ include:
       - ./stack/atlassian-mcp/compose.yaml
       - ./stack/anythingllm/compose.yaml
       - ./stack/bifrost/compose.yaml
-      - ./stack/caveman/compose.yaml
+      # - ./stack/caveman/compose.yaml
+      - ./stack/crawl4ai/compose.yaml
       - ./stack/headroom/compose.yaml
       - ./stack/open-design/compose.yaml
       - ./stack/open-notebook/compose.yaml
