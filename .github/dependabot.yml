@@ -1,6 +1,10 @@
 version: 2
 updates:
   - package-ecosystem: "docker-compose"
+    ignore:
+      - dependency-name: "unclecode/crawl4ai"
+        versions:
+          - "0.9.1"
     directories:
       - "/"
       - "/stack"
