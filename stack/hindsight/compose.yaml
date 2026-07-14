@@ -13,8 +13,24 @@ services:
     environment:
       HINDSIGHT_API_AUDIT_LOG_ENABLED: "true"
       HINDSIGHT_API_LLM_PROVIDER: "openai"
-      HINDSIGHT_API_LLM_BASE_URL: "http://headroom:8787/v1"
+      HINDSIGHT_API_LLM_BASE_URL: "${HEADROOM_OPENAI_API_URL_INTERNAL}"
       HINDSIGHT_API_LLM_API_KEY: "${BIFROST_API_KEY}"
       HINDSIGHT_API_LLM_MODEL: "azure/gpt-5.4"
+      HINDSIGHT_API_DATABASE_SCHEMA: "${HINDSIGHT_API_DATABASE_SCHEMA:-public}"
+      HINDSIGHT_API_DATABASE_URL: "${HINDSIGHT_API_DATABASE_URL:-pg0}"
+      HINDSIGHT_API_DATABASE_BACKEND: "${HINDSIGHT_API_DATABASE_BACKEND}"
+      # HINDSIGHT_API_MENTAL_MODELS_CRON: "0 */6 * * *" # every 6 hours
+      # HINDSIGHT_API_DISABLE_DB_MAINTENANCE_DISCOVERY: "1"
+      HINDSIGHT_API_WORKER_ID: "hindsight-worker-1"
+      HINDSIGHT_API_EMBEDDINGS_PROVIDER: "openai"
+      HINDSIGHT_API_EMBEDDINGS_OPENAI_BASE_URL: "${HEADROOM_OPENAI_API_URL_INTERNAL}"
+      HINDSIGHT_API_EMBEDDINGS_OPENAI_API_KEY: "${BIFROST_API_KEY}"
+      HINDSIGHT_API_EMBEDDINGS_OPENAI_MODEL: "azure/text-embedding-3-small"
+      HINDSIGHT_API_EMBEDDINGS_OPENAI_DIMENSIONS: "1536"
+    depends_on:
+      - postgres-shared
+      - headroom
+
     volumes:
-      - ../../local-volumes/hindsight/data:/home/hindsight/.pg0
+      # - ../../local-volumes/hindsight/data:/home/hindsight/.pg0
+      - ../../local-volumes/hindsight/data:/home/hindsight
