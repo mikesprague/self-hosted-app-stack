@@ -1,234 +1,241 @@
 # Self-Hosted App Stack
 
-Docker Compose workspace for running a personal collection of self-hosted apps across AI and research, cloud storage, knowledge management, feeds, productivity, automation, password management, monitoring, API development, and utilities on a shared Docker network with persistent local storage.
+An opinionated Docker Compose workspace for running a local, single-user collection of AI tools, databases, personal cloud services, knowledge tools, automation, monitoring, and utilities.
 
-The stack is split into per-app compose files under `stack/` and assembled by the root `compose.yaml` using Compose `include`. Persistent data lives under `local-volumes/`.
+The root [`compose.yaml`](compose.yaml) is the source of truth for which apps are active. Each app owns a compose file under [`stack/`](stack/), while persistent data and local configuration live under the gitignored `local-volumes/` directory.
 
-Several note-taking and knowledge-management apps are included on purpose. They each have different strengths around capture, organization, collaboration, publishing, or personal knowledge management, and this stack is being used to evaluate them side by side before settling on a smaller long-term set.
+## How It Fits Together
 
-## Included Services
+```text
+compose.yaml                    Active app includes, shared network, env loading
+stack/<app>/compose.yaml        One compose file per app
+local-volumes/<app>/            Persistent data and local configuration (gitignored)
+.env                            Local ports, credentials, and secrets (gitignored)
+```
 
-| Service | Purpose |
-| --- | --- |
-| **Infrastructure / Data** | |
-| PostgreSQL Shared | Shared `pgvector` Postgres instance used by Postgres-backed apps in the stack |
-| [DBGate](https://dbgate.org/) | Browser-based database manager preconfigured for the shared Postgres instance |
-| **Personal Cloud** | |
-| [Nextcloud](https://nextcloud.com/) | File sync, sharing, and personal cloud storage |
-| **AI / Research** | |
-| [Open WebUI](https://openwebui.com/) | Unified chat interface for local and cloud LLMs |
-| [SearXNG](https://searxng.org/) | Private internet metasearch engine that aggregates results from several search services |
-| [Open Notebook](https://www.open-notebook.ai/) | Private, multi-model, local alternative to NotebookLM |
-| [LiteLLM](https://www.litellm.ai/) | OpenAI-compatible LLM gateway and model routing layer |
-| **Knowledge Management** | |
-| [Affine](https://affine.pro/) | Workspace with fully merged docs, whiteboards, and databases |
-| [Blinko](https://blinko.space/) | AI-powered card notes for quick capture and organization |
-| [Docmost](https://docmost.com/) | Collaborative wiki with real-time editing, team spaces, and AI |
-| [Flatnotes](https://github.com/Dullage/flatnotes) | Distraction-free markdown notes stored as plain searchable files |
-| [Jotty](https://github.com/fccview/jotty) | Personal checklists and rich text notes with file-based storage |
-| [Karakeep](https://karakeep.app/) | Save bookmarks, notes, and images with AI auto-tagging |
-| [Logseq](https://logseq.com/) | Local-first outliner and knowledge graph workspace |
-| [Memos](https://www.usememos.com/) | Quick-capture markdown notes on a private personal timeline |
-| [Silverbullet](https://silverbullet.md/) | Programmable markdown knowledge base with live queries and scripting |
-| [Trilium Notes](https://triliumnext.github.io/Notes/) | Hierarchical note-taking for building rich personal knowledge bases |
-| **Recipes** | |
-| [Mealie](https://mealie.io/) | Recipe manager with meal planning and shopping support |
-| **Feeds** | |
-| [FreshRSS](https://freshrss.org/) | Fast, customizable RSS and Atom feed aggregator |
-| **Productivity** | |
-| [Super Productivity](https://super-productivity.com/) | Privacy-focused deep work system with tasks, time tracking, and focus tools |
-| **Automation / Workflows** | |
-| [Flowise](https://flowiseai.com/) | Drag-and-drop platform for building AI agents and chatbots |
-| [n8n](https://n8n.io/) | Workflow automation connecting APIs, apps, and services |
-| **Password Management** | |
-| [Vaultwarden](https://vaultwarden.net/) | Lightweight Bitwarden-compatible server for encrypted credentials |
-| **Monitoring & Management** | |
-| [Dockpeek](https://dockpeek.com/) | Lightweight Docker container dashboard |
-| [Dozzle](https://dozzle.dev/) | Real-time web-based viewer for Docker container logs |
-| [Uptime Kuma](https://github.com/louislam/uptime-kuma) | Customizable uptime monitor for sites and network services |
-| [Portainer](https://www.portainer.io/) | Visual Docker management dashboard for containers and stacks |
-| **Mail / Delivery** | |
-| [Mailpit](https://mailpit.axllent.org/) | Local SMTP sink and inbox viewer for testing outbound mail |
-| **API Development** | |
-| [Hoppscotch](https://hoppscotch.io/) | API development suite with app, admin, and backend services |
-| [Restfox](https://restfox.dev/) | Simple local API client for testing HTTP requests |
-| [Yaade](https://www.yaade.io/) | Self-hosted Postman alternative for API collections |
-| **Utilities** | |
-| [Vert](https://github.com/vert-sh/vert) | Self-hosted file conversion web app |
-| **Dashboard** | |
-| [Homepage](https://gethomepage.dev/) | Highly customizable app dashboard with service and widget integrations |
-
-## Local URLs
-
-| Service | Local URL |
-| --- | --- |
-| PostgreSQL Shared | `postgresql://localhost:5432` |
-| DBGate | <http://localhost:8370> |
-| Open WebUI | <http://localhost:3000> |
-| SearXNG | <http://localhost:8348> |
-| Homepage | <http://localhost:8349> |
-| Silverbullet | <http://localhost:8350> |
-| Trilium Notes | <http://localhost:8351> |
-| Flatnotes | <http://localhost:8352> |
-| FreshRSS | <http://localhost:8353> |
-| Super Productivity | <http://localhost:8354> |
-| Flowise | <http://localhost:8355> |
-| Uptime Kuma | <http://localhost:8356> |
-| Dozzle | <http://localhost:8357> |
-| Portainer | <http://localhost:8358> |
-| Vaultwarden | <http://localhost:8359> |
-| Logseq | <http://localhost:8360> |
-| Nextcloud | <http://localhost:8361> |
-| Hoppscotch App | <http://localhost:8363> |
-| Hoppscotch Admin | <http://localhost:3100> |
-| Hoppscotch API | <http://localhost:3170> |
-| Yaade | <http://localhost:8364> |
-| Restfox | <http://localhost:8365> |
-| Mealie | <http://localhost:8367> |
-| Dockpeek | <http://localhost:8368> |
-| Vert | <http://localhost:8369> |
-| Mailpit UI | <http://localhost:8025> |
-| Mailpit SMTP | `smtp://localhost:1025` |
-| LiteLLM | <http://localhost:4000> |
-| Affine | <http://localhost:3010> |
-| Blinko | <http://localhost:1111> |
-| Docmost | <http://localhost:7889> |
-| Jotty | <http://localhost:1122> |
-| Karakeep | <http://localhost:7788> |
-| Memos | <http://localhost:5230> |
-| Open Notebook | <http://localhost:8502> |
-| Open Notebook API | <http://localhost:5055> |
+- All included services share the Compose default network unless an app intentionally uses host networking.
+- Postgres-backed apps generally use the shared `postgres-shared` service and separate per-app roles and databases.
+- App-specific dependencies such as Redis, Valkey, Qdrant, Meilisearch, Chrome, SurrealDB, and MariaDB remain sidecars.
+- Bifrost provides the shared OpenAI-compatible LLM gateway used by several AI-enabled apps.
+- Ollama and LM Studio run on the host and are reached from containers through `host.docker.internal`.
+- Mailpit provides the local SMTP sink, while DBGate provides browser-based access to shared Postgres.
 
 ## Quick Start
 
-Requires [Docker Desktop](https://www.docker.com/products/docker-desktop/) (or Podman / OrbStack) with modern Compose support and enough disk space for databases, indexes, uploads, and app state under `local-volumes/`. [Ollama](https://ollama.com/) is needed only for local AI features.
+### Prerequisites
 
-1. Clone the repository.
-2. Copy the example environment file.
-3. Fill in the required secrets, credentials, ports, Tailnet values, and provider settings. For any field marked `openssl rand -hex 32`, run that command in your terminal to generate a secure value.
-4. Start the shared Postgres instance and DBGate first.
-5. For each Postgres-backed app you plan to enable, create its role and database in the shared Postgres instance.
-6. Pull and start the full stack.
+- Docker Desktop, OrbStack, Podman, or another runtime with modern Docker Compose support
+- Enough disk and memory for the apps you enable
+- Ollama or LM Studio only if you want host-based local models
+
+> [!IMPORTANT]
+> `.env.example` and existing local `.env` files are scheduled for a separate cleanup and may contain stale entries. Use `.env.example` only as a starting point, verify required variables against the active files under `stack/`, and never commit `.env`.
+
+From the repository root:
 
 ```sh
-git clone https://github.com/mikesprague/self-hosted-app-stack.git
-cd self-hosted-app-stack
 cp .env.example .env
+
+# Edit .env, then validate interpolation without printing expanded secrets.
+docker compose config --quiet
+
+# Start shared database infrastructure first.
 docker compose up -d postgres-shared dbgate
+```
+
+Before starting a Postgres-backed app for the first time, create its role and database as described in [Shared Postgres](#shared-postgres). Then start selected services:
+
+```sh
+docker compose up -d homepage open-webui
+```
+
+Or start every service currently included by root compose:
+
+```sh
 docker compose pull
 docker compose up -d
 ```
 
-Use DBGate at <http://localhost:8370> or `psql` against `postgres-shared` to provision a new Postgres-backed app before starting it:
+## Active Apps
 
-```sql
-CREATE ROLE appName WITH LOGIN PASSWORD 'replace-with-your-password';
-CREATE DATABASE appName OWNER appName;
-```
+Only uncommented entries in [`compose.yaml`](compose.yaml) are active. Links below open the app's compose definition, where its current image, ports, dependencies, volumes, and environment variables are defined.
 
-That applies to any app configured with `*_POSTGRES_DB`, `*_POSTGRES_USER`, and `*_POSTGRES_PASSWORD` values in `.env`, such as Open WebUI, Affine, Docmost, Blinko, Memos, FreshRSS, Flowise, n8n, LiteLLM, Hoppscotch, and Mealie.
+### Data And Personal Cloud
 
-To stop everything:
+| App | Purpose and dependencies |
+| --- | --- |
+| [Databasus](stack/databasus/compose.yaml) | Scheduled database backups; connects to shared Postgres and Mailpit |
+| [DBGate](stack/dbgate/compose.yaml) | Browser database manager preconfigured for shared Postgres |
+| [DBX](stack/dbx/compose.yaml) | Lightweight multi-database client |
+| [Postgres Shared](stack/postgres-shared/compose.yaml) | Shared PostgreSQL 18 instance with pgvector |
+| [Nextcloud](stack/nextcloud/compose.yaml) | Personal cloud and file sync; uses dedicated MariaDB and Redis sidecars |
 
-```sh
-docker compose down
-```
+### AI And LLM
 
-**Optional providers:** [Context7](https://context7.com/) for the preconfigured MCP integration in Open WebUI, [Jina AI](https://jina.ai/) for Jina-backed features, [LM Studio](https://lmstudio.ai/) as an alternative local model runner, and Azure Foundry / Azure OpenAI if you prefer cloud-hosted models over local ones.
+| App | Purpose and dependencies |
+| --- | --- |
+| [Atlassian MCP](stack/atlassian-mcp/compose.yaml) | MCP server for Atlassian services |
+| [AnythingLLM](stack/anythingllm/compose.yaml) | LLM workspace using Bifrost, SearXNG, and shared pgvector |
+| [Bifrost](stack/bifrost/compose.yaml) | Shared LLM gateway with a Qdrant sidecar |
+| [Crawl4AI](stack/crawl4ai/compose.yaml) | Web crawling and extraction API using Bifrost |
+| [Headroom](stack/headroom/compose.yaml) | Compresses agent context and tool output before forwarding it to an LLM |
+| [Hindsight](stack/hindsight/compose.yaml) | Agent memory service using Headroom and shared Postgres |
+| [Open Design](stack/open-design/compose.yaml) | Local-first design workspace for coding agents; uses host networking |
+| [Open Notebook](stack/open-notebook/compose.yaml) | AI research notebook using SurrealDB and Bifrost |
+| [Open WebUI](stack/open-webui/compose.yaml) | Main chat UI using shared pgvector, Bifrost, Ollama, SearXNG, and MCP integrations |
 
-## Configuration
+### Search
 
-The root compose file loads environment variables from `.env` and includes the per-service definitions from `stack/`. Start with `.env.example` and review these groups before bringing the stack up:
+| App | Purpose and dependencies |
+| --- | --- |
+| [DeGoog](stack/degoog/compose.yaml) | Private search aggregator with a Valkey sidecar |
+| [Hister](stack/hister/compose.yaml) | Self-hosted full-text search for visited web content |
+| [SearXNG](stack/searxng/compose.yaml) | Private metasearch engine with a Valkey sidecar |
 
-| Variable group | Affects | Required |
-| --- | --- | --- |
-| `POSTGRES_SHARED_*` | Shared Postgres and DBGate bootstrap | Yes |
-| `SEARXNG_*` | SearXNG | Yes |
-| `OPEN_WEBUI_*` | Open WebUI | Yes |
-| `OPEN_NOTEBOOK_*` | Open Notebook | Yes |
-| `KARAKEEP_*` | Karakeep | Yes |
-| `AFFINE_*`, `DOCMOST_*`, `BLINKO_*`, `MEMOS_*`, `FRESHRSS_*`, `FLOWISE_*`, `N8N_*`, `LITELLM_*`, `HOPPSCOTCH_*`, `MEALIE_*` | Postgres-backed apps | If enabling that app |
-| `NEXTCLOUD_*` | Nextcloud and its MariaDB-backed setup | If enabling Nextcloud |
-| `FLATNOTES_*`, `SILVERBULLET_*`, `SP_WEBDAV_*`, `VAULTWARDEN_*`, `YAADE_*`, `DOCKPEEK_*` | App-specific auth and secrets | If enabling that app |
-| `MAILPIT_*` | Mailpit UI and SMTP defaults | If enabling Mailpit-backed email flows |
-| `DBGATE_*` | DBGate label and published port | Optional |
-| `HOMEPAGE_*`, `PORTAINER_*`, `DOZZLE_*`, `UPTIME_KUMA_*`, `JOTTY_*`, `LOGSEQ_*`, `TRILIUM_*`, `RESTFOX_*`, `VERT_*` | Primarily published ports and app-specific options | Optional unless changing defaults |
-| `TAILNET_*` | Blinko, n8n, and Hoppscotch absolute URLs | Yes if using those apps |
-| `TZ` | All services | Yes |
-| `AZURE_*`, `OLLAMA_*` | AI-enabled apps | Only if using that provider |
-| `CONTEXT7_API_KEY`, `JINA_API_KEY`, `UNSPLASH_*` | Open WebUI, Open Notebook, and related integrations | Optional |
+### PKM And Productivity
 
-### Shared Postgres Workflow
+| App | Purpose and dependencies |
+| --- | --- |
+| [Karakeep](stack/karakeep/compose.yaml) | Bookmark and read-later manager using Chrome, Meilisearch, and Bifrost |
+| [Mealie](stack/mealie/compose.yaml) | Recipe manager with Postgres, Mailpit, and Bifrost integrations |
+| [Memos](stack/memos/compose.yaml) | Lightweight notes and journaling on shared Postgres |
+| [Trilium Notes](stack/trilium-notes/compose.yaml) | Hierarchical personal knowledge base |
+| [FreshRSS](stack/freshrss/compose.yaml) | RSS and Atom feed reader using shared Postgres |
+| [Super Productivity](stack/super-productivity/compose.yaml) | Tasks, time tracking, and focus tools with Nextcloud WebDAV sync |
+| [Vaultwarden](stack/vaultwarden/compose.yaml) | Lightweight Bitwarden-compatible password server |
 
-The stack now uses a single shared Postgres instance instead of one sidecar Postgres container per app. When you add a new Postgres-backed app, the expected workflow is:
+### Automation And Development
 
-1. Add the app's compose file and `*_POSTGRES_*` variables.
-2. Start or confirm `postgres-shared` is healthy.
-3. Create the role and database in `postgres-shared`.
-4. Start the app.
+| App | Purpose and dependencies |
+| --- | --- |
+| [Activepieces](stack/activepieces/compose.yaml) | Workflow automation using shared Postgres, Redis, and Mailpit |
+| [n8n](stack/n8n/compose.yaml) | Workflow automation using shared Postgres |
+| [Hoppscotch](stack/hoppscotch/compose.yaml) | API development suite using shared Postgres and Mailpit |
 
-The shared Postgres service is exposed on `localhost:5432`, and DBGate is included as the default browser UI for administering it.
+### Monitoring And Operations
 
-### Homepage Configuration
+| App | Purpose and dependencies |
+| --- | --- |
+| [Beszel](stack/beszel/compose.yaml) | Resource monitoring with a host-network agent and read-only Docker socket access |
+| [Dockpeek](stack/dockpeek/compose.yaml) | Lightweight Docker dashboard |
+| [Dozzle](stack/dozzle/compose.yaml) | Live Docker log viewer |
+| [Portainer](stack/portainer/compose.yaml) | Docker management UI |
+| [Uptime Kuma](stack/uptime-kuma/compose.yaml) | Service uptime and availability monitoring |
+| [Mailpit](stack/mailpit/compose.yaml) | Local SMTP sink and inbox viewer |
+| [Homepage](stack/homepage/compose.yaml) | Stack dashboard and start page |
 
-The Homepage config lives under [local-volumes/homepage/config](/Users/msprague/Code/self-hosted-app-stack.git/local-volumes/homepage/config). The included [settings.yaml](/Users/msprague/Code/self-hosted-app-stack.git/local-volumes/homepage/config/settings.yaml) and [custom.css](/Users/msprague/Code/self-hosted-app-stack.git/local-volumes/homepage/config/custom.css) are meant to be tweaked as desired for your preferred look and behavior.
+### Utilities
 
-To use the bundled examples for service and widget definitions, copy [services.example.yaml](/Users/msprague/Code/self-hosted-app-stack.git/local-volumes/homepage/config/services.example.yaml) and [widgets.example.yaml](/Users/msprague/Code/self-hosted-app-stack.git/local-volumes/homepage/config/widgets.example.yaml), remove the `.example` suffix, and edit them as needed.
+| App | Purpose and dependencies |
+| --- | --- |
+| [IT-Tools](stack/it-tools/compose.yaml) | Browser-based developer and system utilities |
+| [OmniTools](stack/omni-tools/compose.yaml) | Browser-based file, text, and media utilities |
+| [ntfy](stack/ntfy/compose.yaml) | Push notification service |
+| [Vert](stack/vert/compose.yaml) | Browser-based file conversion |
 
-## Integrations
+Additional compose files may exist under `stack/` without being active. Commented and absent root includes are intentionally excluded from this list.
 
-Some parts of the stack are wired together out of the box:
+## Common Endpoints
 
-- **Open WebUI → SearXNG**: web-enabled LLM workflows use the local SearXNG instance by default.
-- **Open WebUI → Ollama**: preconfigured via `OLLAMA_BASE_URL` and `OLLAMA_API_KEY`.
-- **Open WebUI → Context7 MCP**: pulls current library and framework docs when `CONTEXT7_API_KEY` is set.
-- **DBGate → PostgreSQL Shared**: DBGate comes up with a preconfigured connection to `postgres-shared`.
-- **Mailpit → Hoppscotch / Mealie**: outbound app mail is routed to the local Mailpit SMTP service.
+These are compose defaults. Values in `.env` may override them.
 
-Two services require manual setup after startup:
+| Service | Default endpoint |
+| --- | --- |
+| Homepage | <http://localhost:8349> |
+| DBGate | <http://localhost:8370> |
+| Open WebUI | <http://localhost:3000> |
+| Mailpit UI | <http://localhost:8371> |
+| Mailpit SMTP | `smtp://localhost:1025` |
+| Beszel | <http://localhost:8090> |
+| Dozzle | <http://localhost:8357> |
+| Portainer | <http://localhost:8358> |
+| Uptime Kuma | <http://localhost:8356> |
 
-- **Open Notebook**: provider and application-level configuration must be completed manually.
-- **Vaultwarden**: requires a valid HTTPS `VAULTWARDEN_DOMAIN` and a generated Argon2 admin token before first use.
-
-## Service Layout
-
-Each app has its own compose file at `stack/<service>/compose.yaml` and a matching data folder at `local-volumes/<service>/` for databases, uploads, indexes, and app state. The root `compose.yaml` assembles them all via Compose `include`.
+Check the relevant app compose file for every other default port. Homepage configuration belongs under `local-volumes/homepage/config/` and is intentionally not tracked.
 
 ## Operating The Stack
 
 ```sh
+# Inspect status and logs.
 docker compose ps
-docker compose logs -f
-docker compose logs -f open-webui
-docker compose restart
-docker compose pull && docker compose up -d
+docker compose logs -f <service>
+
+# Start, stop, or restart one service and its dependencies.
+docker compose up -d <service>
+docker compose stop <service>
+docker compose restart <service>
+
+# Refresh images and running containers.
+docker compose pull
+docker compose up -d
+
+# Stop the stack without deleting persistent bind-mounted data.
+docker compose down
 ```
 
-You can also operate services individually by name. For example, `docker compose up -d docmost` starts only Docmost and its dependencies, while `docker compose stop docmost` stops that service without tearing down the rest of the stack.
+Validate compose syntax and environment interpolation after any compose or env edit:
 
 ```sh
-docker compose up -d docmost
-docker compose stop docmost
-docker compose restart docmost
-docker compose logs -f docmost
-docker compose rm -f docmost   # remove a stopped container without losing data
+docker compose config --quiet
 ```
 
-## Notes
+Avoid sharing the expanded output of `docker compose config`; it may contain secrets.
 
-- All services share the `self-hosted-app-stack-network` Docker network. Data under `local-volumes/` survives container removal.
-- Shared Postgres replaces the old per-app Postgres sidecars. DBGate is the default database UI, and Mailpit is the default SMTP sink.
-- Homepage, Dockpeek, Dozzle, Portainer, and Uptime Kuma mount the Docker socket for container-aware features. Treat that as privileged access.
-- Affine has extra startup orchestration for migrations and may take longer to become ready on first boot.
-- Hoppscotch exposes separate app, admin, and API ports. Mailpit exposes both a web UI and an SMTP listener.
-- Keep provider URLs, keys, and model names aligned across AI-enabled services when changing providers.
+## Shared Postgres
 
-## Recommended First Checks
+The stack uses one `postgres-shared` service instead of a Postgres sidecar for each app. Every application gets its own role and database.
 
-After startup:
+Start the database and DBGate:
 
-1. `docker compose ps` — all containers healthy or running.
-2. Homepage at <http://localhost:8349> loads and links to enabled services.
-3. DBGate at <http://localhost:8370> can connect to `postgres-shared`.
-4. Vaultwarden at <http://localhost:8359> has a valid HTTPS domain and admin token configured before use.
-5. Any service with a database — check logs for migration errors on first boot.
+```sh
+docker compose up -d postgres-shared dbgate
+```
+
+Then create the app role and database through DBGate or `psql`:
+
+```sql
+CREATE ROLE appname WITH LOGIN PASSWORD 'replace-with-a-strong-password';
+CREATE DATABASE appname OWNER appname;
+```
+
+Enable pgvector only for apps that require it:
+
+```sql
+\c appname
+CREATE EXTENSION IF NOT EXISTS vector;
+```
+
+Active compose files that connect to or depend on shared Postgres include Activepieces, AnythingLLM, Databasus, DBGate, FreshRSS, Hindsight, Hoppscotch, Memos, n8n, and Open WebUI. Mealie also uses Postgres through its configured server variables. Nextcloud is the main exception and uses its own MariaDB sidecar.
+
+## Integrations
+
+- **Bifrost:** shared OpenAI-compatible gateway for AnythingLLM, Crawl4AI, Headroom, Karakeep, Mealie, Open Notebook, Open WebUI, and other AI-enabled services.
+- **Ollama and LM Studio:** host-machine model servers reached through `host.docker.internal`.
+- **SearXNG:** search backend for Open WebUI and AnythingLLM.
+- **MCP:** Bifrost and AI tools can connect to Atlassian MCP, Context7, Mermaid, and other configured MCP servers.
+- **Mailpit:** captures local application email from Activepieces, Databasus, Hoppscotch, Mealie, and other SMTP-enabled apps.
+- **Nextcloud WebDAV:** synchronization backend for Super Productivity.
+- **DBGate:** browser UI for provisioning and inspecting shared Postgres.
+
+## Data And Security
+
+- `local-volumes/` contains databases, uploads, indexes, and app state. It is gitignored and survives container recreation.
+- `.env` contains credentials, API keys, and app secrets. It is gitignored and must not be committed or pasted into issue reports.
+- Homepage, Dockpeek, Dozzle, Portainer, Uptime Kuma, and the Beszel agent mount the Docker socket. Treat those containers as privileged.
+- Open Design and the Beszel agent use host networking. Review those compose files before changing network behavior.
+- The stack is designed for local or Tailnet use, not direct public internet exposure.
+
+## Adding Or Updating An App
+
+1. Check `stack/` and root `compose.yaml` for an existing or inactive definition.
+2. Verify the current upstream image and configuration documentation.
+3. Add or update `stack/<app>/compose.yaml` using namespaced environment variables and bind mounts under `../../local-volumes/<app>/`.
+4. Use `postgres-shared` for new Postgres-backed apps unless upstream cannot support it.
+5. Register new apps in root `compose.yaml`.
+6. Add tracked placeholders to `.env.example` when environment cleanup is in scope.
+7. Run `docker compose config --quiet`.
+8. Update this README when the active inventory or operator workflow changes.
+
+## License
+
+See [LICENSE](LICENSE).
