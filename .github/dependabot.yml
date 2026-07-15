@@ -1,10 +1,6 @@
 version: 2
 updates:
   - package-ecosystem: "docker-compose"
-    ignore:
-      - dependency-name: "unclecode/crawl4ai"
-        versions:
-          - "0.9.1"
     directories:
       - "/"
       - "/stack"
@@ -13,6 +9,8 @@ updates:
       interval: "daily"
       time: "07:00"
       timezone: "America/New_York"
+    cooldown:
+      default-days: 1
     target-branch: "main"
     commit-message:
       prefix: "chore"
