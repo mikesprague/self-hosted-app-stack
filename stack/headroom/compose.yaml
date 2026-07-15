@@ -15,11 +15,29 @@ services:
       HEADROOM_MODE: "${HEADROOM_MODE:-token}" # token or cache
       HEADROOM_LOG_LEVEL: "${HEADROOM_LOG_LEVEL:-INFO}"
       HEADROOM_BASE_URL: "${HEADROOM_BASE_URL:-http://localhost:${HEADROOM_PORT:-8787}}"
-      HEADROOM_API_KEY: "" # none, or set to your API key for authentication
+      HEADROOM_API_KEY: "${HEADROOM_API_KEY:-}" # none, or set to your API key for authentication
       HEADROOM_CODE_AWARE_ENABLED: "false"
       HEADROOM_TELEMETRY: "off"
       OPENAI_TARGET_API_URL: "${BIFROST_OPENAI_API_URL}"
+      OPENAI_API_KEY: "${BIFROST_API_KEY}"
+      PATH: /home/nonroot/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        if [ ! -x /home/nonroot/.local/bin/rtk ]; then
+          mkdir -p /home/nonroot/.local/bin
+          curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh
+        fi
+        exec headroom proxy --host 0.0.0.0 --port 8787
+    healthcheck:
+      test: [ "CMD", "curl", "--fail", "--silent", "http://127.0.0.1:8787/readyz" ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
     depends_on:
       - bifrost
     volumes:
       - ../../local-volumes/headroom/data:/home/nonroot/.headroom
+      - ../../local-volumes/headroom/local:/home/nonroot/.local
