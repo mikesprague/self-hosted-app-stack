@@ -13,7 +13,7 @@ services:
         condition: service_healthy
 
   hoppscotch:
-    image: hoppscotch/hoppscotch:2026.6.0
+    image: hoppscotch/hoppscotch:2026.6.1
     container_name: hoppscotch
     environment:
       DATABASE_URL: postgresql://${HOPPSCOTCH_POSTGRES_USER}:${HOPPSCOTCH_POSTGRES_PASSWORD}@postgres-shared:5432/${HOPPSCOTCH_POSTGRES_DB}
