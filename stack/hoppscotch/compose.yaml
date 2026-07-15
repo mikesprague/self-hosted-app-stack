@@ -1,6 +1,6 @@
 services:
   hoppscotch-migration:
-    image: hoppscotch/hoppscotch:2026.6.0
+    image: hoppscotch/hoppscotch:2026.6.1
     container_name: hoppscotch-migration-job
     command: [ "sh", "-c", "pnpm exec prisma migrate deploy" ]
     environment:
