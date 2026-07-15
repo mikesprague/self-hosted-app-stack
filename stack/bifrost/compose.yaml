@@ -40,6 +40,7 @@ services:
       OLLAMA_API_KEY: "${OLLAMA_API_KEY}"
       OLLAMA_URL: "${OLLAMA_BASE_URL}"
       OLLAMA_ENDPOINT: "${OLLAMA_BASE_URL}"
+      LLAMA_SERVER_URL: "${LLAMA_SERVER_OPENAI_API_URL}"
       ATLASSIAN_MCP_SERVER_URL: "http://atlassian-mcp:9000/mcp"
       TDX_MCP_SERVER_URL: "${TDX_MCP_SERVER_URL}"
       CONTEXT7_MCP_SERVER_URL: "https://mcp.context7.com/mcp"
