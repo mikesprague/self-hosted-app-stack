@@ -67,6 +67,12 @@ services:
       WEB_SEARCH_ENGINE: "searxng"
       SEARXNG_QUERY_URL: "${SEARXNG_BASE_URL}/search?q=<query>"
 
+      CONTEXT7_API_KEY: "${CONTEXT7_API_KEY}"
+      JINA_API_KEY: "${JINA_API_KEY}"
+      ATLASSIAN_MCP_PORT: "${ATLASSIAN_MCP_PORT}"
+      TDX_MCP_SERVER_URL: "${TDX_MCP_SERVER_URL}"
+      CRAWL4AI_API_TOKEN: "${CRAWL4AI_API_TOKEN}"
+
       TOOL_SERVER_CONNECTIONS: >-
         [
           {

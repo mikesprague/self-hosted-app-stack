@@ -20,6 +20,8 @@ services:
       HEADROOM_TELEMETRY: "off"
       OPENAI_TARGET_API_URL: "${BIFROST_OPENAI_API_URL}"
       OPENAI_API_KEY: "${BIFROST_API_KEY}"
+      ANTHROPIC_API_KEY: "${BIFROST_API_KEY}"
+      ANTHROPIC_TARGET_API_URL: "${BIFROST_ANTHROPIC_API_URL}"
       PATH: /home/nonroot/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
     entrypoint:
       - /bin/sh
