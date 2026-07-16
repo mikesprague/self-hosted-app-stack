@@ -20,7 +20,7 @@ services:
     restart: unless-stopped
 
   bifrost:
-    image: maximhq/bifrost:v2.0.0-prerelease1
+    image: maximhq/bifrost:v2.0.0-prerelease2
     container_name: bifrost
     ports:
       - "${BIFROST_APP_PORT:-8080}:8080"
