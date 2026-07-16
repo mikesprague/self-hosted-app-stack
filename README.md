@@ -24,9 +24,11 @@ local-volumes/<app>/            Persistent data and local configuration (gitigno
 
 ### Prerequisites
 
-- Docker Desktop, OrbStack, Podman, or another runtime with modern Docker Compose support
+- Docker Desktop, OrbStack, or another runtime with strong Docker Compose compatibility
 - Enough disk and memory for the apps you enable
 - Ollama or LM Studio only if you want host-based local models
+
+This stack assumes Docker-oriented features such as `host-gateway` and Docker socket mounts. Docker Desktop and OrbStack are the expected paths.
 
 > [!IMPORTANT]
 > `.env.example` and existing local `.env` files are scheduled for a separate cleanup and may contain stale entries. Use `.env.example` only as a starting point, verify required variables against the active files under `stack/`, and never commit `.env`.
@@ -108,8 +110,7 @@ Only uncommented entries in [`compose.yaml`](compose.yaml) are active. Links bel
 
 | App | Purpose and dependencies |
 | --- | --- |
-| [Activepieces](stack/activepieces/compose.yaml) | Workflow automation using shared Postgres, Redis, and Mailpit |
-| [n8n](stack/n8n/compose.yaml) | Workflow automation using shared Postgres |
+| [n8n](stack/n8n/compose.yaml) | Workflow automation using shared Postgres, Bifrost, and a Qdrant sidecar |
 | [Hoppscotch](stack/hoppscotch/compose.yaml) | API development suite using shared Postgres and Mailpit |
 
 ### Monitoring And Operations
@@ -135,9 +136,9 @@ Only uncommented entries in [`compose.yaml`](compose.yaml) are active. Links bel
 
 Additional compose files may exist under `stack/` without being active. Commented and absent root includes are intentionally excluded from this list.
 
-## Common Endpoints
+## Key Endpoints
 
-These are compose defaults. Values in `.env` may override them.
+These are the compose defaults for the services you are most likely to open first. Values in `.env` may override them.
 
 | Service | Default endpoint |
 | --- | --- |
@@ -153,7 +154,7 @@ These are compose defaults. Values in `.env` may override them.
 
 Check the relevant app compose file for every other default port. Homepage configuration belongs under `local-volumes/homepage/config/` and is intentionally not tracked.
 
-## Operating The Stack
+## Common Operations
 
 ```sh
 # Inspect status and logs.
@@ -205,7 +206,7 @@ Enable pgvector only for apps that require it:
 CREATE EXTENSION IF NOT EXISTS vector;
 ```
 
-Active compose files that connect to or depend on shared Postgres include Activepieces, AnythingLLM, Databasus, DBGate, FreshRSS, Hindsight, Hoppscotch, Memos, n8n, and Open WebUI. Mealie also uses Postgres through its configured server variables. Nextcloud is the main exception and uses its own MariaDB sidecar.
+Active compose files that connect to or depend on shared Postgres include AnythingLLM, Databasus, DBGate, FreshRSS, Hindsight, Hoppscotch, Memos, n8n, and Open WebUI. Mealie also uses Postgres through its configured server variables. Nextcloud is the main exception and uses its own MariaDB sidecar.
 
 ## Integrations
 
@@ -213,7 +214,7 @@ Active compose files that connect to or depend on shared Postgres include Active
 - **Ollama and LM Studio:** host-machine model servers reached through `host.docker.internal`.
 - **SearXNG:** search backend for Open WebUI and AnythingLLM.
 - **MCP:** Bifrost and AI tools can connect to Atlassian MCP, Context7, Mermaid, and other configured MCP servers.
-- **Mailpit:** captures local application email from Activepieces, Databasus, Hoppscotch, Mealie, and other SMTP-enabled apps.
+- **Mailpit:** captures local application email from Databasus, Hoppscotch, Mealie, and other SMTP-enabled apps.
 - **Nextcloud WebDAV:** synchronization backend for Super Productivity.
 - **DBGate:** browser UI for provisioning and inspecting shared Postgres.
 
@@ -224,6 +225,10 @@ Active compose files that connect to or depend on shared Postgres include Active
 - Homepage, Dockpeek, Dozzle, Portainer, Uptime Kuma, and the Beszel agent mount the Docker socket. Treat those containers as privileged.
 - Open Design and the Beszel agent use host networking. Review those compose files before changing network behavior.
 - The stack is designed for local or Tailnet use, not direct public internet exposure.
+
+## Maintainer Notes
+
+Everything above covers day-to-day use. The notes below are for changing the stack itself.
 
 ## Adding Or Updating An App
 
