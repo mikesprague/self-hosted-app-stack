@@ -1,4 +1,22 @@
 services:
+  n8n-qdrant:
+    image: qdrant/qdrant:v1.18.2
+    container_name: n8n-qdrant
+    restart: unless-stopped
+    ports:
+      - 6333:6333
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    environment:
+      QDRANT__LOG_LEVEL: "${N8N_QDRANT_LOG_LEVEL:-info}"
+      QDRANT__STORAGE__PATH: "/qdrant/storage"
+      QDRANT__STORAGE__USE_S3: "false"
+      QDRANT__TELEMETRY_DISABLED: "true"
+    volumes:
+      - ../../local-volumes/n8n/qdrant/storage:/qdrant/storage
+
   n8n:
     image: n8nio/n8n:2.31.3
     container_name: n8n
@@ -43,14 +61,3 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
-
-  n8n-qdrant:
-    image: qdrant/qdrant:v1.18.2
-    container_name: n8n-qdrant
-    restart: unless-stopped
-    ports:
-      - 6333:6333
-    environment:
-      QDRANT__TELEMETRY_DISABLED: "true"
-    volumes:
-      - ../../local-volumes/n8n/qdrant/storage:/qdrant/storage

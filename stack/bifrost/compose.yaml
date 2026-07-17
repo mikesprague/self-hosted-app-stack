@@ -1,7 +1,8 @@
 services:
   bifrost-qdrant:
-    image: qdrant/qdrant:v1.18.2
+    image: qdrant/qdrant:v1.18.3
     container_name: bifrost-qdrant
+    restart: unless-stopped
     ports:
       - "${BIFROST_QDRANT_REST_PORT:-6333}:6333" # REST API
       - "${BIFROST_QDRANT_GRPC_PORT:-6334}:6334" # gRPC API (optional)
@@ -17,7 +18,6 @@ services:
     volumes:
       - ../../local-volumes/bifrost/cache/qdrant:/qdrant/storage
       # - ../../local-volumes/bifrost/qdrant/config.yaml:/qdrant/config.yaml
-    restart: unless-stopped
 
   bifrost:
     image: maximhq/bifrost:v2.0.0-prerelease2

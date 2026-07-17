@@ -1,6 +1,6 @@
 services:
   headroom:
-    image: ghcr.io/chopratejas/headroom:0.27.0-code
+    image: ghcr.io/chopratejas/headroom:0.27.0
     container_name: headroom
     restart: unless-stopped
     ports:
@@ -10,6 +10,7 @@ services:
         limits:
           memory: 4096M
     environment:
+      HEADROOM_WORKSPACE_DIR: /home/nonroot/.headroom
       HEADROOM_PORT: "${HEADROOM_PORT:-8787}"
       HEADROOM_HOST: "${HEADROOM_HOST:-0.0.0.0}"
       HEADROOM_MODE: "${HEADROOM_MODE:-token}" # token or cache
