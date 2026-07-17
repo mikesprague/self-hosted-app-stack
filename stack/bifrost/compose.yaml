@@ -27,7 +27,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 768M
+          memory: 1024M
     depends_on:
       bifrost-qdrant:
         condition: service_started
