@@ -86,6 +86,8 @@ Only uncommented entries in [`compose.yaml`](compose.yaml) are active. Links bel
 | [Open Notebook](stack/open-notebook/compose.yaml) | AI research notebook using SurrealDB and Bifrost |
 | [Open WebUI](stack/open-webui/compose.yaml) | Main chat UI using shared pgvector, Bifrost, Ollama, SearXNG, and MCP integrations |
 
+Additional notes about how I utilize some of these services with [OpenCode](https://github.com/anomalyco/opencode) available here: <https://gist.github.com/mikesprague/08b52562e70e1bbcc1ce22c01c9c7a2f>
+
 ### Search
 
 | App | Purpose and dependencies |
