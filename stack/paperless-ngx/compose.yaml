@@ -40,7 +40,7 @@ services:
     restart: unless-stopped
 
   paperless-ngx:
-    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    image: ghcr.io/paperless-ngx/paperless-ngx:3.0.0-beta.rc2
     container_name: paperless-ngx
     restart: unless-stopped
     depends_on:

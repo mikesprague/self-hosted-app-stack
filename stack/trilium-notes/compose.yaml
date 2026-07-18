@@ -1,13 +1,13 @@
 services:
   trilium:
-    image: triliumnext/trilium:v0.103.0
+    image: triliumnext/trilium:v0.104.0
     container_name: trilium
     ports:
       - "${TRILIUM_PORT:-8351}:8080"
     deploy:
       resources:
         limits:
-          memory: 512M
+          memory: 1024M
     environment:
       TRILIUM_DATA_DIR: /home/node/trilium-data
       TZ: ${TZ}
