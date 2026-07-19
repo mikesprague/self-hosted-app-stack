@@ -48,3 +48,8 @@ local-volumes/affine
 *.key
 
 .kilo
+
+.omo
+conductor*.md
+omo*.md
+models.md
