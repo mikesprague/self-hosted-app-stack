@@ -5,6 +5,7 @@
     },
   ],
   "settings": {
+    "json.validate.enable": false,
     "cSpell.words": [
       "activepieces",
       "agenticseek",
@@ -79,6 +80,7 @@
       "karakeep",
       "KHOJ",
       "kimdre",
+      "Kimi",
       "lancedb",
       "lastpass",
       "lfnovo",
@@ -98,6 +100,7 @@
       "minicpm",
       "mintplexlabs",
       "mxbai",
+      "MXFP4",
       "mydatabase",
       "ncdata",
       "neosmemo",
@@ -110,6 +113,7 @@
       "ntfy",
       "NUXT",
       "OLLAMA",
+      "openagent",
       "openwebui",
       "orbstack",
       "OVERWRITECLIURL",
