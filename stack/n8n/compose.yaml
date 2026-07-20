@@ -1,6 +1,6 @@
 services:
   n8n-qdrant:
-    image: qdrant/qdrant:v1.18.2
+    image: qdrant/qdrant:v1.18.3
     container_name: n8n-qdrant
     restart: unless-stopped
     ports:
