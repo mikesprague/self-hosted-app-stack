@@ -5,7 +5,6 @@
     },
   ],
   "settings": {
-    "json.validate.enable": false,
     "cSpell.words": [
       "activepieces",
       "agenticseek",
