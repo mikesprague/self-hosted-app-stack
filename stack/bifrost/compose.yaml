@@ -49,6 +49,7 @@ services:
       MERMAID_MCP_SERVER_URL: "https://mcp.mermaid.ai/mcp"
       CRAWL4AI_MCP_SERVER_URL: "http://crawl4ai:11235/mcp/sse"
       CRAWL4AI_API_TOKEN: "${CRAWL4AI_API_TOKEN}"
+      FIREWORKS_AI_API_KEY: "${FIREWORKS_AI_API_KEY}"
     volumes:
       - ../../local-volumes/bifrost/data:/app/data
     restart: unless-stopped
