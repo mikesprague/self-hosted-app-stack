@@ -1,0 +1,138 @@
+{
+  "$schema": "https://www.getbifrost.ai/schema",
+  "providers": {
+    "fireworks": {
+      "keys": [
+        {
+          "name": "Fireworks AI",
+          "value": "env.FIREWORKS_AI_API_KEY",
+          "weight": 1.0,
+          "models": ["*"],
+          "aliases": {
+            "glm-5.2": "accounts/fireworks/models/glm-5p2",
+            "minimax-m3": "accounts/fireworks/models/minimax-m3",
+            "qwen-3.7-plus": "accounts/fireworks/models/qwen3p7-plus",
+            "kimi-k2.7-code": "accounts/fireworks/models/kimi-k2p7-code",
+            "deepseek-v4-pro": "accounts/fireworks/models/deepseek-v4-pro",
+            "deepseek-v4-flash": "accounts/fireworks/models/deepseek-v4-flash",
+            "gpt-oss-20b": "accounts/fireworks/models/gpt-oss-20b",
+            "gpt-oss-120b": "accounts/fireworks/models/gpt-oss-120b",
+            "nemotron-3-ultra": "accounts/fireworks/models/nemotron-3-ultra-nvfp4"
+          }
+        }
+      ]
+    },
+    "azure": {
+      "keys": [
+        {
+          "id": "azure-foundry",
+          "name": "Azure Foundry",
+          "value": "env.AZURE_OPENAI_API_KEY",
+          "weight": 1.0,
+          "azure_key_config": {
+            "endpoint": "env.AZURE_ENDPOINT",
+            "api_version": "2024-10-21"
+          },
+          "models": ["*"],
+          "aliases": {
+            "gpt-5.4-nano": "gpt-5.4-nano",
+            "gpt-5.4-mini": "gpt-5.4-mini",
+            "gpt-chat-latest": "gpt-chat-latest",
+            "gpt-5.6-luna": "gpt-5.6-luna",
+            "gpt-5.6-terra": "gpt-5.6-terra",
+            "gpt-5.6-sol": "gpt-5.6-sol",
+            "gpt-4o-mini-transcribe": "gpt-4o-mini-transcribe",
+            "gpt-4o-mini-tts": "gpt-4o-mini-tts",
+            "gpt-audio-1.5": "gpt-audio-1.5-1",
+            "gpt-oss-120b-az": "gpt-oss-120b",
+            "gpt-realtime-2.1": "gpt-realtime-2.1",
+            "gpt-realtime-2.1-mini": "gpt-realtime-2.1-mini",
+            "gpt-image-1-mini": "gpt-image-1-mini",
+            "gpt-image-1.5": "gpt-image-1.5",
+            "gpt-image-2": "gpt-image-2-1",
+            "sora-2": "sora-2",
+            "text-embedding-3-large": "text-embedding-3-large",
+            "text-embedding-3-small": "text-embedding-3-small",
+            "claude-haiku-4.5": "claude-haiku-4-5",
+            "claude-opus-5": "claude-opus-5",
+            "claude-sonnet-5": "claude-sonnet-5",
+            "grok-4.3": "grok-4.3",
+            "deepseek-v4-flash-az": "DeepSeek-V4-Flash",
+            "deepseek-v4-pro-az": "DeepSeek-V4-Pro",
+            "kimi-k2.7-code-az": "Kimi-K2.7-Code"
+          }
+        }
+      ],
+      "network_config": {
+        "base_url": "env.AZURE_ENDPOINT",
+        "default_request_timeout_in_seconds": 600,
+        "max_retries": 5,
+        "retry_backoff_initial": 100,
+        "retry_backoff_max": 10000
+      }
+    }
+  },
+  "vector_store": {
+    "enabled": true,
+    "type": "qdrant",
+    "config": {
+      "host": "bifrost-qdrant",
+      "port": 6334
+    }
+  },
+  "mcp": {
+    "client_configs": [
+      {
+        "name": "Atlassian",
+        "connection_type": "http",
+        "connection_string": "env.ATLASSIAN_MCP_SERVER_URL",
+        "auth_type": "none",
+        "is_code_mode_client": true,
+        "is_ping_available": false,
+        "tools_to_execute": ["*"]
+      },
+      {
+        "name": "TDX",
+        "connection_type": "http",
+        "connection_string": "env.TDX_MCP_SERVER_URL",
+        "auth_type": "none",
+        "is_code_mode_client": true,
+        "is_ping_available": false,
+        "tools_to_execute": ["*"]
+      },
+      {
+        "name": "Context7",
+        "connection_type": "http",
+        "connection_string": "env.CONTEXT7_MCP_SERVER_URL",
+        "auth_type": "headers",
+        "headers": {
+          "CONTEXT7_API_KEY": "env.CONTEXT7_API_KEY"
+        },
+        "is_code_mode_client": true,
+        "is_ping_available": true,
+        "tools_to_execute": ["*"]
+      },
+      {
+        "name": "Mermaid",
+        "connection_type": "http",
+        "connection_string": "env.MERMAID_MCP_SERVER_URL",
+        "auth_type": "none",
+        "is_code_mode_client": true,
+        "is_ping_available": true,
+        "tools_to_execute": ["*"]
+      },
+      {
+        "name": "Crawl4AI",
+        "connection_type": "sse",
+        "connection_string": "env.CRAWL4AI_MCP_SERVER_URL",
+        "auth_type": "headers",
+        "headers": {
+          "Authorization": "env.CRAWL4AI_AUTH_HEADER"
+        },
+        "is_code_mode_client": true,
+        "is_ping_available": true,
+        "tools_to_execute": ["*"]
+      }
+    ]
+  }
+}
