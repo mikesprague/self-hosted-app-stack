@@ -54,7 +54,7 @@ services:
       - ../../local-volumes/activepieces/cache:/usr/src/app/cache
 
   activepieces-redis:
-    image: redis:8.8.0-alpine
+    image: redis:8.8.1-alpine
     container_name: activepieces-redis
     command:
       - redis-server
