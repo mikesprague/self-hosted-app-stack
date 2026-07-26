@@ -17,7 +17,9 @@
             "deepseek-v4-flash": "accounts/fireworks/models/deepseek-v4-flash",
             "gpt-oss-20b": "accounts/fireworks/models/gpt-oss-20b",
             "gpt-oss-120b": "accounts/fireworks/models/gpt-oss-120b",
-            "nemotron-3-ultra": "accounts/fireworks/models/nemotron-3-ultra-nvfp4"
+            "nemotron-3-ultra": "accounts/fireworks/models/nemotron-3-ultra-nvfp4",
+            "qwen-3-embedding-8b": "accounts/fireworks/models/qwen3-embedding-8b",
+            "qwen-3-reranker-8b": "accounts/fireworks/models/qwen3-reranker-8b"
           }
         }
       ]
@@ -33,7 +35,33 @@
             "endpoint": "env.AZURE_ENDPOINT",
             "api_version": "2024-10-21"
           },
-          "models": ["*"],
+          "models": [
+            "gpt-5.4-nano",
+            "gpt-5.4-mini",
+            "gpt-chat-latest",
+            "gpt-5.6-luna",
+            "gpt-5.6-terra",
+            "gpt-5.6-sol",
+            "gpt-4o-mini-transcribe",
+            "gpt-4o-mini-tts",
+            "gpt-audio-1.5",
+            "gpt-oss-120b-az",
+            "gpt-realtime-2.1",
+            "gpt-realtime-2.1-mini",
+            "gpt-image-1-mini",
+            "gpt-image-1.5",
+            "gpt-image-2",
+            "sora-2",
+            "text-embedding-3-large",
+            "text-embedding-3-small",
+            "claude-haiku-4.5",
+            "claude-opus-5",
+            "claude-sonnet-5",
+            "grok-4.3",
+            "deepseek-v4-flash-az",
+            "deepseek-v4-pro-az",
+            "kimi-k2.7-code-az"
+          ],
           "aliases": {
             "gpt-5.4-nano": "gpt-5.4-nano",
             "gpt-5.4-mini": "gpt-5.4-mini",
