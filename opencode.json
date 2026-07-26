@@ -2,5 +2,10 @@
   "$schema": "https://opencode.ai/config.json",
   "watcher": {
     "ignore": ["local-volumes/**"]
+  },
+  "permission": {
+    "external_directory": {
+      "~/.config/opencode/**": "allow"
+    }
   }
 }
