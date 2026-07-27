@@ -31,8 +31,16 @@ services:
     depends_on:
       bifrost-qdrant:
         condition: service_started
+      postgres-shared:
+        condition: service_healthy
     environment:
       APP_HOST: "${BIFROST_APP_HOST:-0.0.0.0}"
+      BIFROST_POSTGRES_HOST: "postgres-shared"
+      BIFROST_POSTGRES_PORT: "5432"
+      BIFROST_POSTGRES_USER: "${BIFROST_POSTGRES_USER}"
+      BIFROST_POSTGRES_PASSWORD: "${BIFROST_POSTGRES_PASSWORD}"
+      BIFROST_POSTGRES_DB: "${BIFROST_POSTGRES_DB}"
+      BIFROST_API_KEY: "${BIFROST_API_KEY}"
       LOG_LEVEL: "${BIFROST_LOG_LEVEL:-debug}"
       LOG_STYLE: "${BIFROST_LOG_STYLE:-json}"
       AZURE_ENDPOINT: "${AZURE_FOUNDRY_BASE_URL}"
