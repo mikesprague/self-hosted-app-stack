@@ -1,5 +1,6 @@
 {
   "$schema": "https://www.getbifrost.ai/schema",
+  "source_of_truth": "config.json",
   "providers": {
     "fireworks": {
       "keys": [
@@ -25,6 +26,49 @@
         }
       ]
     },
+    "openai": {
+      "keys": [
+        {
+          "name": "OpenAI API",
+          "value": "env.OPENAI_API_KEY",
+          "weight": 1.0,
+          "models": [
+            "gpt-5.6-sol",
+            "gpt-5.6-terra",
+            "gpt-5.6-luna",
+            "gpt-5.4-mini",
+            "gpt-5.4-nano",
+            "gpt-image-2",
+            "gpt-audio-1.5",
+            "gpt-realtime-2.1",
+            "gpt-realtime-2.1-mini",
+            "gpt-realtime-whisper",
+            "tts-1",
+            "gpt-4o-mini-transcribe",
+            "gpt-4o-mini-tts",
+            "text-embedding-3-large",
+            "text-embedding-3-small"
+          ],
+          "aliases": {
+            "gpt-5.6-sol": "gpt-5.6-sol",
+            "gpt-5.6-terra": "gpt-5.6-terra",
+            "gpt-5.6-luna": "gpt-5.6-luna",
+            "gpt-5.4-mini": "gpt-5.4-mini",
+            "gpt-5.4-nano": "gpt-5.4-nano",
+            "gpt-image-2": "gpt-image-2",
+            "gpt-audio-1.5": "gpt-audio-1.5",
+            "gpt-realtime-2.1": "gpt-realtime-2.1",
+            "gpt-realtime-2.1-mini": "gpt-realtime-2.1-mini",
+            "gpt-realtime-whisper": "gpt-realtime-whisper",
+            "tts-1": "tts-1",
+            "gpt-4o-mini-transcribe": "gpt-4o-mini-transcribe",
+            "gpt-4o-mini-tts": "gpt-4o-mini-tts",
+            "text-embedding-3-large": "text-embedding-3-large",
+            "text-embedding-3-small": "text-embedding-3-small"
+          }
+        }
+      ]
+    },
     "azure": {
       "keys": [
         {
@@ -37,82 +81,60 @@
             "api_version": "2024-10-21"
           },
           "models": [
-            "gpt-5.4-nano",
-            "gpt-5.4-mini",
-            "gpt-chat-latest",
-            "gpt-5.6-luna",
-            "gpt-5.6-terra",
-            "gpt-5.6-sol",
-            "gpt-4o-mini-transcribe",
-            "gpt-4o-mini-tts",
-            "gpt-audio-1.5",
-            "gpt-oss-120b",
-            "gpt-realtime-2.1",
-            "gpt-realtime-2.1-mini",
-            "gpt-image-1-mini",
-            "gpt-image-1.5",
-            "gpt-image-2",
-            "sora-2",
-            "text-embedding-3-large",
-            "text-embedding-3-small",
-            "claude-haiku-4.5",
-            "claude-opus-5",
-            "claude-sonnet-5",
-            "grok-4.3",
-            "deepseek-v4-flash",
-            "deepseek-v4-pro",
-            "kimi-k2.7-code",
-            "azure-5.4-nano",
-            "azure-5.4-mini",
-            "azure-chat-latest",
-            "azure-5.6-luna",
-            "azure-5.6-terra",
-            "azure-5.6-sol",
-            "azure-oss-120b",
-            "azure-text-embedding-3-large",
-            "azure-text-embedding-3-small",
-            "azure-deepseek-v4-flash",
-            "azure-deepseek-v4-pro",
-            "azure-kimi-k2.7-code"
+            "az-5.4-nano",
+            "az-5.4-mini",
+            "az-chat-latest",
+            "az-5.6-luna",
+            "az-5.6-terra",
+            "az-5.6-sol",
+            "az-claude-haiku-4.5",
+            "az-claude-opus-5",
+            "az-claude-sonnet-5",
+            "az-oss-120b",
+            "az-text-embedding-3-large",
+            "az-text-embedding-3-small",
+            "az-gpt-4o-mini-transcribe",
+            "az-gpt-4o-mini-tts",
+            "az-gpt-audio-1.5",
+            "az-gpt-oss-120b",
+            "az-gpt-realtime-2.1",
+            "az-gpt-realtime-2.1-mini",
+            "az-gpt-image-1-mini",
+            "az-gpt-image-1.5",
+            "az-gpt-image-2",
+            "az-sora-2",
+            "az-grok-4.3",
+            "az-deepseek-v4-flash",
+            "az-deepseek-v4-pro",
+            "az-kimi-k2.7-code"
           ],
           "aliases": {
-            "gpt-5.4-nano": "gpt-5.4-nano",
-            "gpt-5.4-mini": "gpt-5.4-mini",
-            "gpt-chat-latest": "gpt-chat-latest",
-            "gpt-5.6-luna": "gpt-5.6-luna",
-            "gpt-5.6-terra": "gpt-5.6-terra",
-            "gpt-5.6-sol": "gpt-5.6-sol",
-            "gpt-4o-mini-transcribe": "gpt-4o-mini-transcribe",
-            "gpt-4o-mini-tts": "gpt-4o-mini-tts",
-            "gpt-audio-1.5": "gpt-audio-1.5-1",
-            "gpt-oss-120b": "gpt-oss-120b",
-            "gpt-realtime-2.1": "gpt-realtime-2.1",
-            "gpt-realtime-2.1-mini": "gpt-realtime-2.1-mini",
-            "gpt-image-1-mini": "gpt-image-1-mini",
-            "gpt-image-1.5": "gpt-image-1.5",
-            "gpt-image-2": "gpt-image-2-1",
-            "sora-2": "sora-2",
-            "text-embedding-3-large": "text-embedding-3-large",
-            "text-embedding-3-small": "text-embedding-3-small",
-            "claude-haiku-4.5": "claude-haiku-4-5",
-            "claude-opus-5": "claude-opus-5",
-            "claude-sonnet-5": "claude-sonnet-5",
-            "grok-4.3": "grok-4.3",
-            "deepseek-v4-flash": "DeepSeek-V4-Flash",
-            "deepseek-v4-pro": "DeepSeek-V4-Pro",
-            "kimi-k2.7-code": "Kimi-K2.7-Code",
-            "azure-5.4-mini": "gpt-5.4-mini",
-            "azure-5.4-nano": "gpt-5.4-nano",
-            "azure-chat-latest": "gpt-chat-latest",
-            "azure-5.6-luna": "gpt-5.6-luna",
-            "azure-5.6-terra": "gpt-5.6-terra",
-            "azure-5.6-sol": "gpt-5.6-sol",
-            "azure-oss-120b": "gpt-oss-120b",
-            "azure-text-embedding-3-large": "text-embedding-3-large",
-            "azure-text-embedding-3-small": "text-embedding-3-small",
-            "azure-deepseek-v4-flash": "DeepSeek-V4-Flash",
-            "azure-deepseek-v4-pro": "DeepSeek-V4-Pro",
-            "azure-kimi-k2.7-code": "Kimi-K2.7-Code"
+            "az-5.4-mini": "gpt-5.4-mini",
+            "az-5.4-nano": "gpt-5.4-nano",
+            "az-chat-latest": "gpt-chat-latest",
+            "az-5.6-luna": "gpt-5.6-luna",
+            "az-5.6-terra": "gpt-5.6-terra",
+            "az-5.6-sol": "gpt-5.6-sol",
+            "az-claude-haiku-4.5": "claude-haiku-4-5",
+            "az-claude-opus-5": "claude-opus-5",
+            "az-claude-sonnet-5": "claude-sonnet-5",
+            "az-oss-120b": "gpt-oss-120b",
+            "az-text-embedding-3-small": "text-embedding-3-small",
+            "az-text-embedding-3-large": "text-embedding-3-large",
+            "az-gpt-4o-mini-transcribe": "gpt-4o-mini-transcribe",
+            "az-gpt-4o-mini-tts": "gpt-4o-mini-tts",
+            "az-gpt-audio-1.5": "gpt-audio-1.5-1",
+            "az-gpt-oss-120b": "gpt-oss-120b",
+            "az-gpt-realtime-2.1": "gpt-realtime-2.1",
+            "az-gpt-realtime-2.1-mini": "gpt-realtime-2.1-mini",
+            "az-gpt-image-1-mini": "gpt-image-1-mini",
+            "az-gpt-image-1.5": "gpt-image-1.5",
+            "az-gpt-image-2": "gpt-image-2-1",
+            "az-sora-2": "sora-2",
+            "az-grok-4.3": "grok-4.3",
+            "az-deepseek-v4-flash": "DeepSeek-V4-Flash",
+            "az-deepseek-v4-pro": "DeepSeek-V4-Pro",
+            "az-kimi-k2.7-code": "Kimi-K2.7-Code"
           }
         }
       ],
@@ -133,28 +155,95 @@
       "port": 6334
     }
   },
+  "config_store": {
+    "enabled": true,
+    "type": "postgres",
+    "config": {
+      "host": "env.BIFROST_POSTGRES_HOST",
+      "port": "env.BIFROST_POSTGRES_PORT",
+      "user": "env.BIFROST_POSTGRES_USER",
+      "password": "env.BIFROST_POSTGRES_PASSWORD",
+      "db_name": "env.BIFROST_POSTGRES_DB",
+      "ssl_mode": "disable"
+    }
+  },
+  "logs_store": {
+    "enabled": true,
+    "type": "postgres",
+    "config": {
+      "host": "env.BIFROST_POSTGRES_HOST",
+      "port": "env.BIFROST_POSTGRES_PORT",
+      "user": "env.BIFROST_POSTGRES_USER",
+      "password": "env.BIFROST_POSTGRES_PASSWORD",
+      "db_name": "env.BIFROST_POSTGRES_DB",
+      "ssl_mode": "disable"
+    },
+    "retention_days": 90
+  },
+  "governance": {
+    "virtual_keys": [
+      {
+        "id": "b2ee5310-69d2-41e8-84f7-95f2f69a3716",
+        "name": "self-hosted-app-stack",
+        "value": "env.BIFROST_API_KEY",
+        "is_active": true,
+        "mcp_configs": [
+          { "mcp_client_name": "Atlassian", "tools_to_execute": ["*"] },
+          { "mcp_client_name": "TDX", "tools_to_execute": ["*"] },
+          { "mcp_client_name": "Context7", "tools_to_execute": ["*"] },
+          { "mcp_client_name": "Mermaid", "tools_to_execute": ["*"] },
+          { "mcp_client_name": "Crawl4AI", "tools_to_execute": ["*"] }
+        ],
+        "provider_configs": [
+          {
+            "provider": "azure",
+            "allowed_models": ["*"],
+            "key_ids": ["*"],
+            "weight": 1
+          },
+          {
+            "provider": "fireworks",
+            "allowed_models": ["*"],
+            "key_ids": ["*"],
+            "weight": 1
+          },
+          {
+            "provider": "openai",
+            "allowed_models": ["*"],
+            "key_ids": ["*"],
+            "weight": 1
+          }
+        ]
+      }
+    ]
+  },
   "mcp": {
     "client_configs": [
       {
         "name": "Atlassian",
+        "client_id": "atlassian",
         "connection_type": "http",
         "connection_string": "env.ATLASSIAN_MCP_SERVER_URL",
         "auth_type": "none",
         "is_code_mode_client": true,
         "is_ping_available": false,
-        "tools_to_execute": ["*"]
+        "tools_to_execute": ["*"],
+        "allow_on_all_virtual_keys": true
       },
       {
         "name": "TDX",
+        "client_id": "tdx",
         "connection_type": "http",
         "connection_string": "env.TDX_MCP_SERVER_URL",
         "auth_type": "none",
         "is_code_mode_client": true,
         "is_ping_available": false,
-        "tools_to_execute": ["*"]
+        "tools_to_execute": ["*"],
+        "allow_on_all_virtual_keys": true
       },
       {
         "name": "Context7",
+        "client_id": "context7",
         "connection_type": "http",
         "connection_string": "env.CONTEXT7_MCP_SERVER_URL",
         "auth_type": "headers",
@@ -163,19 +252,23 @@
         },
         "is_code_mode_client": true,
         "is_ping_available": true,
-        "tools_to_execute": ["*"]
+        "tools_to_execute": ["*"],
+        "allow_on_all_virtual_keys": true
       },
       {
         "name": "Mermaid",
+        "client_id": "mermaid",
         "connection_type": "http",
         "connection_string": "env.MERMAID_MCP_SERVER_URL",
         "auth_type": "none",
         "is_code_mode_client": true,
         "is_ping_available": true,
-        "tools_to_execute": ["*"]
+        "tools_to_execute": ["*"],
+        "allow_on_all_virtual_keys": true
       },
       {
         "name": "Crawl4AI",
+        "client_id": "crawl4ai",
         "connection_type": "sse",
         "connection_string": "env.CRAWL4AI_MCP_SERVER_URL",
         "auth_type": "headers",
@@ -184,7 +277,8 @@
         },
         "is_code_mode_client": true,
         "is_ping_available": true,
-        "tools_to_execute": ["*"]
+        "tools_to_execute": ["*"],
+        "allow_on_all_virtual_keys": true
       }
     ]
   },
@@ -194,16 +288,16 @@
       "name": "semantic_cache",
       "config": {
         "provider": "azure",
-        "embedding_model": "text-embedding-3-small",
+        "embedding_model": "az-text-embedding-3-small",
         "dimension": 1536,
-        "ttl": "5m",
+        "ttl": "1h",
         "threshold": 0.8,
-        "conversation_history_threshold": 3,
+        "conversation_history_threshold": 6,
         "exclude_system_prompt": false,
         "cache_by_model": true,
         "cache_by_provider": true,
         "vector_store_namespace": "BifrostSemanticCachePlugin",
-        "default_cache_key": ""
+        "default_cache_key": "SelfHostedAppStack"
       }
     }
   ]
