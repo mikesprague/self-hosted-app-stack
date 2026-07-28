@@ -1,0 +1,31 @@
+services:
+  phoenix:
+    image: arizephoenix/phoenix:19.9.0
+    container_name: phoenix
+    restart: unless-stopped
+    depends_on:
+      postgres-shared:
+        condition: service_healthy
+      postgres-shared-provision:
+        condition: service_completed_successfully
+    ports:
+      - "${PHOENIX_UI_PORT:-6006}:6006" # UI
+      - "${PHOENIX_OTLP_PORT:-4317}:4317" # OTLP/gRPC
+      - "${PHOENIX_OTLP_HTTP_PORT:-4318}:4318" # OTLP/HTTP
+    deploy:
+      resources:
+        limits:
+          memory: 4096M
+    environment:
+      PHOENIX_POSTGRES_HOST: "postgres-shared"
+      PHOENIX_POSTGRES_PORT: "5432"
+      PHOENIX_POSTGRES_USER: "phoenix"
+      PHOENIX_POSTGRES_PASSWORD: "${POSTGRES_SHARED_APP_PASSWORD}"
+      PHOENIX_POSTGRES_DB: "phoenix"
+      PHOENIX_WORKING_DIR: "/app/data"
+      PHOENIX_DEFAULT_RETENTION_POLICY_DAYS: "${PHOENIX_DEFAULT_RETENTION_POLICY_DAYS:-30}"
+      PHOENIX_TELEMETRY_ENABLED: "false"
+      PHOENIX_ENABLE_MCP_SERVER: "true"
+      PHOENIX_ENABLE_MCP_CODE_MODEL: "true"
+    volumes:
+      - ../../local-volumes/phoenix/data:/app/data

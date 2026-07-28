@@ -26,6 +26,7 @@ include:
       - ./stack/open-design/compose.yaml
       - ./stack/open-notebook/compose.yaml
       - ./stack/open-webui/compose.yaml
+      - ./stack/phoenix/compose.yaml
       # Search Engine
       - ./stack/degoog/compose.yaml
       - ./stack/hister/compose.yaml
