@@ -15,6 +15,11 @@ services:
       QDRANT__STORAGE__PATH: "/qdrant/storage"
       QDRANT__STORAGE__USE_S3: "false"
       QDRANT__TELEMETRY_DISABLED: "true"
+    healthcheck:
+      test: bash -c ':> /dev/tcp/127.0.0.1/6333' || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 3
     volumes:
       - ../../local-volumes/bifrost/cache/qdrant:/qdrant/storage
       # - ../../local-volumes/bifrost/qdrant/config.yaml:/qdrant/config.yaml
@@ -30,9 +35,11 @@ services:
           memory: 2048M
     depends_on:
       bifrost-qdrant:
-        condition: service_started
+        condition: service_healthy
       postgres-shared:
         condition: service_healthy
+      postgres-shared-provision:
+        condition: service_completed_successfully
     environment:
       APP_HOST: "${BIFROST_APP_HOST:-0.0.0.0}"
       BIFROST_POSTGRES_HOST: "postgres-shared"

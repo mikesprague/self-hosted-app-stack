@@ -17,4 +17,5 @@ services:
       CRAWL4AI_API_TOKEN: "${CRAWL4AI_API_TOKEN}"
       CRAWL4AI_EXECUTE_JS_ENABLED: "true"
     depends_on:
-      - bifrost
+      bifrost:
+        condition: service_healthy

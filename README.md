@@ -188,27 +188,21 @@ Avoid sharing the expanded output of `docker compose config`; it may contain sec
 
 The stack uses one `postgres-shared` service instead of a Postgres sidecar for each app. Every application gets its own role and database.
 
-Start the database and DBGate:
+Role, database, and pgvector extension creation is automated by the `postgres-shared-provision` service defined alongside `postgres-shared` in [`stack/postgres-shared/compose.yaml`](stack/postgres-shared/compose.yaml). It runs [`stack/postgres-shared/scripts/provision-apps.sh`](stack/postgres-shared/scripts/provision-apps.sh) as a one-shot job on every `docker compose up`, reading the manually maintained `POSTGRES_SHARED_PROVISION_APPS` list in `.env` and, for each app identifier in that list:
 
-```sh
-docker compose up -d postgres-shared dbgate
-```
+- Creates its role if missing, and re-syncs the password from `POSTGRES_SHARED_APP_PASSWORD` on every run.
+- Creates its database if missing, owned by the same-named role.
+- Runs `CREATE EXTENSION IF NOT EXISTS vector;` on it unconditionally (harmless no-op for apps that don't use pgvector).
 
-Then create the app role and database through DBGate or `psql`:
+It's idempotent and safe to rerun; only genuine failures (bad credentials, unreachable database, invalid identifier) cause a non-zero exit, which blocks any app that `depends_on: postgres-shared-provision: condition: service_completed_successfully`.
 
-```sql
-CREATE ROLE appname WITH LOGIN PASSWORD 'replace-with-a-strong-password';
-CREATE DATABASE appname OWNER appname;
-```
+To add a future Postgres-backed app:
 
-Enable pgvector only for apps that require it:
+1. Add its DB identifier to the comma-separated `POSTGRES_SHARED_PROVISION_APPS` list in `.env`.
+2. Add `postgres-shared-provision: condition: service_completed_successfully` to the app's own `depends_on` block.
+3. `docker compose up -d postgres-shared postgres-shared-provision <app>` — no manual `psql`/DBGate step required.
 
-```sql
-\c appname
-CREATE EXTENSION IF NOT EXISTS vector;
-```
-
-Active compose files that connect to or depend on shared Postgres include AnythingLLM, Databasus, DBGate, FreshRSS, Hindsight, Hoppscotch, Memos, n8n, and Open WebUI. Mealie also uses Postgres through its configured server variables. Nextcloud is the main exception and uses its own MariaDB sidecar.
+Active compose files that connect to or depend on shared Postgres include AnythingLLM, Bifrost, Databasus, DBGate, FreshRSS, Hindsight, Hoppscotch, Memos, n8n, and Open WebUI. Mealie also uses Postgres through its configured server variables. Nextcloud is the main exception and uses its own MariaDB sidecar.
 
 ## Integrations
 

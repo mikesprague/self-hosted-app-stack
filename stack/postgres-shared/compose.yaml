@@ -5,19 +5,34 @@ services:
     restart: unless-stopped
     ports:
       - "${POSTGRES_SHARED_PORT:-5432}:5432"
-    environment:
-      POSTGRES_USER: "${POSTGRES_SHARED_SUPERUSER}"
-      POSTGRES_PASSWORD: "${POSTGRES_SHARED_SUPERUSER_PASSWORD}"
-      POSTGRES_DB: "${POSTGRES_SHARED_DEFAULT_DB}"
-      POSTGRES_INITDB_ARGS: "--data-checksums"
     deploy:
       resources:
         limits:
           memory: 2048M
+    environment:
+      POSTGRES_USER: "${POSTGRES_SHARED_SUPERUSER}"
+      POSTGRES_PASSWORD: "${POSTGRES_SHARED_SUPERUSER_PASSWORD}"
+      POSTGRES_DB: "${POSTGRES_SHARED_DEFAULT_DB:-postgres}"
+      POSTGRES_INITDB_ARGS: "--data-checksums"
     healthcheck:
-      test: [ "CMD", "pg_isready", "-U", "${POSTGRES_SHARED_SUPERUSER}", "-d", "${POSTGRES_SHARED_DEFAULT_DB}" ]
+      test: [ "CMD", "pg_isready", "-U", "${POSTGRES_SHARED_SUPERUSER}", "-d", "${POSTGRES_SHARED_DEFAULT_DB:-postgres}" ]
       interval: 10s
       timeout: 5s
       retries: 5
     volumes:
       - ../../local-volumes/postgres-shared/postgresql:/var/lib/postgresql
+
+  # One-shot, idempotent role/database/pgvector provisioning for every app
+  # listed in POSTGRES_SHARED_PROVISION_APPS (.env). Safe to rerun on every
+  # `docker compose up`; only genuine failures cause a non-zero exit.
+  postgres-shared-provision:
+    image: pgvector/pgvector:0.8.5-pg17
+    container_name: postgres-shared-provision
+    depends_on:
+      postgres-shared:
+        condition: service_healthy
+    entrypoint: []
+    command: [ "bash", "/provision.sh" ]
+    volumes:
+      - ../../.env:/run/secrets/.env:ro
+      - ../../stack/postgres-shared/scripts/provision-apps.sh:/provision.sh:ro

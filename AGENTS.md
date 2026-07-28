@@ -25,7 +25,8 @@
 ## Shared Services
 
 - Postgres-backed apps use the single `postgres-shared` service. Do not add per-app Postgres sidecars.
-- New Postgres apps need `APP_POSTGRES_DB`, `APP_POSTGRES_USER`, and `APP_POSTGRES_PASSWORD` in `.env.example`, plus a manually provisioned role/database in `postgres-shared` before first start.
+- Role/database/pgvector provisioning is automated by the `postgres-shared-provision` one-shot service (`stack/postgres-shared/compose.yaml`) running `stack/postgres-shared/scripts/provision-apps.sh` on every `docker compose up`. It is idempotent and driven entirely by the manually maintained `POSTGRES_SHARED_PROVISION_APPS` list in `.env` -- it does not infer or discover app names.
+- New Postgres apps need `APP_POSTGRES_DB`, `APP_POSTGRES_USER`, and `APP_POSTGRES_PASSWORD` in `.env.example`, their DB identifier added to `POSTGRES_SHARED_PROVISION_APPS`, and `postgres-shared-provision: condition: service_completed_successfully` added to the app's own `depends_on`. No manual `psql`/DBGate step is needed.
 - DBGate is the browser UI for `postgres-shared` at the `dbgate` service / `DBGATE_PORT`.
 - Mailpit is the local SMTP sink; internal SMTP host is `mailpit` with `MAILPIT_SMTP_PORT`.
 - Host-machine model servers use `host.docker.internal` (`OLLAMA_BASE_URL`, `LM_STUDIO_OPENAI_API_URL`).

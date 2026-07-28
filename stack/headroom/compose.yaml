@@ -8,7 +8,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 4096M
+          memory: 8192M
     environment:
       HEADROOM_WORKSPACE_DIR: /home/nonroot/.headroom
       HEADROOM_PORT: "${HEADROOM_PORT:-8787}"
@@ -43,7 +43,8 @@ services:
       retries: 3
       start_period: 20s
     depends_on:
-      - bifrost
+      bifrost:
+        condition: service_healthy
     volumes:
       - ../../local-volumes/headroom/data:/home/nonroot/.headroom
       - ../../local-volumes/headroom/local:/home/nonroot/.local

@@ -1,4 +1,24 @@
 services:
+  activepieces-redis:
+    image: redis:8.8.1-alpine
+    container_name: activepieces-redis
+    command:
+      - redis-server
+      - --maxmemory 225mb # a bit under container limit so you leave room for Redis overhead
+      - --maxmemory-policy noeviction
+    deploy:
+      resources:
+        limits:
+          memory: 1024M
+    healthcheck:
+      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - ../../local-volumes/activepieces/redis:/data
+    restart: unless-stopped
+
   activepieces:
     image: ghcr.io/activepieces/activepieces:0.86.3
     container_name: activepieces
@@ -46,29 +66,13 @@ services:
       # Flow execution timeout
       AP_FLOW_TIMEOUT_SECONDS: 600
     depends_on:
+      activepieces-redis:
+        condition: service_healthy
       postgres-shared:
         condition: service_healthy
-      activepieces-redis:
+      postgres-shared-provision:
+        condition: service_completed_successfully
+      bifrost:
         condition: service_healthy
     volumes:
       - ../../local-volumes/activepieces/cache:/usr/src/app/cache
-
-  activepieces-redis:
-    image: redis:8.8.1-alpine
-    container_name: activepieces-redis
-    command:
-      - redis-server
-      - --maxmemory 225mb # a bit under container limit so you leave room for Redis overhead
-      - --maxmemory-policy noeviction
-    deploy:
-      resources:
-        limits:
-          memory: 1024M
-    healthcheck:
-      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    volumes:
-      - ../../local-volumes/activepieces/redis:/data
-    restart: unless-stopped

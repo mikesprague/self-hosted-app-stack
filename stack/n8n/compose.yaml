@@ -14,6 +14,11 @@ services:
       QDRANT__STORAGE__PATH: "/qdrant/storage"
       QDRANT__STORAGE__USE_S3: "false"
       QDRANT__TELEMETRY_DISABLED: "true"
+    healthcheck:
+      test: bash -c ':> /dev/tcp/127.0.0.1/6333' || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 3
     volumes:
       - ../../local-volumes/n8n/qdrant/storage:/qdrant/storage
 
@@ -51,9 +56,11 @@ services:
       - /Volumes/Seagate/n8n:/data/external:rw
     depends_on:
       n8n-qdrant:
-        condition: service_started
+        condition: service_healthy
       postgres-shared:
         condition: service_healthy
+      postgres-shared-provision:
+        condition: service_completed_successfully
       bifrost:
         condition: service_healthy
     healthcheck:

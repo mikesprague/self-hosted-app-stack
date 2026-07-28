@@ -9,7 +9,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 4096M
+          memory: 8192M
     environment:
       HINDSIGHT_API_AUDIT_LOG_ENABLED: "true"
       HINDSIGHT_API_LLM_PROVIDER: "openai"
@@ -19,6 +19,7 @@ services:
       HINDSIGHT_API_RETAIN_LLM_MODEL: "fireworks/gpt-oss-20b"
       HINDSIGHT_API_REFLECT_LLM_MODEL: "fireworks/gpt-oss-120b"
       HINDSIGHT_API_CONSOLIDATION_LLM_MODEL: "fireworks/gpt-oss-120b"
+      # HINDSIGHT_API_LLM_REASONING_EFFORT: "none"
       HINDSIGHT_API_DATABASE_SCHEMA: "${HINDSIGHT_API_DATABASE_SCHEMA:-public}"
       HINDSIGHT_API_DATABASE_URL: "${HINDSIGHT_API_DATABASE_URL:-pg0}"
       HINDSIGHT_API_DATABASE_BACKEND: "${HINDSIGHT_API_DATABASE_BACKEND:-postgresql}"
@@ -34,9 +35,17 @@ services:
       # HINDSIGHT_API_EMBEDDINGS_OPENAI_API_KEY: "${BIFROST_API_KEY}"
       # HINDSIGHT_API_EMBEDDINGS_OPENAI_MODEL: "openai/text-embedding-3-small"
       # HINDSIGHT_API_EMBEDDINGS_OPENAI_DIMENSIONS: "1536"
-
     depends_on:
-      - headroom
+      bifrost:
+        condition: service_healthy
+      headroom:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8888/health" ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
 
     volumes:
       - ../../local-volumes/hindsight/data/.pg0:/home/hindsight/.pg0

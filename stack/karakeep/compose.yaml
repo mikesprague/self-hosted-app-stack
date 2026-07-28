@@ -52,6 +52,8 @@ services:
         condition: service_started
       karakeep-meilisearch:
         condition: service_healthy
+      bifrost:
+        condition: service_healthy
     healthcheck:
       test: [ "CMD", "wget", "-q", "--spider", "http://localhost:3000" ]
       interval: 30s

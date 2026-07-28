@@ -46,6 +46,8 @@ services:
     depends_on:
       postgres-shared:
         condition: service_healthy
+      postgres-shared-provision:
+        condition: service_completed_successfully
       paperless-broker:
         condition: service_healthy
       paperless-gotenberg:
