@@ -27,6 +27,7 @@
             "gpt-oss-20b": "accounts/fireworks/models/gpt-oss-20b",
             "gpt-oss-120b": "accounts/fireworks/models/gpt-oss-120b",
             "nemotron-3-ultra": "accounts/fireworks/models/nemotron-3-ultra-nvfp4",
+            "inkling": "accounts/fireworks/models/inkling",
             "qwen-3-embedding-8b": "accounts/fireworks/models/qwen3-embedding-8b",
             "qwen-3-reranker-8b": "accounts/fireworks/models/qwen3-reranker-8b"
           }
