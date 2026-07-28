@@ -156,6 +156,29 @@
         "retry_backoff_initial": 100,
         "retry_backoff_max": 10000
       }
+    },
+    "ollama": {
+      "store_raw_request_response": true,
+      "send_back_raw_response": true,
+      "keys": [
+        {
+          "id": "ollama",
+          "name": "Ollama",
+          "value": "env.OLLAMA_API_KEY",
+          "weight": 1.0,
+          "ollama_key_config": {
+            "url": "env.OLLAMA_URL"
+          },
+          "models": ["*"]
+        }
+      ],
+      "network_config": {
+        "allow_private_network": true,
+        "default_request_timeout_in_seconds": 900,
+        "max_retries": 5,
+        "retry_backoff_initial": 100,
+        "retry_backoff_max": 10000
+      }
     }
   },
   "vector_store": {
@@ -220,6 +243,12 @@
           },
           {
             "provider": "openai",
+            "allowed_models": ["*"],
+            "key_ids": ["*"],
+            "weight": 1
+          },
+          {
+            "provider": "ollama",
             "allowed_models": ["*"],
             "key_ids": ["*"],
             "weight": 1
@@ -304,7 +333,7 @@
         "ttl": "1h",
         "threshold": 0.8,
         "conversation_history_threshold": 6,
-        "exclude_system_prompt": false,
+        "exclude_system_prompt": true,
         "cache_by_model": true,
         "cache_by_provider": true,
         "vector_store_namespace": "BifrostSemanticCachePlugin",
