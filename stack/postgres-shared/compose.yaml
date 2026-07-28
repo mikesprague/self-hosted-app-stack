@@ -26,7 +26,7 @@ services:
   # listed in POSTGRES_SHARED_PROVISION_APPS (.env). Safe to rerun on every
   # `docker compose up`; only genuine failures cause a non-zero exit.
   postgres-shared-provision:
-    image: pgvector/pgvector:0.8.5-pg17
+    image: pgvector/pgvector:0.8.5-pg18
     container_name: postgres-shared-provision
     depends_on:
       postgres-shared:
