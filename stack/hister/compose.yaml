@@ -1,6 +1,6 @@
 services:
   hister:
-    image: ghcr.io/asciimoo/hister:v0.16.0
+    image: ghcr.io/asciimoo/hister:v0.17.0
     container_name: hister
     user: "1000:1000"
     ports:
