@@ -13,7 +13,7 @@
       "keys": [
         {
           "name": "Fireworks AI",
-          "value": "env.FIREWORKS_AI_API_KEY",
+          "value": "env.FIREWORKS_API_KEY",
           "weight": 1.0,
           "models": ["*"],
           "aliases": {
@@ -328,11 +328,12 @@
       "enabled": true,
       "name": "otel",
       "config": {
-        "collector_url": "http://phoenix:4318/v1/traces",
+        "collector_url": "phoenix:4317",
         "trace_type": "genai_extension",
-        "protocol": "http",
+        "protocol": "grpc",
         "enabled": true,
         "service_name": "bifrost",
+        "group_traces_by_session": true,
         "insecure": true
       }
     },
