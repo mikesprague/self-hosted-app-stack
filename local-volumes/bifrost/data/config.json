@@ -326,6 +326,18 @@
   "plugins": [
     {
       "enabled": true,
+      "name": "otel",
+      "config": {
+        "collector_url": "http://phoenix:4318/v1/traces",
+        "trace_type": "genai_extension",
+        "protocol": "http",
+        "enabled": true,
+        "service_name": "bifrost",
+        "insecure": true
+      }
+    },
+    {
+      "enabled": true,
       "name": "semantic_cache",
       "config": {
         "provider": "azure",
