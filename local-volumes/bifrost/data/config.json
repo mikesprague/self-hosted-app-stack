@@ -1,8 +1,15 @@
 {
   "$schema": "https://www.getbifrost.ai/schema",
   "source_of_truth": "config.json",
+  "client": {
+    "enable_logging": true,
+    "disable_content_logging": false,
+    "log_retention_days": 14
+  },
   "providers": {
     "fireworks": {
+      "store_raw_request_response": true,
+      "send_back_raw_response": true,
       "keys": [
         {
           "name": "Fireworks AI",
@@ -27,6 +34,8 @@
       ]
     },
     "openai": {
+      "store_raw_request_response": true,
+      "send_back_raw_response": true,
       "keys": [
         {
           "name": "OpenAI API",
@@ -70,6 +79,8 @@
       ]
     },
     "azure": {
+      "store_raw_request_response": true,
+      "send_back_raw_response": true,
       "keys": [
         {
           "id": "azure-foundry",
@@ -178,7 +189,7 @@
       "db_name": "env.BIFROST_POSTGRES_DB",
       "ssl_mode": "disable"
     },
-    "retention_days": 90
+    "retention_days": 14
   },
   "governance": {
     "virtual_keys": [
