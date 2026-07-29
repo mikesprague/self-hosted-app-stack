@@ -1,6 +1,6 @@
 services:
   hindsight:
-    image: ghcr.io/vectorize-io/hindsight:0.8.5
+    image: ghcr.io/vectorize-io/hindsight:0.8.6
     container_name: hindsight
     restart: unless-stopped
     ports:
