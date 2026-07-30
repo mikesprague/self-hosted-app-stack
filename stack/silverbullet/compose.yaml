@@ -1,6 +1,6 @@
 services:
   silverbullet:
-    image: ghcr.io/silverbulletmd/silverbullet:2.9.0-runtime-api
+    image: ghcr.io/silverbulletmd/silverbullet:2.10.0-runtime-api
     container_name: silverbullet
     ports:
       - "${SILVERBULLET_PORT:-8350}:3000"
