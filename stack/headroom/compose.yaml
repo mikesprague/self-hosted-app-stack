@@ -1,6 +1,6 @@
 services:
   headroom:
-    image: ghcr.io/headroomlabs-ai/headroom:0.32.0
+    image: ghcr.io/headroomlabs-ai/headroom:0.33.0
     container_name: headroom
     restart: unless-stopped
     ports:
