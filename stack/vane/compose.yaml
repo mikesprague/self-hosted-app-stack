@@ -1,0 +1,15 @@
+services:
+  vane:
+    image: itzcrazykns1337/vane:slim-v1.12.2
+    container_name: vane
+    ports:
+      - "${VANE_PORT:-3000}:3000"
+    volumes:
+      - ../../local-volumes/vane/data:/home/vane/data
+    deploy:
+      resources:
+        limits:
+          memory: 4096M
+    restart: unless-stopped
+    environment:
+      SEARXNG_API_URL: "http://searxng:8080"
