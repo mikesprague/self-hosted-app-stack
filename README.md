@@ -85,6 +85,7 @@ Only uncommented entries in [`compose.yaml`](compose.yaml) are active. Links bel
 | [Open Design](stack/open-design/compose.yaml) | Local-first design workspace for coding agents; uses host networking |
 | [Open Notebook](stack/open-notebook/compose.yaml) | AI research notebook using SurrealDB and Bifrost |
 | [Open WebUI](stack/open-webui/compose.yaml) | Main chat UI using shared pgvector, Bifrost, Ollama, SearXNG, and MCP integrations |
+| [Phoenix](stack/phoenix/compose.yaml) | LLM tracing and observability using shared Postgres, Ollama, and an MCP server |
 
 Additional notes about how I utilize some of these services with [OpenCode](https://github.com/anomalyco/opencode) available here: <https://gist.github.com/mikesprague/08b52562e70e1bbcc1ce22c01c9c7a2f>
 
@@ -95,6 +96,7 @@ Additional notes about how I utilize some of these services with [OpenCode](http
 | [DeGoog](stack/degoog/compose.yaml) | Private search aggregator with a Valkey sidecar |
 | [Hister](stack/hister/compose.yaml) | Self-hosted full-text search for visited web content |
 | [SearXNG](stack/searxng/compose.yaml) | Private metasearch engine with a Valkey sidecar |
+| [Vane](stack/vane/compose.yaml) | Privacy-focused AI answering engine using SearXNG |
 
 ### PKM And Productivity
 
@@ -147,6 +149,7 @@ These are the compose defaults for the services you are most likely to open firs
 | Homepage | <http://localhost:8349> |
 | DBGate | <http://localhost:8370> |
 | Open WebUI | <http://localhost:3000> |
+| Phoenix | <http://localhost:6006> |
 | Mailpit UI | <http://localhost:8371> |
 | Mailpit SMTP | `smtp://localhost:1025` |
 | Beszel | <http://localhost:8090> |
@@ -202,7 +205,7 @@ To add a future Postgres-backed app:
 2. Add `postgres-shared-provision: condition: service_completed_successfully` to the app's own `depends_on` block.
 3. `docker compose up -d postgres-shared postgres-shared-provision <app>` — no manual `psql`/DBGate step required.
 
-Active compose files that connect to or depend on shared Postgres include AnythingLLM, Bifrost, Databasus, DBGate, FreshRSS, Hindsight, Hoppscotch, Memos, n8n, and Open WebUI. Mealie also uses Postgres through its configured server variables. Nextcloud is the main exception and uses its own MariaDB sidecar.
+Active compose files that connect to or depend on shared Postgres include AnythingLLM, Bifrost, Databasus, DBGate, FreshRSS, Hindsight, Hoppscotch, Memos, n8n, Open WebUI, and Phoenix. Mealie also uses Postgres through its configured server variables. Nextcloud is the main exception and uses its own MariaDB sidecar.
 
 ## Integrations
 
