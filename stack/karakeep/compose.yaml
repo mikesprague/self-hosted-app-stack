@@ -32,7 +32,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 256M
+          memory: 1024M
     environment:
       MEILI_NO_ANALYTICS: "true"
       MEILI_MASTER_KEY: ${KARAKEEP_MEILI_MASTER_KEY}
