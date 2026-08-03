@@ -2,8 +2,7 @@ name: open-design
 
 services:
   open-design:
-    image: vanjayak/open-design:latest
-    # image: ghcr.io/nexu-io/od:latest
+    image: ghcr.io/nexu-io/od:0.17.0
     container_name: open-design
     environment:
       NODE_ENV: "production"
