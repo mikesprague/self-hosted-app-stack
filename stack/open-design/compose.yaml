@@ -12,6 +12,8 @@ services:
       OD_PORT: "7456"
       OD_WEB_PORT: ${OPEN_DESIGN_PORT:-7456}
       OD_API_TOKEN: ${OPEN_DESIGN_API_TOKEN}
+      OD_DISABLE_API_AUTH: ${OPEN_DESIGN_DISABLE_API_AUTH:-}
+      OD_CODEX_SANDBOX: ${OD_CODEX_SANDBOX:-}
     network_mode: host
     ports: []
     # ports:
@@ -23,10 +25,11 @@ services:
       - /tmp
     security_opt:
       - no-new-privileges:true
+    mem_limit: ${OPEN_DESIGN_MEM_LIMIT:-2048m}
     deploy:
       resources:
         limits:
-          memory: 4096M
+          memory: ${OPEN_DESIGN_MEM_LIMIT:-2048M}
           pids: 256
     restart: unless-stopped
     healthcheck:
