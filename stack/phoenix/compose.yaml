@@ -1,6 +1,6 @@
 services:
   phoenix:
-    image: arizephoenix/phoenix:19.17.0
+    image: arizephoenix/phoenix:19.18.0
     container_name: phoenix
     restart: unless-stopped
     depends_on:
