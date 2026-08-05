@@ -2,7 +2,7 @@ name: open-design
 
 services:
   open-design:
-    image: ghcr.io/nexu-io/od:0.17.0
+    image: ghcr.io/nexu-io/od:0.18.0
     container_name: open-design
     environment:
       NODE_ENV: "production"
