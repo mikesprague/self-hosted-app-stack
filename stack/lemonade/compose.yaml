@@ -1,0 +1,22 @@
+services:
+  lemonade:
+    image: ghcr.io/lemonade-sdk/lemonade-server:v11.5.2
+    platform: linux/amd64
+    container_name: lemonade
+    restart: unless-stopped
+    ports:
+      - "${LEMONADE_PORT:-13305}:13305"
+    deploy:
+      resources:
+        limits:
+          memory: 4096M
+    environment:
+      # require auth by setting
+      LEMONADE_API_KEY: "${LEMONADE_API_KEY:-}"
+    volumes:
+      # persist downloaded models
+      - ../../local-volumes/lemonade/cache:/opt/lemonade/.cache/huggingface
+      # persist llama binaries
+      - ../../local-volumes/lemonade/llama:/opt/lemonade/llama
+      # persist model options and other backend binaries
+      - ../../local-volumes/lemonade/recipe:/opt/lemonade/.cache/lemonade
