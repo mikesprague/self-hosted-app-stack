@@ -1,6 +1,6 @@
 services:
   dockpeek:
-    image: dockpeek/dockpeek:v1.7.2
+    image: dockpeek/dockpeek:v1.7.3
     container_name: dockpeek
     deploy:
       resources:
