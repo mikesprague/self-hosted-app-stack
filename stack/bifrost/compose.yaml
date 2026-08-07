@@ -25,7 +25,7 @@ services:
       # - ../../local-volumes/bifrost/qdrant/config.yaml:/qdrant/config.yaml
 
   bifrost:
-    image: maximhq/bifrost:v1.6.8
+    image: maximhq/bifrost:v1.6.9
     container_name: bifrost
     ports:
       - "${BIFROST_APP_PORT:-8080}:8080"
