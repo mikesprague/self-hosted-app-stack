@@ -23,7 +23,7 @@ services:
       start_period: 5s
 
   degoog:
-    image: ghcr.io/degoog-org/degoog:0.23.0
+    image: ghcr.io/degoog-org/degoog:0.24.0
     container_name: degoog
     depends_on:
       degoog-valkey:
