@@ -2,7 +2,7 @@ services:
   degoog-valkey:
     image: valkey/valkey:9.1.1-alpine
     container_name: degoog-valkey
-    command: [ "valkey-server", "--save", "", "--appendonly", "no" ]
+    command: ["valkey-server", "--save", "", "--appendonly", "no"]
     user: "1000:1000"
     cap_drop:
       - ALL
@@ -16,7 +16,7 @@ services:
       - ../../local-volumes/degoog/valkey:/data/
     restart: unless-stopped
     healthcheck:
-      test: [ "CMD", "valkey-cli", "ping" ]
+      test: ["CMD", "valkey-cli", "ping"]
       interval: 10s
       timeout: 3s
       retries: 5
@@ -33,7 +33,7 @@ services:
     ports:
       - "${DEGOOG_PORT:-4444}:4444"
     environment:
-      DEGOOG_VALKEY_URL: "valkey://degoog-valkey:6379"
+      DEGOOG_VALKEY_URL: "redis://degoog-valkey:6379"
       DEGOOG_DANGEROUSLY_NO_PASSWORD: "true"
     restart: unless-stopped
     deploy:
