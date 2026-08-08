@@ -40,9 +40,7 @@ services:
       PGVECTOR_CREATE_EXTENSION: "true"
       UVICORN_WORKERS: 1
 
-      ENABLE_OLLAMA_API: "true"
-      OLLAMA_BASE_URL: "${OMLX_BASE_URL}"
-      OLLAMA_API_KEY: "${OMLX_API_KEY:-}"
+      ENABLE_OLLAMA_API: "false"
 
       ENABLE_OPENAI_API: "true"
       OPENAI_API_BASE_URL: "${BIFROST_OPENAI_API_URL}"
