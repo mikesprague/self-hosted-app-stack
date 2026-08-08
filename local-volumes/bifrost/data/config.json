@@ -8,6 +8,9 @@
   },
   "providers": {
     "fireworks": {
+      "network_config": {
+        "default_request_timeout_in_seconds": 300
+      },
       "store_raw_request_response": true,
       "send_back_raw_response": true,
       "keys": [
@@ -35,6 +38,9 @@
       ]
     },
     "openai": {
+      "network_config": {
+        "default_request_timeout_in_seconds": 300
+      },
       "store_raw_request_response": true,
       "send_back_raw_response": true,
       "keys": [
@@ -164,11 +170,11 @@
       "keys": [
         {
           "id": "ollama",
-          "name": "Ollama",
+          "name": "oMLX",
           "value": "env.OLLAMA_API_KEY",
           "weight": 1.0,
           "ollama_key_config": {
-            "url": "env.OLLAMA_URL"
+            "url": "env.OLLAMA_BASE_URL"
           },
           "models": ["*"]
         }
@@ -227,7 +233,8 @@
           { "mcp_client_name": "TDX", "tools_to_execute": ["*"] },
           { "mcp_client_name": "Context7", "tools_to_execute": ["*"] },
           { "mcp_client_name": "Mermaid", "tools_to_execute": ["*"] },
-          { "mcp_client_name": "Crawl4AI", "tools_to_execute": ["*"] }
+          { "mcp_client_name": "Crawl4AI", "tools_to_execute": ["*"] },
+          { "mcp_client_name": "Obscura", "tools_to_execute": ["*"] }
         ],
         "provider_configs": [
           {
@@ -301,6 +308,17 @@
         "client_id": "mermaid",
         "connection_type": "http",
         "connection_string": "env.MERMAID_MCP_SERVER_URL",
+        "auth_type": "none",
+        "is_code_mode_client": true,
+        "is_ping_available": true,
+        "tools_to_execute": ["*"],
+        "allow_on_all_virtual_keys": true
+      },
+      {
+        "name": "Obscura",
+        "client_id": "obscura",
+        "connection_type": "http",
+        "connection_string": "env.OBSCURA_MCP_SERVER_URL",
         "auth_type": "none",
         "is_code_mode_client": true,
         "is_ping_available": true,

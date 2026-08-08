@@ -23,6 +23,7 @@ include:
       - ./stack/crawl4ai/compose.yaml
       - ./stack/headroom/compose.yaml
       - ./stack/hindsight/compose.yaml
+      - ./stack/obscura-mcp/compose.yaml
       - ./stack/open-design/compose.yaml
       - ./stack/open-notebook/compose.yaml
       - ./stack/open-webui/compose.yaml

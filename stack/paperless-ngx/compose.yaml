@@ -102,9 +102,9 @@ services:
 
       # Option 4: Ollama (Local)
       LLM_PROVIDER: "ollama"
-      LLM_MODEL: "gemma4:12b-it-qat"
-      OLLAMA_HOST: "${OLLAMA_BASE_URL}"
-      OLLAMA_CONTEXT_LENGTH: "8192" # Sets Ollama NumCtx (context window)
+      LLM_MODEL: "gemma-4-12B-it-qat-4bit"
+      OLLAMA_HOST: "${OMLX_BASE_URL}"
+      OLLAMA_CONTEXT_LENGTH: "65536" # Sets Ollama NumCtx (context window)
       # TOKEN_LIMIT: 1000 # Recommended for smaller models
 
       # Optional LLM Settings

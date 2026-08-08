@@ -26,7 +26,7 @@ services:
       PHOENIX_TELEMETRY_ENABLED: "false"
       PHOENIX_ENABLE_MCP_SERVER: "true"
       PHOENIX_ENABLE_MCP_CODE_MODEL: "true"
-      OLLAMA_BASE_URL: "${OLLAMA_BASE_URL}/v1"
-      OLLAMA_API_KEY: "${OLLAMA_API_KEY}"
+      OLLAMA_BASE_URL: "${OMLX_BASE_URL}/v1"
+      OLLAMA_API_KEY: "${OMLX_API_KEY}"
     volumes:
       - ../../local-volumes/phoenix/data:/app/data

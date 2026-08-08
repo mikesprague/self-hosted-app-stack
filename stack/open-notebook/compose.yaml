@@ -44,7 +44,7 @@ services:
       SURREAL_NAMESPACE: "open_notebook"
       SURREAL_DATABASE: "open_notebook"
       # Ollama
-      OLLAMA_BASE_URL: "${OLLAMA_BASE_URL:-}"
+      OLLAMA_BASE_URL: "${OMLX_BASE_URL:-}"
       # LiteLLM configuration
       OPENAI_COMPATIBLE_BASE_URL: "${BIFROST_OPENAI_API_URL}"
       OPENAI_COMPATIBLE_API_KEY: "${BIFROST_API_KEY}"
