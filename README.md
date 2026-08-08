@@ -84,6 +84,7 @@ Only uncommented entries in [`compose.yaml`](compose.yaml) are active. Links bel
 | [Hindsight](stack/hindsight/compose.yaml) | Agent memory service using Headroom and shared Postgres |
 | [Open Design](stack/open-design/compose.yaml) | Local-first design workspace for coding agents; uses host networking |
 | [Open Notebook](stack/open-notebook/compose.yaml) | AI research notebook using SurrealDB and Bifrost |
+| [Obscura MCP](stack/obscura-mcp/compose.yaml) | MCP server for Obscura (headless browser for AI agents and web scraping) |
 | [Open WebUI](stack/open-webui/compose.yaml) | Main chat UI using shared pgvector, Bifrost, Ollama, SearXNG, and MCP integrations |
 | [Phoenix](stack/phoenix/compose.yaml) | LLM tracing and observability using shared Postgres, Ollama, and an MCP server |
 
@@ -209,10 +210,10 @@ Active compose files that connect to or depend on shared Postgres include Anythi
 
 ## Integrations
 
-- **Bifrost:** shared OpenAI-compatible gateway for AnythingLLM, Crawl4AI, Headroom, Karakeep, Mealie, Open Notebook, Open WebUI, and other AI-enabled services.
+- **Bifrost:** shared OpenAI-compatible gateway for AnythingLLM, Crawl4AI, Headroom, Hindsight, Karakeep, Mealie, Open Notebook, Open WebUI, and other AI-enabled services.
 - **Ollama and LM Studio:** host-machine model servers reached through `host.docker.internal`.
 - **SearXNG:** search backend for Open WebUI and AnythingLLM.
-- **MCP:** Bifrost and AI tools can connect to Atlassian MCP, Context7, Mermaid, and other configured MCP servers.
+- **MCP:** Bifrost and AI tools can connect to Atlassian MCP, Context7, Mermaid, Obscura, and other configured MCP servers.
 - **Mailpit:** captures local application email from Databasus, Hoppscotch, Mealie, and other SMTP-enabled apps.
 - **Nextcloud WebDAV:** synchronization backend for Super Productivity.
 - **DBGate:** browser UI for provisioning and inspecting shared Postgres.
