@@ -1,6 +1,6 @@
 services:
   karakeep-chrome:
-    image: gcr.io/zenika-hub/alpine-chrome:124
+    image: zenika/alpine-chrome:124
     container_name: karakeep-chrome
     restart: unless-stopped
     ports:
@@ -18,7 +18,7 @@ services:
           memory: 5120M
 
   karakeep-meilisearch:
-    image: getmeili/meilisearch:v1.52.0
+    image: getmeili/meilisearch:v1.53.0
     container_name: karakeep-meilisearch
     restart: unless-stopped
     ports:
