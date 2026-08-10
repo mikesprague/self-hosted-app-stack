@@ -2,7 +2,7 @@ services:
   degoog-valkey:
     image: valkey/valkey:9.1.1-alpine
     container_name: degoog-valkey
-    command: ["valkey-server", "--save", "", "--appendonly", "no"]
+    command: [ "valkey-server", "--save", "", "--appendonly", "no" ]
     user: "1000:1000"
     cap_drop:
       - ALL
@@ -11,12 +11,12 @@ services:
     deploy:
       resources:
         limits:
-          memory: 512M
+          memory: 1024M
     volumes:
       - ../../local-volumes/degoog/valkey:/data/
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "valkey-cli", "ping"]
+      test: [ "CMD", "valkey-cli", "ping" ]
       interval: 10s
       timeout: 3s
       retries: 5
@@ -25,18 +25,19 @@ services:
   degoog:
     image: ghcr.io/degoog-org/degoog:0.24.0
     container_name: degoog
+    ports:
+      - "${DEGOOG_PORT:-4444}:4444"
     depends_on:
       degoog-valkey:
         condition: service_healthy
-    volumes:
-      - ../../local-volumes/degoog/data:/app/data
-    ports:
-      - "${DEGOOG_PORT:-4444}:4444"
-    environment:
-      DEGOOG_VALKEY_URL: "redis://degoog-valkey:6379"
-      DEGOOG_DANGEROUSLY_NO_PASSWORD: "true"
-    restart: unless-stopped
     deploy:
       resources:
         limits:
           memory: 2048M
+    restart: unless-stopped
+    environment:
+      DEGOOG_VALKEY_URL: "redis://degoog-valkey:6379"
+      DEGOOG_DANGEROUSLY_NO_PASSWORD: true
+      DEGOOG_PUBLIC_INSTANCE: false
+    volumes:
+      - ../../local-volumes/degoog/data:/app/data
