@@ -1,0 +1,25 @@
+services:
+  aio-sandbox:
+    image: ghcr.io/agent-infra/sandbox:1.11.0
+    container_name: aio-sandbox
+    ports:
+      - "${AIO_SANDBOX_PORT:-8396}:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 12288M
+    restart: "unless-stopped"
+    security_opt:
+      - seccomp:unconfined
+    shm_size: "2gb"
+    environment:
+      SANDBOX_API_KEY: ${AIO_SANDBOX_API_KEY:-}
+      PROXY_SERVER: ${AIO_SANDBOX_PROXY_SERVER:-}
+      WORKSPACE: ${AIO_SANDBOX_WORKSPACE:-/home/gem/workspace}
+      TZ: ${TZ:-America/New_York}
+    volumes:
+      - sandbox_data:${AIO_SANDBOX_WORKSPACE:-/home/gem/workspace}
+      - ~/.config/opencode/opencode.jsonc:/home/gem/.config/opencode/opencode.jsonc
+
+volumes:
+  sandbox_data:
