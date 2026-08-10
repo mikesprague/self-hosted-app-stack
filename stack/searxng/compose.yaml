@@ -7,14 +7,14 @@ services:
     volumes:
       - ../../local-volumes/searxng/valkey:/data/
     healthcheck:
-      test: ["CMD", "valkey-cli", "ping"]
+      test: [ "CMD", "valkey-cli", "ping" ]
       interval: 10s
       timeout: 3s
       retries: 5
       start_period: 5s
 
   searxng:
-    image: searxng/searxng:2026.8.4-c63835bd2
+    image: searxng/searxng:2026.8.10-0a118066d
     container_name: searxng
     depends_on:
       searxng-valkey:
@@ -33,7 +33,7 @@ services:
       - ../../local-volumes/searxng:/etc/searxng:rw
       - ../../local-volumes/searxng/cache:/var/cache/searxng:rw
     healthcheck:
-      test: ["CMD", "wget", "--spider", "--quiet", "http://localhost:8080/healthz"]
+      test: [ "CMD", "wget", "--spider", "--quiet", "http://localhost:8080/healthz" ]
       interval: 30s
       timeout: 5s
       retries: 3
