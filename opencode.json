@@ -3,6 +3,13 @@
   "watcher": {
     "ignore": ["local-volumes/**"]
   },
+  "server": {
+    "port": 4096,
+    "hostname": "0.0.0.0",
+    "mdns": true,
+    "mdnsDomain": "self-hosted-app-stack.local",
+    "cors": []
+  },
   "permission": {
     "external_directory": {
       "~/.config/opencode/**": "allow"
