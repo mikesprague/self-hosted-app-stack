@@ -9,7 +9,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 1024M
+          memory: 2048M
     environment:
       QDRANT__LOG_LEVEL: "${BIFROST_QDRANT_LOG_LEVEL:-info}"
       QDRANT__STORAGE__PATH: "/qdrant/storage"
@@ -32,7 +32,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 2048M
+          memory: 4096M
     depends_on:
       bifrost-qdrant:
         condition: service_healthy
