@@ -33,6 +33,7 @@ services:
       resources:
         limits:
           memory: 4096M
+    restart: unless-stopped
     depends_on:
       bifrost-qdrant:
         condition: service_healthy
@@ -68,4 +69,3 @@ services:
       OTEL_RESOURCE_ATTRIBUTES: "openinference.project.name=bifrost"
     volumes:
       - ../../local-volumes/bifrost/data:/app/data
-    restart: unless-stopped
