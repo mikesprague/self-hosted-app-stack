@@ -30,6 +30,7 @@
             "kimi-k3": "accounts/fireworks/models/kimi-k3",
             "minimax-m3": "accounts/fireworks/models/minimax-m3",
             "nemotron-3-ultra": "accounts/fireworks/models/nemotron-3-ultra-nvfp4",
+            "nemotron-lightning-3.5": "accounts/fireworks/models/nemotron-lightning-3p5-30b-a3b",
             "qwen-3.7-plus": "accounts/fireworks/models/qwen3p7-plus",
             "qwen-3-embedding-8b": "accounts/fireworks/models/qwen3-embedding-8b",
             "qwen-3-reranker-8b": "accounts/fireworks/models/qwen3-reranker-8b"
