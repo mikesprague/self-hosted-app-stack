@@ -1,6 +1,6 @@
 services:
   phoenix:
-    image: arizephoenix/phoenix:19.21.0
+    image: arizephoenix/phoenix:20.0.0
     container_name: phoenix
     restart: unless-stopped
     depends_on:
@@ -25,8 +25,9 @@ services:
       PHOENIX_DEFAULT_RETENTION_POLICY_DAYS: "${PHOENIX_DEFAULT_RETENTION_POLICY_DAYS:-14}"
       PHOENIX_TELEMETRY_ENABLED: "false"
       PHOENIX_ENABLE_MCP_SERVER: "true"
-      PHOENIX_ENABLE_MCP_CODE_MODEL: "true"
+      PHOENIX_ENABLE_MCP_CODE_MODE: "true"
       OLLAMA_BASE_URL: "${OMLX_BASE_URL}/v1"
       OLLAMA_API_KEY: "${OMLX_API_KEY}"
+      PHOENIX_ENABLE_OAUTH2_AUTHORIZATION_SERVER: "false"
     volumes:
       - ../../local-volumes/phoenix/data:/app/data
