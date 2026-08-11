@@ -1,17 +1,15 @@
 services:
   karakeep-chrome:
-    image: zenika/alpine-chrome:124
+    image: ghcr.io/karakeep-app/karakeep-chrome:151.0.7922.47-r1
     container_name: karakeep-chrome
     restart: unless-stopped
-    ports:
-      - 9222:9222
+    init: true
     command:
-      - --no-sandbox
       - --disable-gpu
       - --disable-dev-shm-usage
-      - --remote-debugging-address=0.0.0.0
-      - --remote-debugging-port=9222
       - --hide-scrollbars
+      - --disable-blink-features=AutomationControlled
+      - --window-size=1440,900
     deploy:
       resources:
         limits:
@@ -32,7 +30,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 1024M
+          memory: 2048M
     environment:
       MEILI_NO_ANALYTICS: "true"
       MEILI_MASTER_KEY: ${KARAKEEP_MEILI_MASTER_KEY}
@@ -40,7 +38,7 @@ services:
       - ../../local-volumes/karakeep/meilisearch:/meili_data
 
   karakeep-web:
-    image: ghcr.io/karakeep-app/karakeep:0.33.1
+    image: ghcr.io/karakeep-app/karakeep:0.33.2
     container_name: karakeep-web
     deploy:
       resources:
@@ -92,8 +90,7 @@ services:
       INFERENCE_CONTEXT_LENGTH: 32768
       INFERENCE_MAX_OUTPUT_TOKENS: 16384
       INFERENCE_LANG: "english"
-      INFERENCE_ENABLE_AUTO_TAGGING: true
-      # INFERENCE_USE_MAX_COMPLETION_TOKENS: "${KARAKEEP_INFERENCE_USE_MAX_COMPLETION_TOKENS:-false}"
+      # INFERENCE_USE_MAX_COMPLETION_TOKENS: "${KARAKEEP_INFERENCE_USE_MAX_COMPLETION_TOKENS:-true}"
       INFERENCE_USE_MAX_COMPLETION_TOKENS: true
       INFERENCE_NUM_WORKERS: "${KARAKEEP_INFERENCE_NUM_WORKERS:-1}"
       INFERENCE_ENABLE_AUTO_SUMMARIZATION: "${KARAKEEP_INFERENCE_ENABLE_AUTO_SUMMARIZATION:-true}"
