@@ -11,7 +11,7 @@ services:
         limits:
           memory: 1024M
     healthcheck:
-      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -20,7 +20,7 @@ services:
     restart: unless-stopped
 
   activepieces:
-    image: ghcr.io/activepieces/activepieces:0.86.3-hotfix.1
+    image: ghcr.io/activepieces/activepieces:0.88.0
     container_name: activepieces
     restart: unless-stopped
     deploy:
