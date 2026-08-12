@@ -7,14 +7,14 @@ services:
     volumes:
       - ../../local-volumes/searxng/valkey:/data/
     healthcheck:
-      test: [ "CMD", "valkey-cli", "ping" ]
+      test: ["CMD", "valkey-cli", "ping"]
       interval: 10s
       timeout: 3s
       retries: 5
       start_period: 5s
 
   searxng:
-    image: searxng/searxng:2026.8.12-1c3bb1e88
+    image: searxng/searxng:2026.8.12-cdfdaa5a8
     container_name: searxng
     depends_on:
       searxng-valkey:
@@ -25,7 +25,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 512M
+          memory: 1024M
     environment:
       SEARXNG_SECRET_KEY: "${SEARXNG_SECRET_KEY}"
       SEARXNG_VALKEY_URL: "redis://searxng-valkey:6379/0"
@@ -33,7 +33,7 @@ services:
       - ../../local-volumes/searxng:/etc/searxng:rw
       - ../../local-volumes/searxng/cache:/var/cache/searxng:rw
     healthcheck:
-      test: [ "CMD", "wget", "--spider", "--quiet", "http://localhost:8080/healthz" ]
+      test: ["CMD", "wget", "--spider", "--quiet", "http://localhost:8080/healthz"]
       interval: 30s
       timeout: 5s
       retries: 3
