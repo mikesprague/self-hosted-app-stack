@@ -1,6 +1,6 @@
 services:
   phoenix:
-    image: arizephoenix/phoenix:commit-23fdeaa
+    image: arizephoenix/phoenix:20.1.0
     container_name: phoenix
     restart: unless-stopped
     depends_on:
