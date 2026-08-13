@@ -81,7 +81,7 @@ Only uncommented entries in [`compose.yaml`](compose.yaml) are active. Links bel
 | [Bifrost](stack/bifrost/compose.yaml) | Shared LLM gateway with a Qdrant sidecar |
 | [Crawl4AI](stack/crawl4ai/compose.yaml) | Web crawling and extraction API using Bifrost |
 | [Headroom](stack/headroom/compose.yaml) | Compresses agent context and tool output before forwarding it to an LLM |
-| [Hindsight](stack/hindsight/compose.yaml) | Agent memory service using Headroom and shared Postgres |
+| [Hindsight](stack/hindsight/compose.yaml) | Agent memory service using Headroom and embedded Postgres |
 | [Open Design](stack/open-design/compose.yaml) | Local-first design workspace for coding agents; uses host networking |
 | [Open Notebook](stack/open-notebook/compose.yaml) | AI research notebook using SurrealDB and Bifrost |
 | [Obscura MCP](stack/obscura-mcp/compose.yaml) | MCP server for Obscura (headless browser for AI agents and web scraping) |
@@ -122,7 +122,6 @@ Additional notes about how I utilize some of these services with [OpenCode](http
 
 | App | Purpose and dependencies |
 | --- | --- |
-| [Beszel](stack/beszel/compose.yaml) | Resource monitoring with a host-network agent and read-only Docker socket access |
 | [Dockpeek](stack/dockpeek/compose.yaml) | Lightweight Docker dashboard |
 | [Dozzle](stack/dozzle/compose.yaml) | Live Docker log viewer |
 | [Portainer](stack/portainer/compose.yaml) | Docker management UI |
@@ -153,7 +152,6 @@ These are the compose defaults for the services you are most likely to open firs
 | Phoenix | <http://localhost:6006> |
 | Mailpit UI | <http://localhost:8371> |
 | Mailpit SMTP | `smtp://localhost:1025` |
-| Beszel | <http://localhost:8090> |
 | Dozzle | <http://localhost:8357> |
 | Portainer | <http://localhost:8358> |
 | Uptime Kuma | <http://localhost:8356> |
@@ -206,7 +204,7 @@ To add a future Postgres-backed app:
 2. Add `postgres-shared-provision: condition: service_completed_successfully` to the app's own `depends_on` block.
 3. `docker compose up -d postgres-shared postgres-shared-provision <app>` — no manual `psql`/DBGate step required.
 
-Active compose files that connect to or depend on shared Postgres include AnythingLLM, Bifrost, Databasus, DBGate, FreshRSS, Hindsight, Hoppscotch, Memos, n8n, Open WebUI, and Phoenix. Mealie also uses Postgres through its configured server variables. Nextcloud is the main exception and uses its own MariaDB sidecar.
+Active compose files that connect to or depend on shared Postgres include AnythingLLM, Bifrost, Databasus, DBGate, FreshRSS, Hoppscotch, Memos, n8n, Open WebUI, and Phoenix. Mealie also uses Postgres through its configured server variables. Nextcloud is the main exception and uses its own MariaDB sidecar.
 
 ## Integrations
 
@@ -222,8 +220,8 @@ Active compose files that connect to or depend on shared Postgres include Anythi
 
 - `local-volumes/` contains databases, uploads, indexes, and app state. It is gitignored and survives container recreation.
 - `.env` contains credentials, API keys, and app secrets. It is gitignored and must not be committed or pasted into issue reports.
-- Homepage, Dockpeek, Dozzle, Portainer, Uptime Kuma, and the Beszel agent mount the Docker socket. Treat those containers as privileged.
-- Open Design and the Beszel agent use host networking. Review those compose files before changing network behavior.
+- Homepage, Dockpeek, Dozzle, Portainer, and Uptime Kuma mount the Docker socket. Treat those containers as privileged.
+- Open Design uses host networking. Review that compose file before changing network behavior.
 - The stack is designed for local or Tailnet use, not direct public internet exposure.
 
 ## Maintainer Notes
