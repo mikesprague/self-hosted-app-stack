@@ -54,7 +54,7 @@ include:
       - ./stack/dockdash/compose.yaml
       - ./stack/dockpeek/compose.yaml
       - ./stack/dozzle/compose.yaml
-      - ./stack/portainer/compose.yaml
+      # - ./stack/portainer/compose.yaml
       - ./stack/uptime-kuma/compose.yaml
       # SMTP Server/Mail Catcher
       - ./stack/mailpit/compose.yaml

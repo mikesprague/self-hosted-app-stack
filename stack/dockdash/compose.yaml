@@ -5,7 +5,7 @@ services:
     container_name: dockdash
     restart: unless-stopped
     ports:
-      - "${DOCKDASH_PORT:-8390}:3001"
+      - "${DOCKDASH_PORT:-8397}:3001"
     deploy:
       resources:
         limits:
