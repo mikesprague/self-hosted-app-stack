@@ -1,6 +1,6 @@
 services:
   homepage:
-    image: ghcr.io/gethomepage/homepage:v1.13.2
+    image: ghcr.io/gethomepage/homepage:v2.0.0
     container_name: homepage
     ports:
       - "${HOMEPAGE_PORT:-8349}:3000"
@@ -14,4 +14,5 @@ services:
       - ../../local-volumes/homepage/icons:/app/public/icons # (optional) For custom icons used in bookmarks and services configs
     environment:
       HOMEPAGE_ALLOWED_HOSTS: "${HOMEPAGE_ALLOWED_HOSTS:-*}"
+      HOMEPAGE_AUTH_ENABLED: false
     restart: unless-stopped
