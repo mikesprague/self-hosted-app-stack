@@ -53,4 +53,5 @@ local-volumes/affine
 conductor*.md
 omo*.md
 models.md
+opencode.md
 *.code-workspace
