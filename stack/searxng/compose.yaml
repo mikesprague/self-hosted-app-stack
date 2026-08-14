@@ -4,6 +4,10 @@ services:
     container_name: searxng-valkey
     command: valkey-server --save 30 1 --loglevel warning
     restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 1024M
     volumes:
       - ../../local-volumes/searxng/valkey:/data/
     healthcheck:
@@ -25,7 +29,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 1024M
+          memory: 2048M
     environment:
       SEARXNG_SECRET_KEY: "${SEARXNG_SECRET_KEY}"
       SEARXNG_VALKEY_URL: "redis://searxng-valkey:6379/0"
