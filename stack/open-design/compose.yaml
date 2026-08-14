@@ -1,6 +1,6 @@
 services:
   open-design:
-    image: ghcr.io/nexu-io/od:0.19.0
+    image: ghcr.io/nexu-io/od:0.19.1
     container_name: open-design
     environment:
       NODE_ENV: "production"
@@ -31,7 +31,13 @@ services:
           pids: 256
     restart: unless-stopped
     healthcheck:
-      test: [ "CMD", "node", "-e", "fetch('http://127.0.0.1:7456/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))" ]
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:7456/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
       interval: 30s
       timeout: 5s
       retries: 3
