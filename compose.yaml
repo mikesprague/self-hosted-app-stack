@@ -51,6 +51,7 @@ include:
       - ./stack/n8n/compose.yaml
       # Monitoring/Management
       # - ./stack/beszel/compose.yaml
+      - ./stack/dockdash/compose.yaml
       - ./stack/dockpeek/compose.yaml
       - ./stack/dozzle/compose.yaml
       - ./stack/portainer/compose.yaml

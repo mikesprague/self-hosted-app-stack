@@ -1,0 +1,14 @@
+services:
+  dockdash:
+    image: ghcr.io/dougmaitelli/dockdash:v0.9.1
+    platform: linux/amd64
+    container_name: dockdash
+    restart: unless-stopped
+    ports:
+      - "${DOCKDASH_PORT:-8390}:3001"
+    environment:
+      LOG_LEVEL: "info"
+      NETWORK_CIDRS: "192.168.0.1/24"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ../../local-volumes/dockdash/data:/app/data
