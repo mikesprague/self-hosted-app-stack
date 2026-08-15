@@ -1,0 +1,26 @@
+services:
+  stirling-pdf:
+    image: stirlingtools/stirling-pdf:2.14.3
+    container_name: stirling-pdf
+    restart: unless-stopped
+    ports:
+      - "${STIRLING_PDF_PORT:-8398}:8080"
+    environment:
+      DOCKER_ENABLE_SECURITY: "false" # Set to "true" to enable login
+      # SECURITY_ENABLELOGIN: "true"
+      # SECURITY_INITIALLOGIN_USERNAME: "admin"
+      # SECURITY_INITIALLOGIN_PASSWORD: "change_this_password"
+      LANGS: "en_US" # UI language
+      SYSTEM_DEFAULTLOCALE: "en-US"
+      INSTALL_BOOK_AND_ADVANCED_HTML_OPS: "true"
+    volumes:
+      - ../../local-volumes/stirling/data:/usr/share/tessdata # OCR language data
+      - ../../local-volumes/stirling/config:/configs # Custom settings
+      - ../../local-volumes/stirling/logs:/logs # Application logs
+      - ../../local-volumes/stirling/pipeline:/pipeline # Automated pipelines
+      - ../../local-volumes/stirling/custom:/customFiles # Custom HTML/CSS
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/api/v1/info/status || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

@@ -65,6 +65,7 @@ include:
       # Misc Tools/Utilities
       - ./stack/it-tools/compose.yaml
       - ./stack/omni-tools/compose.yaml
+      - ./stack/stirling-pdf/compose.yaml
       # Push Notifications
       - ./stack/ntfy/compose.yaml
       # Dashboard
