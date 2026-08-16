@@ -1,0 +1,58 @@
+services:
+  outline:
+    image: outlinewiki/outline:1.9.2
+    container_name: outline
+    restart: unless-stopped
+    depends_on:
+      postgres-shared:
+        condition: service_healthy
+      postgres-shared-provision:
+        condition: service_completed_successfully
+      outline-redis:
+        condition: service_healthy
+    ports:
+      - "${OUTLINE_PORT:-8399}:3000"
+    deploy:
+      resources:
+        limits:
+          memory: 4096M
+    environment:
+      NODE_ENV: "production"
+      SECRET_KEY: "${OUTLINE_SECRET_KEY}"
+      UTILS_SECRET: "${OUTLINE_UTILS_SECRET}"
+      DATABASE_URL: "postgres://outline:${POSTGRES_SHARED_APP_PASSWORD}@${POSTGRES_SHARED_HOST}:${POSTGRES_SHARED_PORT}/outline"
+      REDIS_URL: "redis://outline-redis:6379"
+      URL: "${TAILNET_IP_ADDRESS}:${OUTLINE_PORT}"
+      PORT: ${OUTLINE_PORT}
+      FILE_STORAGE: "local"
+      FILE_STORAGE_LOCAL_ROOT_DIR: "/var/lib/outline/data"
+      FILE_STORAGE_UPLOAD_MAX_SIZE: 26214400
+      SMTP_HOST: "${MAILPIT_SMTP_HOST}"
+      SMTP_PORT: ${MAILPIT_SMTP_PORT}
+      SMTP_USERNAME: "${MAILPIT_SMTP_USER}"
+      SMTP_PASSWORD: "${MAILPIT_SMTP_PASSWORD}"
+      SMTP_FROM_EMAIL: "Outline <noreply@outline.local>"
+      FORCE_HTTPS: false
+      PGSSLMODE: "disable"
+      DEFAULT_LANGUAGE: "en_US"
+    volumes:
+      - ../../local-volumes/outline/data:/var/lib/outline/data
+
+  outline-redis:
+    image: redis:8.10.0-alpine
+    container_name: outline-redis
+    command:
+      - redis-server
+      - --maxmemory 768mb # a bit under container limit so you leave room for Redis overhead
+      - --maxmemory-policy allkeys-lru
+    deploy:
+      resources:
+        limits:
+          memory: 1024M
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      interval: 10s
+      timeout: 5s
+    volumes:
+      - ../../local-volumes/outline/redis/redis.conf:/redis.conf
