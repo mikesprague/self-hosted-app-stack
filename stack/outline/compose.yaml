@@ -22,7 +22,7 @@ services:
       UTILS_SECRET: "${OUTLINE_UTILS_SECRET}"
       DATABASE_URL: "postgres://outline:${POSTGRES_SHARED_APP_PASSWORD}@${POSTGRES_SHARED_HOST}:${POSTGRES_SHARED_PORT}/outline"
       REDIS_URL: "redis://outline-redis:6379"
-      URL: "${TAILNET_IP_ADDRESS}:${OUTLINE_PORT}"
+      URL: "http://localhost:${OUTLINE_PORT}"
       PORT: ${OUTLINE_PORT}
       FILE_STORAGE: "local"
       FILE_STORAGE_LOCAL_ROOT_DIR: "/var/lib/outline/data"
