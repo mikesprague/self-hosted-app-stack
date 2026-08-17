@@ -14,7 +14,7 @@ services:
       - ../../local-volumes/paperless-ngx/redis-data:/data
 
   paperless-gotenberg:
-    image: gotenberg/gotenberg:8.35.0
+    image: gotenberg/gotenberg:8.36.0
     container_name: paperless-gotenberg
     ports:
       - "${PAPERLESS_GOTENBERG_PORT:-3000}:3000"
