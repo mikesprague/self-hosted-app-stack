@@ -9,7 +9,7 @@
   "providers": {
     "fireworks": {
       "network_config": {
-        "default_request_timeout_in_seconds": 900
+        "default_request_timeout_in_seconds": 300
       },
       "store_raw_request_response": true,
       "send_back_raw_response": true,
@@ -34,6 +34,7 @@
             "nemotron-lightning-3.5": "accounts/fireworks/models/nemotron-lightning-3p5-30b-a3b",
             "qwen-3.7-plus": "accounts/fireworks/models/qwen3p7-plus",
             "qwen-3.8-max": "accounts/fireworks/models/qwen3p8-max",
+            "qwen-3.8-2.4t": "accounts/fireworks/models/qwen3p8-2p4t-a95b",
             "qwen-3-embedding-8b": "accounts/fireworks/models/qwen3-embedding-8b",
             "qwen-3-reranker-8b": "accounts/fireworks/models/qwen3-reranker-8b"
           }
@@ -42,7 +43,7 @@
     },
     "openai": {
       "network_config": {
-        "default_request_timeout_in_seconds": 900
+        "default_request_timeout_in_seconds": 300
       },
       "store_raw_request_response": true,
       "send_back_raw_response": true,
@@ -161,7 +162,7 @@
       ],
       "network_config": {
         "base_url": "env.AZURE_ENDPOINT",
-        "default_request_timeout_in_seconds": 900,
+        "default_request_timeout_in_seconds": 300,
         "max_retries": 5,
         "retry_backoff_initial": 100,
         "retry_backoff_max": 10000
