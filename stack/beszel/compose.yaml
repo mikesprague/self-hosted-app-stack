@@ -15,7 +15,7 @@ services:
       - ../../local-volumes/beszel/data:/beszel_data
 
   beszel-agent:
-    image: henrygd/beszel-agent:0.18.7
+    image: henrygd/beszel-agent:0.18.8
     container_name: beszel-agent
     restart: unless-stopped
     network_mode: host
