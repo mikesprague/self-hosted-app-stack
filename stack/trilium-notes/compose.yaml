@@ -1,9 +1,11 @@
 services:
   trilium:
-    image: triliumnext/trilium:v0.104.1
+    image: triliumnext/trilium:v0.105.0
     container_name: trilium
     ports:
       - "${TRILIUM_PORT:-8351}:8080"
+    security_opt:
+      - seccomp:unconfined
     deploy:
       resources:
         limits:
