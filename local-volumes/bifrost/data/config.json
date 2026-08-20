@@ -23,7 +23,6 @@
             "deepseek-v4-flash": "accounts/fireworks/models/deepseek-v4-flash-0731",
             "deepseek-v4-pro": "accounts/fireworks/models/deepseek-v4-pro-0813",
             "glm-5.2": "accounts/fireworks/models/glm-5p2",
-            "gpt-oss-20b": "accounts/fireworks/models/gpt-oss-20b",
             "gpt-oss-120b": "accounts/fireworks/models/gpt-oss-120b",
             "inkling": "accounts/fireworks/models/inkling",
             "kimi-k2.7-code": "accounts/fireworks/models/kimi-k2p7-code",
@@ -34,7 +33,6 @@
             "nemotron-lightning-3.5": "accounts/fireworks/models/nemotron-lightning-3p5-30b-a3b",
             "qwen-3.7-plus": "accounts/fireworks/models/qwen3p7-plus",
             "qwen-3.8-max": "accounts/fireworks/models/qwen3p8-max",
-            "qwen-3.8-2.4t": "accounts/fireworks/models/qwen3p8-2p4t-a95b",
             "qwen-3-embedding-8b": "accounts/fireworks/models/qwen3-embedding-8b",
             "qwen-3-reranker-8b": "accounts/fireworks/models/qwen3-reranker-8b"
           }
