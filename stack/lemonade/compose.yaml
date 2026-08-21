@@ -1,6 +1,6 @@
 services:
   lemonade:
-    image: ghcr.io/lemonade-sdk/lemonade-server:v11.6.0
+    image: ghcr.io/lemonade-sdk/lemonade-server:v11.7.0
     platform: linux/amd64
     container_name: lemonade
     restart: unless-stopped
