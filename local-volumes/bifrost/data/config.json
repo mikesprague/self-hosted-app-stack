@@ -103,7 +103,6 @@
           "models": [
             "az-5.4-nano",
             "az-5.4-mini",
-            "az-chat-latest",
             "az-5.6-luna",
             "az-5.6-terra",
             "az-5.6-sol",
@@ -131,7 +130,6 @@
           "aliases": {
             "az-5.4-mini": "gpt-5.4-mini",
             "az-5.4-nano": "gpt-5.4-nano",
-            "az-chat-latest": "gpt-chat-latest",
             "az-5.6-luna": "gpt-5.6-luna",
             "az-5.6-terra": "gpt-5.6-terra",
             "az-5.6-sol": "gpt-5.6-sol",
