@@ -122,9 +122,9 @@ Additional notes about how I utilize some of these services with [OpenCode](http
 
 | App | Purpose and dependencies |
 | --- | --- |
+| [Dockdash](stack/dockdash/compose.yaml) | Lightweight Docker dashboard |
 | [Dockpeek](stack/dockpeek/compose.yaml) | Lightweight Docker dashboard |
 | [Dozzle](stack/dozzle/compose.yaml) | Live Docker log viewer |
-| [Portainer](stack/portainer/compose.yaml) | Docker management UI |
 | [Uptime Kuma](stack/uptime-kuma/compose.yaml) | Service uptime and availability monitoring |
 | [Mailpit](stack/mailpit/compose.yaml) | Local SMTP sink and inbox viewer |
 | [Homepage](stack/homepage/compose.yaml) | Stack dashboard and start page |
@@ -135,6 +135,7 @@ Additional notes about how I utilize some of these services with [OpenCode](http
 | --- | --- |
 | [IT-Tools](stack/it-tools/compose.yaml) | Browser-based developer and system utilities |
 | [OmniTools](stack/omni-tools/compose.yaml) | Browser-based file, text, and media utilities |
+| [Stirling-PDF](stack/stirling-pdf/compose.yaml) | Browser-based PDF manipulation toolkit |
 | [ntfy](stack/ntfy/compose.yaml) | Push notification service |
 | [Vert](stack/vert/compose.yaml) | Browser-based file conversion |
 
@@ -153,7 +154,6 @@ These are the compose defaults for the services you are most likely to open firs
 | Mailpit UI | <http://localhost:8371> |
 | Mailpit SMTP | `smtp://localhost:1025` |
 | Dozzle | <http://localhost:8357> |
-| Portainer | <http://localhost:8358> |
 | Uptime Kuma | <http://localhost:8356> |
 
 Check the relevant app compose file for every other default port. Homepage configuration belongs under `local-volumes/homepage/config/` and is intentionally not tracked.
@@ -220,7 +220,7 @@ Active compose files that connect to or depend on shared Postgres include Anythi
 
 - `local-volumes/` contains databases, uploads, indexes, and app state. It is gitignored and survives container recreation.
 - `.env` contains credentials, API keys, and app secrets. It is gitignored and must not be committed or pasted into issue reports.
-- Homepage, Dockpeek, Dozzle, Portainer, and Uptime Kuma mount the Docker socket. Treat those containers as privileged.
+- Homepage, Dockdash, Dockpeek, Dozzle, and Uptime Kuma mount the Docker socket. Treat those containers as privileged.
 - Open Design uses host networking. Review that compose file before changing network behavior.
 - The stack is designed for local or Tailnet use, not direct public internet exposure.
 
