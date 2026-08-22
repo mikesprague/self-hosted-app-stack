@@ -31,7 +31,6 @@
             "muse-glimmer-30b": "accounts/fireworks/models/muse-glimmer-30b",
             "nemotron-3-ultra": "accounts/fireworks/models/nemotron-3-ultra-nvfp4",
             "nemotron-lightning-3.5": "accounts/fireworks/models/nemotron-lightning-3p5-30b-a3b",
-            "qwen-3.7-plus": "accounts/fireworks/models/qwen3p7-plus",
             "qwen-3.8-max": "accounts/fireworks/models/qwen3p8-max",
             "qwen-3-embedding-8b": "accounts/fireworks/models/qwen3-embedding-8b",
             "qwen-3-reranker-8b": "accounts/fireworks/models/qwen3-reranker-8b"
