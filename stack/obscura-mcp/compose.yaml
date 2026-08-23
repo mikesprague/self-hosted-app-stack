@@ -1,6 +1,6 @@
 services:
   obscura-mcp:
-    image: h4ckf0r0day/obscura:0.2.0
+    image: h4ckf0r0day/obscura:0.2.1
     container_name: obscura-mcp
     ports:
       - "${OBSCURA_PORT:-8395}:3000"
@@ -8,5 +8,5 @@ services:
     deploy:
       resources:
         limits:
-          memory: 1024M
+          memory: 2048M
     restart: unless-stopped
