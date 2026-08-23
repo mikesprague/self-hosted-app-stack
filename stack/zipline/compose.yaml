@@ -1,0 +1,44 @@
+services:
+  zipline:
+    image: ghcr.io/diced/zipline:4.7.0
+    container_name: zipline
+    restart: unless-stopped
+    ports:
+      - "${ZIPLINE_PORT:-8401}:3000"
+    deploy:
+      resources:
+        limits:
+          memory: 4096M
+    environment:
+      CORE_SECRET: "${ZIPLINE_CORE_SECRET}"
+      CORE_PORT: 3000
+      CORE_HOSTNAME: "0.0.0.0"
+      DATASOURCE_TYPE: "local"
+      DATASOURCE_LOCAL_DIRECTORY: ./uploads
+      POSTGRESQL_PASSWORD: "${POSTGRES_SHARED_APP_PASSWORD}"
+      DATABASE_NAME: "${ZIPLINE_POSTGRES_DB}"
+      DATABASE_USERNAME: "${ZIPLINE_POSTGRES_USER}"
+      DATABASE_PASSWORD: '${POSTGRES_SHARED_APP_PASSWORD}'
+      DATABASE_HOST: "${POSTGRES_SHARED_HOST}"
+      DATABASE_PORT: "${POSTGRES_SHARED_PORT}"
+      CORE_TRUST_PROXY: true
+      # CORE_RETURN_HTTPS_URLS: true
+      # CORE_DEFAULT_DOMAIN: ${TAILNET_DOMAIN}
+      # CORE_TEMP_DIRECTORY: "./uploads/.tmp"
+      FEATURES_USER_REGISTRATION: false
+      INVITES_ENABLED: false
+      FILES_ASSUME_MIMETYPES: true
+    depends_on:
+      postgres-shared:
+        condition: service_healthy
+      postgres-shared-provision:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ['CMD', 'wget', '-q', '--spider', 'http://0.0.0.0:3000/api/healthcheck']
+      interval: 15s
+      timeout: 2s
+      retries: 2
+    volumes:
+      - '../../local-volumes/zipline/uploads:/zipline/uploads'
+      - '../../local-volumes/zipline/public:/zipline/public'
+      - '../../local-volumes/zipline/themes:/zipline/themes'
