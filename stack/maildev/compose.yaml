@@ -1,0 +1,21 @@
+services:
+  maildev:
+    image: maildev/maildev:3.0.0-rc.1
+    container_name: maildev
+    restart: unless-stopped
+    ports:
+      - "${MAILDEV_PORT:-8402}:${MAILDEV_PORT:-8402}"
+      - "${MAILDEV_SMTP_PORT:-1025}:1025"
+    deploy:
+      resources:
+        limits:
+          memory: 2048M
+    environment:
+      TZ: "${TZ:-America/New_York}"
+      MAILDEV_SMTP_PORT: "${MAILDEV_SMTP_PORT:-1025}"
+      MAILDEV_WEB_PORT: "${MAILDEV_PORT:-8402}"
+      MAILDEV_MAX_EMAILS: "${MAILDEV_MAX_EMAILS:-5000}"
+      MAILDEV_MCP: "${MAILDEV_MCP:-true}"
+      MAILDEV_MAIL_DIRECTORY: "/data"
+    volumes:
+      - ../../local-volumes/maildev/data:/data

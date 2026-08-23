@@ -58,7 +58,7 @@ include:
       # - ./stack/portainer/compose.yaml
       - ./stack/uptime-kuma/compose.yaml
       # SMTP Server/Mail Catcher
-      - ./stack/mailpit/compose.yaml
+      - ./stack/maildev/compose.yaml
       # API Development
       - ./stack/hoppscotch/compose.yaml
       # File Conversion
@@ -67,6 +67,7 @@ include:
       - ./stack/it-tools/compose.yaml
       - ./stack/omni-tools/compose.yaml
       - ./stack/stirling-pdf/compose.yaml
+      # File Sharing
       - ./stack/zipline/compose.yaml
       # Push Notifications
       - ./stack/ntfy/compose.yaml
