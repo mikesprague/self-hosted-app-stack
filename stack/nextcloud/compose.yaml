@@ -1,6 +1,6 @@
 services:
   nextcloud-mariadb:
-    image: mariadb:12.3.2
+    image: mariadb:12.3.3
     container_name: nextcloud-mariadb
     restart: unless-stopped
     command:
