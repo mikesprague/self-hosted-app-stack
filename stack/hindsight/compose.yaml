@@ -1,6 +1,6 @@
 services:
   hindsight:
-    image: ghcr.io/vectorize-io/hindsight:0.9.1
+    image: ghcr.io/vectorize-io/hindsight:0.9.2
     container_name: hindsight
     restart: unless-stopped
     ports:
@@ -32,11 +32,11 @@ services:
       HINDSIGHT_API_EMBEDDINGS_LOCAL_MODEL: "BAAI/bge-small-en-v1.5"
       HINDSIGHT_API_RERANKER_PROVIDER: "local"
       HINDSIGHT_API_RERANKER_LOCAL_MODEL: "cross-encoder/ms-marco-MiniLM-L-6-v2"
-      # HINDSIGHT_API_EMBEDDINGS_PROVIDER: "openai"
-      # HINDSIGHT_API_EMBEDDINGS_OPENAI_BASE_URL: "${HEADROOM_OPENAI_API_URL_INTERNAL}"
-      # HINDSIGHT_API_EMBEDDINGS_OPENAI_API_KEY: "${BIFROST_API_KEY}"
-      # HINDSIGHT_API_EMBEDDINGS_OPENAI_MODEL: "openai/text-embedding-3-small"
-      # HINDSIGHT_API_EMBEDDINGS_OPENAI_DIMENSIONS: "1536"
+    # HINDSIGHT_API_EMBEDDINGS_PROVIDER: "openai"
+    # HINDSIGHT_API_EMBEDDINGS_OPENAI_BASE_URL: "${HEADROOM_OPENAI_API_URL_INTERNAL}"
+    # HINDSIGHT_API_EMBEDDINGS_OPENAI_API_KEY: "${BIFROST_API_KEY}"
+    # HINDSIGHT_API_EMBEDDINGS_OPENAI_MODEL: "openai/text-embedding-3-small"
+    # HINDSIGHT_API_EMBEDDINGS_OPENAI_DIMENSIONS: "1536"
     depends_on:
       bifrost:
         condition: service_healthy

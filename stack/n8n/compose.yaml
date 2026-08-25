@@ -23,7 +23,7 @@ services:
       - ../../local-volumes/n8n/qdrant/storage:/qdrant/storage
 
   n8n:
-    image: n8nio/n8n:2.36.6
+    image: n8nio/n8n:2.37.0
     container_name: n8n
     restart: unless-stopped
     ports:
