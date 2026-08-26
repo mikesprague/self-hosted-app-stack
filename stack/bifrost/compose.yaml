@@ -22,10 +22,10 @@ services:
       retries: 3
     volumes:
       - ../../local-volumes/bifrost/cache/qdrant:/qdrant/storage
-      # - ../../local-volumes/bifrost/qdrant/config.yaml:/qdrant/config.yaml
+  # - ../../local-volumes/bifrost/qdrant/config.yaml:/qdrant/config.yaml
 
   bifrost:
-    image: maximhq/bifrost:v1.6.11
+    image: maximhq/bifrost:v2.0.0
     container_name: bifrost
     ports:
       - "${BIFROST_APP_PORT:-8080}:8080"
