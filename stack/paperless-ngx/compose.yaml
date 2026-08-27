@@ -40,7 +40,7 @@ services:
     restart: unless-stopped
 
   paperless-ngx:
-    image: ghcr.io/paperless-ngx/paperless-ngx:3.0.5
+    image: ghcr.io/paperless-ngx/paperless-ngx:3.1.0
     container_name: paperless-ngx
     restart: unless-stopped
     depends_on:
@@ -137,8 +137,8 @@ services:
       LOG_LEVEL: "info" # Optional: debug, warn, error
     volumes:
       - ../../local-volumes/paperless-gpt/data/prompts:/app/prompts # Mount the prompts directory
-      # - ../../local-volumes/paperless-gpt/data/hocr:/app/hocr # Only if CREATE_LOCAL_HOCR is true
-      # - ../../local-volumes/paperless-gpt/data/pdf:/app/pdf # Only if CREATE_LOCAL_PDF is true
+    # - ../../local-volumes/paperless-gpt/data/hocr:/app/hocr # Only if CREATE_LOCAL_HOCR is true
+    # - ../../local-volumes/paperless-gpt/data/pdf:/app/pdf # Only if CREATE_LOCAL_PDF is true
     ports:
       - "${PAPERLESS_GPT_PORT:-8080}:8080"
     depends_on:
