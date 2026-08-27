@@ -121,7 +121,7 @@
             "az-gpt-image-1.5",
             "az-gpt-image-2",
             "az-sora-2",
-            "az-grok-4.3",
+            "az-grok-4.6",
             "az-deepseek-v4-flash",
             "az-deepseek-v4-pro",
             "az-kimi-k2.7-code"
@@ -148,7 +148,7 @@
             "az-gpt-image-1.5": "gpt-image-1.5",
             "az-gpt-image-2": "gpt-image-2-1",
             "az-sora-2": "sora-2",
-            "az-grok-4.3": "grok-4.3",
+            "az-grok-4.6": "grok-4.6",
             "az-deepseek-v4-flash": "DeepSeek-V4-Flash-0731",
             "az-deepseek-v4-pro": "DeepSeek-V4-Pro",
             "az-kimi-k2.7-code": "Kimi-K2.7-Code"
