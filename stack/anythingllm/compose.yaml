@@ -1,6 +1,6 @@
 services:
   anythingllm:
-    image: mintplexlabs/anythingllm:1.16.0
+    image: mintplexlabs/anythingllm:1.16.1
     container_name: anythingllm
     ports:
       - "${ANYTHINGLLM_PORT:-3001}:3001"
@@ -44,8 +44,8 @@ services:
       CONTEXT7_API_KEY: "${CONTEXT7_API_KEY}"
       ENABLED_TOOLS: "${ATLASSIAN_MCP_ENABLED_TOOLS}"
       DISABLE_TELEMETRY: "true"
-      # Add any other keys here for services or settings
-      # you can find in https://github.com/Mintplex-Labs/anything-llm/blob/master/docker/.env.example
+    # Add any other keys here for services or settings
+    # you can find in https://github.com/Mintplex-Labs/anything-llm/blob/master/docker/.env.example
     volumes:
       - ../../local-volumes/anythingllm/storage:/app/server/storage
     restart: unless-stopped
