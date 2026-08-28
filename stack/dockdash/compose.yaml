@@ -1,6 +1,6 @@
 services:
   dockdash:
-    image: ghcr.io/dougmaitelli/dockdash:v1.2.1
+    image: ghcr.io/dougmaitelli/dockdash:v1.3.0
     platform: linux/amd64
     container_name: dockdash
     restart: unless-stopped
