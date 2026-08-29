@@ -173,11 +173,11 @@
       "keys": [
         {
           "id": "ollama",
-          "name": "oMLX",
-          "value": "env.OLLAMA_API_KEY",
+          "name": "AMD Halo",
+          "value": "env.AMD_HALO_LEMONADE_API_KEY",
           "weight": 1.0,
           "ollama_key_config": {
-            "url": "env.OLLAMA_BASE_URL"
+            "url": "env.AMD_HALO_LEMONADE_URL"
           },
           "models": ["*"]
         }
