@@ -167,27 +167,76 @@
         "retry_backoff_max": 10000
       }
     },
-    "ollama": {
-      "store_raw_request_response": true,
-      "send_back_raw_response": true,
+    "halo": {
       "keys": [
         {
-          "id": "ollama",
-          "name": "AMD Halo",
+          "name": "amd-halo",
           "value": "env.AMD_HALO_LEMONADE_API_KEY",
-          "weight": 1.0,
-          "ollama_key_config": {
-            "url": "env.AMD_HALO_LEMONADE_URL"
-          },
-          "models": ["*"]
+          "models": ["*"],
+          "weight": 1.0
         }
       ],
-      "network_config": {
-        "allow_private_network": true,
-        "default_request_timeout_in_seconds": 900,
-        "max_retries": 5,
-        "retry_backoff_initial": 100,
-        "retry_backoff_max": 10000
+      "custom_provider_config": {
+        "base_provider_type": "openai",
+        "is_key_less": false,
+        "allowed_requests": {
+          "list_models": true,
+          "text_completion": true,
+          "text_completion_stream": true,
+          "chat_completion": true,
+          "chat_completion_stream": true,
+          "responses": false,
+          "responses_stream": false,
+          "embedding": true,
+          "speech": true,
+          "speech_stream": true,
+          "transcription": true,
+          "transcription_stream": true
+        },
+        "network_config": {
+          "base_url": "env.AMD_HALO_LEMONADE_OPENAI_API_URL",
+          "allow_private_network": true,
+          "default_request_timeout_in_seconds": 900,
+          "max_retries": 5,
+          "retry_backoff_initial": 100,
+          "retry_backoff_max": 10000
+        }
+      }
+    },
+    "omlx": {
+      "keys": [
+        {
+          "name": "omlx",
+          "value": "env.OMLX_API_KEY",
+          "models": ["*"],
+          "weight": 1.0
+        }
+      ],
+      "custom_provider_config": {
+        "base_provider_type": "openai",
+        "is_key_less": false,
+        "allowed_requests": {
+          "list_models": true,
+          "text_completion": true,
+          "text_completion_stream": true,
+          "chat_completion": true,
+          "chat_completion_stream": true,
+          "responses": false,
+          "responses_stream": false,
+          "embedding": true,
+          "speech": true,
+          "speech_stream": true,
+          "transcription": true,
+          "transcription_stream": true
+        },
+        "network_config": {
+          "base_url": "env.OMLX_OPENAI_API_URL",
+          "allow_private_network": true,
+          "default_request_timeout_in_seconds": 900,
+          "max_retries": 5,
+          "retry_backoff_initial": 100,
+          "retry_backoff_max": 10000
+        }
       }
     }
   },
@@ -253,13 +302,19 @@
             "weight": 1
           },
           {
+            "provider": "halo",
+            "allowed_models": ["*"],
+            "key_ids": ["*"],
+            "weight": 1
+          },
+          {
             "provider": "openai",
             "allowed_models": ["*"],
             "key_ids": ["*"],
             "weight": 1
           },
           {
-            "provider": "ollama",
+            "provider": "omlx",
             "allowed_models": ["*"],
             "key_ids": ["*"],
             "weight": 1
