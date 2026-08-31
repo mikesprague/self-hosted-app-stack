@@ -1,6 +1,6 @@
 services:
   dbgate:
-    image: dbgate/dbgate:7.2.5
+    image: dbgate/dbgate:7.2.6
     container_name: dbgate
     restart: unless-stopped
     ports:
