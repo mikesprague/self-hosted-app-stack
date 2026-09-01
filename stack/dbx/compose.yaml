@@ -1,6 +1,6 @@
 services:
   dbx:
-    image: t8y2/dbx:0.5.99
+    image: t8y2/dbx:0.6.0
     container_name: dbx
     ports:
       - "${DBX_PORT:-4224}:4224"
