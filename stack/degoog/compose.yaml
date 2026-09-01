@@ -1,6 +1,6 @@
 services:
   degoog-valkey:
-    image: valkey/valkey:9.1.1-alpine
+    image: valkey/valkey:9.1.2-alpine
     container_name: degoog-valkey
     command: [ "valkey-server", "--save", "", "--appendonly", "no" ]
     user: "1000:1000"
