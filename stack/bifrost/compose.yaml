@@ -1,6 +1,6 @@
 services:
   bifrost-qdrant:
-    image: qdrant/qdrant:v1.19.0
+    image: qdrant/qdrant:v1.19.1
     container_name: bifrost-qdrant
     restart: unless-stopped
     ports:
