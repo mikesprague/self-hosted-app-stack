@@ -1,6 +1,6 @@
 services:
   anchor:
-    image: ghcr.io/zhfahim/anchor:0.16.0
+    image: ghcr.io/zhfahim/anchor:0.17.1
     container_name: anchor
     restart: unless-stopped
     depends_on:
