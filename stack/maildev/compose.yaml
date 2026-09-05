@@ -1,6 +1,6 @@
 services:
   maildev:
-    image: maildev/maildev:3.0.0-rc.1
+    image: maildev/maildev:3.0.0-rc.3
     container_name: maildev
     restart: unless-stopped
     ports:
