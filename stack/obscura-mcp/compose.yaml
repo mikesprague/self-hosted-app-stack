@@ -1,6 +1,6 @@
 services:
   obscura-mcp:
-    image: h4ckf0r0day/obscura:0.2.1
+    image: h4ckf0r0day/obscura:0.2.2
     container_name: obscura-mcp
     ports:
       - "${OBSCURA_PORT:-8395}:3000"
