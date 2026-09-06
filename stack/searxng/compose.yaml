@@ -18,7 +18,7 @@ services:
       start_period: 5s
 
   searxng:
-    image: searxng/searxng:2026.9.6-eaf1fcb34
+    image: searxng/searxng:2026.9.5-c7f3080aa
     container_name: searxng
     depends_on:
       searxng-valkey:
