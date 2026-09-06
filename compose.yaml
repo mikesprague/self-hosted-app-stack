@@ -29,6 +29,7 @@ include:
       - ./stack/open-webui/compose.yaml
       - ./stack/phoenix/compose.yaml
       - ./stack/vane/compose.yaml
+      - ./stack/wigolo/compose.yaml
       # Search Engines
       - ./stack/degoog/compose.yaml
       - ./stack/hister/compose.yaml
