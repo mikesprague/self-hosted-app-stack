@@ -10,7 +10,7 @@ services:
       resources:
         limits:
           memory: 8192M
-    shm_size: lg
+    shm_size: 1G
     environment:
       HINDSIGHT_API_AUDIT_LOG_ENABLED: "true"
       HINDSIGHT_API_LLM_PROVIDER: "openai-responses"
