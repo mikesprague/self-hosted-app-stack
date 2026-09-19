@@ -1,6 +1,6 @@
 services:
   memos:
-    image: neosmemo/memos:0.30.0
+    image: neosmemo/memos:0.31.0
     container_name: memos
     ports:
       - "${MEMOS_PORT:-5230}:5230"
@@ -12,7 +12,7 @@ services:
       MEMOS_PORT: "${MEMOS_PORT:-5230}"
       MEMOS_DRIVER: postgres
       MEMOS_DSN: "postgres://${MEMOS_POSTGRES_USER}:${MEMOS_POSTGRES_PASSWORD}@postgres-shared:5432/${MEMOS_POSTGRES_DB}?sslmode=disable"
-      # MEMOS_INSTANCE_URL: http://memos.example.com
+    # MEMOS_INSTANCE_URL: http://memos.example.com
     restart: unless-stopped
     volumes:
       - ../../local-volumes/memos/data:/var/opt/memos
