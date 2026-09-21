@@ -1,0 +1,16 @@
+services:
+  dockhand:
+    image: fnsys/dockhand:v1.0.48
+    container_name: dockhand
+    restart: unless-stopped
+    ports:
+      - "${DOCKHAND_PORT:-8358}:3000"
+    deploy:
+      resources:
+        limits:
+          memory: 1024M
+    environment:
+      TZ: "${TZ:-America/New_York}"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ../../local-volumes/dockhand/data:/app/data

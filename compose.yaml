@@ -20,10 +20,10 @@ include:
       - ./stack/anythingllm/compose.yaml
       - ./stack/atlassian-mcp/compose.yaml
       - ./stack/bifrost/compose.yaml
-      - ./stack/crawl4ai/compose.yaml
+      # - ./stack/crawl4ai/compose.yaml
       - ./stack/headroom/compose.yaml
       - ./stack/hindsight/compose.yaml
-      - ./stack/obscura-mcp/compose.yaml
+      # - ./stack/obscura-mcp/compose.yaml
       - ./stack/open-design/compose.yaml
       - ./stack/open-notebook/compose.yaml
       - ./stack/open-webui/compose.yaml
@@ -54,6 +54,7 @@ include:
       # Monitoring/Management
       # - ./stack/beszel/compose.yaml
       - ./stack/dockdash/compose.yaml
+      - ./stack/dockhand/compose.yaml
       - ./stack/dockpeek/compose.yaml
       - ./stack/dozzle/compose.yaml
       # - ./stack/portainer/compose.yaml
