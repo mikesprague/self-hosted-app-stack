@@ -4,7 +4,7 @@ services:
     container_name: dockhand
     restart: unless-stopped
     ports:
-      - "${DOCKHAND_PORT:-8358}:3000"
+      - "${DOCKHAND_PORT:-8404}:3000"
     deploy:
       resources:
         limits:
