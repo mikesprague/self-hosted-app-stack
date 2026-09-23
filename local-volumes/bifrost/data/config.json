@@ -60,8 +60,6 @@
             "gpt-6-astra",
             "gpt-6-luna",
             "gpt-6-sol",
-            "gpt-5.4-mini",
-            "gpt-5.4-nano",
             "gpt-image-2.5-flare",
             "gpt-image-2.5-sunburst",
             "gpt-audio-1.5",
@@ -81,8 +79,6 @@
             "gpt-6-astra": "gpt-6-astra",
             "gpt-6-luna": "gpt-6-luna",
             "gpt-6-sol": "gpt-6-sol",
-            "gpt-5.4-mini": "gpt-5.4-mini",
-            "gpt-5.4-nano": "gpt-5.4-nano",
             "gpt-image-2.5-flare": "gpt-image-2.5-flare",
             "gpt-image-2.5-sunburst": "gpt-image-2.5-sunburst",
             "gpt-audio-1.5": "gpt-audio-1.5",
@@ -112,8 +108,6 @@
             "api_version": "2024-10-21"
           },
           "models": [
-            "az-5.4-nano",
-            "az-5.4-mini",
             "az-5.6-luna",
             "az-5.6-terra",
             "az-5.6-sol",
@@ -121,7 +115,6 @@
             "az-6-luna",
             "az-6-sol",
             "az-claude-haiku-4.5",
-            "az-claude-opus-5",
             "az-claude-opus-5.5",
             "az-claude-sonnet-5",
             "az-oss-120b",
@@ -142,8 +135,6 @@
             "az-kimi-k2.7-code"
           ],
           "aliases": {
-            "az-5.4-mini": "gpt-5.4-mini",
-            "az-5.4-nano": "gpt-5.4-nano",
             "az-5.6-luna": "gpt-5.6-luna",
             "az-5.6-terra": "gpt-5.6-terra",
             "az-5.6-sol": "gpt-5.6-sol",
@@ -151,7 +142,6 @@
             "az-6-luna": "gpt-6-luna",
             "az-6-sol": "gpt-6-sol",
             "az-claude-haiku-4.5": "claude-haiku-4-5",
-            "az-claude-opus-5": "claude-opus-5",
             "az-claude-opus-5.5": "claude-opus-5-5",
             "az-claude-sonnet-5": "claude-sonnet-5",
             "az-oss-120b": "gpt-oss-120b",
@@ -348,7 +338,7 @@
         "is_code_mode_client": true,
         "is_ping_available": false,
         "tools_to_execute": ["*"],
-        "allow_on_all_virtual_keys": true
+        "allow_by_default": true
       },
       {
         "name": "TDX",
@@ -359,7 +349,7 @@
         "is_code_mode_client": true,
         "is_ping_available": false,
         "tools_to_execute": ["*"],
-        "allow_on_all_virtual_keys": true
+        "allow_by_default": true
       },
       {
         "name": "Context7",
@@ -373,7 +363,7 @@
         "is_code_mode_client": true,
         "is_ping_available": true,
         "tools_to_execute": ["*"],
-        "allow_on_all_virtual_keys": true
+        "allow_by_default": true
       },
       {
         "name": "Mermaid",
@@ -384,32 +374,7 @@
         "is_code_mode_client": true,
         "is_ping_available": true,
         "tools_to_execute": ["*"],
-        "allow_on_all_virtual_keys": true
-      },
-      {
-        "name": "Obscura",
-        "client_id": "obscura",
-        "connection_type": "http",
-        "connection_string": "env.OBSCURA_MCP_SERVER_URL",
-        "auth_type": "none",
-        "is_code_mode_client": true,
-        "is_ping_available": true,
-        "tools_to_execute": ["*"],
-        "allow_on_all_virtual_keys": true
-      },
-      {
-        "name": "Crawl4AI",
-        "client_id": "crawl4ai",
-        "connection_type": "sse",
-        "connection_string": "env.CRAWL4AI_MCP_SERVER_URL",
-        "auth_type": "headers",
-        "headers": {
-          "Authorization": "env.CRAWL4AI_AUTH_HEADER"
-        },
-        "is_code_mode_client": true,
-        "is_ping_available": true,
-        "tools_to_execute": ["*"],
-        "allow_on_all_virtual_keys": true
+        "allow_by_default": true
       }
     ]
   },
