@@ -285,9 +285,7 @@
           { "mcp_client_name": "Atlassian", "tools_to_execute": ["*"] },
           { "mcp_client_name": "TDX", "tools_to_execute": ["*"] },
           { "mcp_client_name": "Context7", "tools_to_execute": ["*"] },
-          { "mcp_client_name": "Mermaid", "tools_to_execute": ["*"] },
-          { "mcp_client_name": "Crawl4AI", "tools_to_execute": ["*"] },
-          { "mcp_client_name": "Obscura", "tools_to_execute": ["*"] }
+          { "mcp_client_name": "Mermaid", "tools_to_execute": ["*"] }
         ],
         "provider_configs": [
           {
@@ -316,6 +314,12 @@
           },
           {
             "provider": "omlx",
+            "allowed_models": ["*"],
+            "key_ids": ["*"],
+            "weight": 1
+          },
+          {
+            "provider": "typesafe",
             "allowed_models": ["*"],
             "key_ids": ["*"],
             "weight": 1
