@@ -1,6 +1,6 @@
 services:
   zipline:
-    image: ghcr.io/diced/zipline:4.7.0
+    image: ghcr.io/diced/zipline:4.8.0
     container_name: zipline
     restart: unless-stopped
     ports:
