@@ -68,7 +68,7 @@
           "models": [
             "gpt-6-astra",
             "gpt-6-luna",
-            "gpt-6-sol",
+            "gpt-6.1-sol",
             "gpt-image-2.5-flare",
             "gpt-image-2.5-sunburst",
             "gpt-realtime-2.1",
@@ -83,7 +83,7 @@
           "aliases": {
             "gpt-6-astra": "gpt-6-astra",
             "gpt-6-luna": "gpt-6-luna",
-            "gpt-6-sol": "gpt-6-sol",
+            "gpt-6.1-sol": "gpt-6.1-sol",
             "gpt-image-2.5-flare": "gpt-image-2.5-flare",
             "gpt-image-2.5-sunburst": "gpt-image-2.5-sunburst",
             "gpt-realtime-2.1": "gpt-realtime-2.1",
@@ -114,7 +114,7 @@
           "models": [
             "az-6-astra",
             "az-6-luna",
-            "az-6-sol",
+            "az-6.1-sol",
             "az-claude-haiku-4.5",
             "az-claude-opus-5.5",
             "az-claude-sonnet-5.5",
@@ -138,7 +138,7 @@
           "aliases": {
             "az-6-astra": "gpt-6-astra",
             "az-6-luna": "gpt-6-luna",
-            "az-6-sol": "gpt-6-sol",
+            "az-6.1-sol": "gpt-6.1-sol",
             "az-claude-haiku-4.5": "claude-haiku-4-5",
             "az-claude-opus-5.5": "claude-opus-5-5",
             "az-claude-sonnet-5.5": "claude-sonnet-5-5",
