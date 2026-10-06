@@ -1,10 +1,18 @@
 {
   "$schema": "https://www.getbifrost.ai/schema",
   "source_of_truth": "config.json",
+  "encryption_key": "env.BIFROST_ENCRYPTION_KEY",
+  "setup_token": "env.BIFROST_ADMIN_PASSWORD",
+  "auth_config": {
+    "is_enabled": true,
+    "admin_username": "env.BIFROST_ADMIN_USERNAME",
+    "admin_password": "env.BIFROST_ADMIN_PASSWORD"
+  },
   "client": {
     "enable_logging": true,
     "disable_content_logging": false,
-    "log_retention_days": 14
+    "log_retention_days": 14,
+    "enforce_auth_on_inference": true
   },
   "providers": {
     "fireworks": {
