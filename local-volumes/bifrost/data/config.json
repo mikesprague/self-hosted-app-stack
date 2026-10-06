@@ -31,21 +31,66 @@
           "weight": 1.0,
           "models": ["*"],
           "aliases": {
-            "deepseek-v4.1-flash": "accounts/fireworks/models/deepseek-v4p1-flash",
-            "glm-5.3": "accounts/fireworks/models/glm-5p3",
-            "glm-5.3-fast": "accounts/fireworks/routers/glm-5p3-fast",
-            "glm-5.3-flash": "accounts/fireworks/models/glm-5p3-flash",
-            "gpt-oss-120b": "accounts/fireworks/models/gpt-oss-120b",
-            "inkling": "accounts/fireworks/models/inkling",
-            "kimi-k3": "accounts/fireworks/models/kimi-k3",
-            "kimi-k3-fast": "accounts/fireworks/routers/kimi-k3-fast",
-            "kimi-k3-us": "accounts/fireworks/routers/kimi-k3-us",
-            "minimax-m3": "accounts/fireworks/models/minimax-m3",
-            "nemotron-3-ultra": "accounts/fireworks/models/nemotron-3-ultra-nvfp4",
-            "nemotron-lightning-3.5": "accounts/fireworks/models/nemotron-lightning-3p5-30b-a3b",
-            "qwen-3.8-max": "accounts/fireworks/models/qwen3p8-max",
-            "qwen-3-embedding-8b": "accounts/fireworks/models/qwen3-embedding-8b",
-            "qwen-3-reranker-8b": "accounts/fireworks/models/qwen3-reranker-8b"
+            "deepseek-v4.1-flash": {
+              "model_id": "accounts/fireworks/models/deepseek-v4p1-flash",
+              "model_name": "deepseek-v4.1-flash"
+            },
+            "glm-5.3": {
+              "model_id": "accounts/fireworks/models/glm-5p3",
+              "model_name": "glm-5.3"
+            },
+            "glm-5.3-fast": {
+              "model_id": "accounts/fireworks/routers/glm-5p3-fast",
+              "model_name": "glm-5.3-fast"
+            },
+            "glm-5.3-flash": {
+              "model_id": "accounts/fireworks/models/glm-5p3-flash",
+              "model_name": "glm-5.3-flash"
+            },
+            "gpt-oss-120b": {
+              "model_id": "accounts/fireworks/models/gpt-oss-120b",
+              "model_name": "gpt-oss-120b"
+            },
+            "inkling": {
+              "model_id": "accounts/fireworks/models/inkling",
+              "model_name": "inkling"
+            },
+            "kimi-k3": {
+              "model_id": "accounts/fireworks/models/kimi-k3",
+              "model_name": "kimi-k3"
+            },
+            "kimi-k3-fast": {
+              "model_id": "accounts/fireworks/routers/kimi-k3-fast",
+              "model_name": "kimi-k3-fast"
+            },
+            "kimi-k3-us": {
+              "model_id": "accounts/fireworks/routers/kimi-k3-us",
+              "model_name": "kimi-k3-us"
+            },
+            "minimax-m3": {
+              "model_id": "accounts/fireworks/models/minimax-m3",
+              "model_name": "minimax-m3"
+            },
+            "nemotron-3-ultra": {
+              "model_id": "accounts/fireworks/models/nemotron-3-ultra-nvfp4",
+              "model_name": "nemotron-3-ultra"
+            },
+            "nemotron-lightning-3.5": {
+              "model_id": "accounts/fireworks/models/nemotron-lightning-3p5-30b-a3b",
+              "model_name": "nemotron-lightning-3.5"
+            },
+            "qwen-3.8-max": {
+              "model_id": "accounts/fireworks/models/qwen3p8-max",
+              "model_name": "qwen-3.8-max"
+            },
+            "qwen-3-embedding-8b": {
+              "model_id": "accounts/fireworks/models/qwen3-embedding-8b",
+              "model_name": "qwen-3-embedding-8b"
+            },
+            "qwen-3-reranker-8b": {
+              "model_id": "accounts/fireworks/models/qwen3-reranker-8b",
+              "model_name": "qwen-3-reranker-8b"
+            }
           }
         }
       ]
