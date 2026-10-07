@@ -183,33 +183,91 @@
             "az-gpt-image-2.5-flare",
             "az-gpt-image-2.5-sunburst",
             "az-sora-2",
-            "az-grok-4.6",
-            "az-deepseek-v4-flash",
-            "az-deepseek-v4-pro",
+            "az-grok-4.7",
+            "az-deepseek-v4.1-flash",
             "az-kimi-k2.7-code"
           ],
           "aliases": {
-            "az-6-astra": "gpt-6-astra",
-            "az-6-luna": "gpt-6-luna",
-            "az-6.1-sol": "gpt-6.1-sol",
-            "az-claude-haiku-4.5": "claude-haiku-4-5",
-            "az-claude-opus-5.5": "claude-opus-5-5",
-            "az-claude-sonnet-5.5": "claude-sonnet-5-5",
-            "az-oss-120b": "gpt-oss-120b",
-            "az-text-embedding-3-small": "text-embedding-3-small",
-            "az-text-embedding-3-large": "text-embedding-3-large",
-            "az-gpt-4o-mini-transcribe": "gpt-4o-mini-transcribe",
-            "az-gpt-4o-mini-tts": "gpt-4o-mini-tts",
-            "az-gpt-oss-120b": "gpt-oss-120b",
-            "az-gpt-realtime-2.1": "gpt-realtime-2.1",
-            "az-gpt-realtime-2.1-mini": "gpt-realtime-2.1-mini",
-            "az-gpt-image-2.5-flare": "gpt-image-2.5-flare",
-            "az-gpt-image-2.5-sunburst": "gpt-image-2.5-sunburst",
-            "az-sora-2": "sora-2",
-            "az-grok-4.6": "grok-4.6",
-            "az-deepseek-v4-flash": "DeepSeek-V4-Flash-0731",
-            "az-deepseek-v4-pro": "DeepSeek-V4-Pro",
-            "az-kimi-k2.7-code": "Kimi-K2.7-Code"
+            "az-6-astra": {
+              "model_name": "gpt-6-astra",
+              "model_id": "gpt-6-astra"
+            },
+            "az-6-luna": {
+              "model_name": "gpt-6-luna",
+              "model_id": "gpt-6-luna"
+            },
+            "az-6.1-sol": {
+              "model_name": "gpt-6.1-sol",
+              "model_id": "gpt-6.1-sol"
+            },
+            "az-claude-haiku-4.5": {
+              "model_name": "claude-haiku-4-5",
+              "model_id": "claude-haiku-4-5"
+            },
+            "az-claude-opus-5.5": {
+              "model_name": "claude-opus-5-5",
+              "model_id": "claude-opus-5-5"
+            },
+            "az-claude-sonnet-5.5": {
+              "model_name": "claude-sonnet-5-5",
+              "model_id": "claude-sonnet-5-5"
+            },
+            "az-oss-120b": {
+              "model_name": "gpt-oss-120b",
+              "model_id": "gpt-oss-120b"
+            },
+            "az-text-embedding-3-small": {
+              "model_name": "text-embedding-3-small",
+              "model_id": "text-embedding-3-small"
+            },
+            "az-text-embedding-3-large": {
+              "model_name": "text-embedding-3-large",
+              "model_id": "text-embedding-3-large"
+            },
+            "az-gpt-4o-mini-transcribe": {
+              "model_name": "gpt-4o-mini-transcribe",
+              "model_id": "gpt-4o-mini-transcribe"
+            },
+            "az-gpt-4o-mini-tts": {
+              "model_name": "gpt-4o-mini-tts",
+              "model_id": "gpt-4o-mini-tts"
+            },
+            "az-gpt-oss-120b": {
+              "model_name": "gpt-oss-120b",
+              "model_id": "gpt-oss-120b"
+            },
+            "az-gpt-realtime-2.1": {
+              "model_name": "gpt-realtime-2.1",
+              "model_id": "gpt-realtime-2.1"
+            },
+            "az-gpt-realtime-2.1-mini": {
+              "model_name": "gpt-realtime-2.1-mini",
+              "model_id": "gpt-realtime-2.1-mini"
+            },
+            "az-gpt-image-2.5-flare": {
+              "model_name": "gpt-image-2.5-flare",
+              "model_id": "gpt-image-2.5-flare"
+            },
+            "az-gpt-image-2.5-sunburst": {
+              "model_name": "gpt-image-2.5-sunburst",
+              "model_id": "gpt-image-2.5-sunburst"
+            },
+            "az-sora-2": {
+              "model_name": "sora-2",
+              "model_id": "sora-2"
+            },
+            "az-grok-4.7": {
+              "model_name": "grok-4.7",
+              "model_id": "grok-4.7"
+            },
+            "az-deepseek-v4.1-flash": {
+              "model_name": "DeepSeek-V4.1-Flash",
+              "model_id": "DeepSeek-V4.1-Flash"
+            },
+            "az-kimi-k2.7-code": {
+              "model_name": "Kimi-K2.7-Code",
+              "model_id": "Kimi-K2.7-Code"
+            }
           }
         }
       ],
