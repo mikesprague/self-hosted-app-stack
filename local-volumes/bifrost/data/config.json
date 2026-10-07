@@ -168,7 +168,7 @@
             "az-6-astra",
             "az-6-luna",
             "az-6.1-sol",
-            "az-claude-haiku-4.5",
+            "az-claude-haiku-5.5",
             "az-claude-opus-5.5",
             "az-claude-sonnet-5.5",
             "az-oss-120b",
@@ -200,9 +200,9 @@
               "model_name": "gpt-6.1-sol",
               "model_id": "gpt-6.1-sol"
             },
-            "az-claude-haiku-4.5": {
-              "model_name": "claude-haiku-4-5",
-              "model_id": "claude-haiku-4-5"
+            "az-claude-haiku-5.5": {
+              "model_name": "claude-haiku-5-5",
+              "model_id": "claude-haiku-5-5"
             },
             "az-claude-opus-5.5": {
               "model_name": "claude-opus-5-5",
