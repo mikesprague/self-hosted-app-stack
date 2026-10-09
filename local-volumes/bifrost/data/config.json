@@ -31,6 +31,10 @@
           "weight": 1.0,
           "models": ["*"],
           "aliases": {
+            "ember-1": {
+              "model_id": "accounts/fireworks/models/ember-1",
+              "model_name": "ember-1"
+            },
             "deepseek-v4.1-flash": {
               "model_id": "accounts/fireworks/models/deepseek-v4p1-flash",
               "model_name": "deepseek-v4.1-flash"
