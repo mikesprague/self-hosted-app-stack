@@ -14,11 +14,11 @@ services:
       SYSTEM_DEFAULTLOCALE: "en-US"
       INSTALL_BOOK_AND_ADVANCED_HTML_OPS: "true"
     volumes:
-      - ../../local-volumes/stirling/data:/usr/share/tessdata # OCR language data
-      - ../../local-volumes/stirling/config:/configs # Custom settings
-      - ../../local-volumes/stirling/logs:/logs # Application logs
-      - ../../local-volumes/stirling/pipeline:/pipeline # Automated pipelines
-      - ../../local-volumes/stirling/custom:/customFiles # Custom HTML/CSS
+      - ../../local-volumes/stirling-pdf/data:/usr/share/tessdata # OCR language data
+      - ../../local-volumes/stirling-pdf/config:/configs # Custom settings
+      - ../../local-volumes/stirling-pdf/logs:/logs # Application logs
+      - ../../local-volumes/stirling-pdf/pipeline:/pipeline # Automated pipelines
+      - ../../local-volumes/stirling-pdf/custom:/customFiles # Custom HTML/CSS
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://localhost:8080/api/v1/info/status || exit 1"]
       interval: 30s
