@@ -1,6 +1,6 @@
 services:
   memos:
-    image: neosmemo/memos:0.31.0
+    image: neosmemo/memos:26.10-rc.1
     container_name: memos
     ports:
       - "${MEMOS_PORT:-5230}:5230"
