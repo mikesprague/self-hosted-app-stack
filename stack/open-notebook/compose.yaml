@@ -33,8 +33,8 @@ services:
     depends_on:
       open-notebook-surrealdb:
         condition: service_healthy
-      bifrost:
-        condition: service_healthy
+    # bifrost:
+    #   condition: service_healthy
     environment:
       OPEN_NOTEBOOK_ENCRYPTION_KEY: "${OPEN_NOTEBOOK_ENCRYPTION_KEY}"
       # Database connection (default values - no need to change)

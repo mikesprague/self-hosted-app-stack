@@ -12,8 +12,8 @@ services:
         condition: service_healthy
       postgres-shared-provision:
         condition: service_completed_successfully
-      bifrost:
-        condition: service_healthy
+    # bifrost:
+    #   condition: service_healthy
     ports:
       - "${OPEN_WEBUI_PORT:-3000}:8080"
     environment:

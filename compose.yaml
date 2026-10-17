@@ -10,7 +10,7 @@ include:
       # Postgres
       - ./stack/databasus/compose.yaml
       - ./stack/dbgate/compose.yaml
-      - ./stack/dbx/compose.yaml
+      # - ./stack/dbx/compose.yaml
       - ./stack/postgres-shared/compose.yaml
       # Personal Cloud
       - ./stack/nextcloud/compose.yaml
@@ -18,22 +18,22 @@ include:
       # - ./stack/9router/compose.yaml
       # - ./stack/aio-sandbox/compose.yaml
       - ./stack/anythingllm/compose.yaml
-      - ./stack/atlassian-mcp/compose.yaml
-      - ./stack/bifrost/compose.yaml
+      # - ./stack/atlassian-mcp/compose.yaml
+      # - ./stack/bifrost/compose.yaml
       # - ./stack/crawl4ai/compose.yaml
-      - ./stack/headroom/compose.yaml
-      - ./stack/hindsight/compose.yaml
+      # - ./stack/headroom/compose.yaml
+      # - ./stack/hindsight/compose.yaml
       # - ./stack/obscura-mcp/compose.yaml
       - ./stack/open-design/compose.yaml
       - ./stack/open-notebook/compose.yaml
       - ./stack/open-webui/compose.yaml
-      - ./stack/phoenix/compose.yaml
-      - ./stack/vane/compose.yaml
+      # - ./stack/phoenix/compose.yaml
+      # - ./stack/vane/compose.yaml
       # - ./stack/wigolo/compose.yaml
       # Search Engines
       - ./stack/degoog/compose.yaml
       - ./stack/hister/compose.yaml
-      - ./stack/searxng/compose.yaml
+      # - ./stack/searxng/compose.yaml
       # Password Manager
       - ./stack/vaultwarden/compose.yaml
       # PKM Tools
@@ -49,20 +49,20 @@ include:
       # Task Management/Productivity
       - ./stack/super-productivity/compose.yaml
       # Workflows/Automation
-      - ./stack/activepieces/compose.yaml
-      - ./stack/n8n/compose.yaml
+      # - ./stack/activepieces/compose.yaml
+      # - ./stack/n8n/compose.yaml
       # Monitoring/Management
       # - ./stack/beszel/compose.yaml
-      - ./stack/dockdash/compose.yaml
+      # - ./stack/dockdash/compose.yaml
       - ./stack/dockhand/compose.yaml
       - ./stack/dockpeek/compose.yaml
-      - ./stack/dozzle/compose.yaml
+      # - ./stack/dozzle/compose.yaml
       # - ./stack/portainer/compose.yaml
       - ./stack/uptime-kuma/compose.yaml
       # SMTP Server/Mail Catcher
-      - ./stack/maildev/compose.yaml
+      # - ./stack/maildev/compose.yaml
       # API Development
-      - ./stack/hoppscotch/compose.yaml
+      # - ./stack/hoppscotch/compose.yaml
       # File Conversion
       - ./stack/vert/compose.yaml
       # Misc Tools/Utilities
