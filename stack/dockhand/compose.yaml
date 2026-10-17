@@ -1,6 +1,6 @@
 services:
   dockhand:
-    image: fnsys/dockhand:v1.0.53
+    image: fnsys/dockhand:v1.0.54
     container_name: dockhand
     restart: unless-stopped
     ports:
@@ -14,3 +14,4 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ../../local-volumes/dockhand/data:/app/data
+      - ../../:/stack
