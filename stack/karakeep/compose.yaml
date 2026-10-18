@@ -38,7 +38,7 @@ services:
       - ../../local-volumes/karakeep/meilisearch:/meili_data
 
   karakeep-web:
-    image: ghcr.io/karakeep-app/karakeep:0.33.2
+    image: ghcr.io/karakeep-app/karakeep:0.34.0
     container_name: karakeep-web
     deploy:
       resources:
