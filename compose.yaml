@@ -31,7 +31,7 @@ include:
       # - ./stack/vane/compose.yaml
       # - ./stack/wigolo/compose.yaml
       # Search Engines
-      - ./stack/degoog/compose.yaml
+      # - ./stack/degoog/compose.yaml
       - ./stack/hister/compose.yaml
       # - ./stack/searxng/compose.yaml
       # Password Manager
