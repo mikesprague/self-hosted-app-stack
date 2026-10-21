@@ -23,7 +23,7 @@
 
 services:
   wigolo:
-    image: ghcr.io/knockoutez/wigolo:0.2.1
+    image: ghcr.io/knockoutez/wigolo:0.3.0
     command: ["serve", "--host", "0.0.0.0", "--port", "${WIGOLO_PORT:-8403}", "--allow-unauthenticated"]
     restart: unless-stopped
     ports:
