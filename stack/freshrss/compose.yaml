@@ -1,6 +1,6 @@
 services:
   freshrss:
-    image: ghcr.io/freshrss/freshrss:1.30.3
+    image: ghcr.io/freshrss/freshrss:1.30.4
     container_name: freshrss
     ports:
       - '${FRESHRSS_PUBLISHED_PORT:-8353}:80'
