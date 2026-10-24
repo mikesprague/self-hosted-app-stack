@@ -1,6 +1,6 @@
 services:
   databasus:
-    image: databasus/databasus:v3.63.1
+    image: databasus/databasus:v3.64.0
     container_name: databasus
     ports:
       - "${DATABASUS_PORT:-4005}:4005"
