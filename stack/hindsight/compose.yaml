@@ -1,6 +1,6 @@
 services:
   hindsight:
-    image: ghcr.io/vectorize-io/hindsight:1.2.0
+    image: ghcr.io/vectorize-io/hindsight:1.2.1
     container_name: hindsight
     restart: unless-stopped
     ports:
@@ -43,8 +43,7 @@ services:
       # HINDSIGHT_API_DISABLE_DB_MAINTENANCE_DISCOVERY: "1"
       HINDSIGHT_API_WORKER_ID: "hindsight-worker-1"
       HINDSIGHT_API_EMBEDDINGS_PROVIDER: "local"
-      HINDSIGHT_API_EMBEDDINGS_LOCAL_MODEL: "BAAI/bge-small-en-v1.5"
-      # HINDSIGHT_API_EMBEDDINGS_LOCAL_MODEL: "hindsight-ai/hs-embed-1" # same dimensions/drop-in replaccement for above - requires re-embedding all banks
+      HINDSIGHT_API_EMBEDDINGS_LOCAL_MODEL: "hindsight-ai/hs-embed-1"
       HINDSIGHT_API_DECISION_MODEL_PROVIDER: "typesafe"
       HINDSIGHT_API_DECISION_MODEL_API_KEY: "${TYPESAFE_API_KEY}"
       HINDSIGHT_API_DECISION_MODEL_MODEL: "jev-preview"
@@ -65,7 +64,6 @@ services:
       timeout: 5s
       retries: 3
       start_period: 30s
-
     volumes:
       - ../../local-volumes/hindsight/data/.pg0:/home/hindsight/.pg0
       - ../../local-volumes/hindsight/data:/home/hindsight
